@@ -1,4 +1,6 @@
 Cove::Application.routes.draw do
+  resources :videocodes
+
   resources :jobvideos
 
   resources :codes
