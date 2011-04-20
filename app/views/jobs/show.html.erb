@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Budget:</b>
+  <%= @job.budget %>
+</p>
+
+<p>
+  <b>Spent:</b>
+  <%= @job.spent %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @job.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>

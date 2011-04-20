@@ -1,0 +1,27 @@
+<h1>Listing jobs</h1>
+
+<table>
+  <tr>
+    <th>Budget</th>
+    <th>Spent</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @jobs.each do |job| %>
+  <tr>
+    <td><%= job.budget %></td>
+    <td><%= job.spent %></td>
+    <td><%= job.active %></td>
+    <td><%= link_to 'Show', job %></td>
+    <td><%= link_to 'Edit', edit_job_path(job) %></td>
+    <td><%= link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Job', new_job_path %>
