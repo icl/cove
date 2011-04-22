@@ -60,7 +60,7 @@ gem 'hoptoad_notifier'
 	gem 'timecop'
 	gem 'shoulda'
 	gem 'factory_girl_rails'
-	
+  gem 'jasmine'	
 end
 
 #gem 'mysql2'
