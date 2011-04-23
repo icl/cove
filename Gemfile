@@ -1,31 +1,67 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
+gem 'rails', '~>3.0.3'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# gem 'mysql2'
+gem 'simple_form'
+gem 'capistrano'
+gem 'fastercsv'
 
-gem 'sqlite3'
+gem 'meta_search'
+gem 'haml'
+gem 'compass'
+gem 'kaminari'
+gem 'newrelic_rpm'
+#necessary for sunspot solr in rails 3
 
-# Use unicorn as the web server
-# gem 'unicorn'
+#pagination tool
+gem "will_paginate", "~> 3.0pre2"
 
-# Deploy with Capistrano
-# gem 'capistrano'
+gem "resque", :require => "resque/server"
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+#gem "SystemTimer"
+#gem 'delayed_paperclip', :git => #'git://github.com/jstorimer/delayed_paperclip.git', :branch => 'rails3'
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+gem 'narray'
 
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+gem 'devise'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem "cancan"
+gem 'SystemTimer', :platforms => :mri_18 
+#gem 'devise_invitable', '0.3.4'
+
+#group :production do
+gem 'hoptoad_notifier'
+#end
+
+ group :development, :test do
+	gem "jquery-rails", ">= 0.2.6"
+	gem 'sqlite3-ruby', :require => 'sqlite3'
+  # gem 'fakefs', :require => 'fakefs/safe'
+	gem 'rails3-generators'
+	gem "rspec"
+	gem "rspec-rails"
+	gem 'email_spec'
+	gem "capybara"
+	gem "cucumber"
+	gem 'launchy'
+	gem "database_cleaner"
+	gem "cucumber-rails"
+	gem "nokogiri"
+	gem "autotest"
+	gem 'autotest-rails'
+  # gem 'ruby-debug19', :platforms => :mri_19
+  gem 'ruby-debug', :platforms => :mri_18
+	
+  # additional testing gems
+	gem "thin"
+	gem 'mocha'
+	gem 'bourne'
+	gem 'timecop'
+	gem 'shoulda'
+	gem 'factory_girl_rails'
+  gem 'jasmine'	
+end
+
+#gem 'mysql2'
+
