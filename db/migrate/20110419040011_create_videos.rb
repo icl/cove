@@ -5,6 +5,7 @@ class CreateVideos < ActiveRecord::Migration
       t.string :filepath
       t.float :duration
       t.datetime :starttime
+      t.text :comments
 
       t.timestamps
     end
