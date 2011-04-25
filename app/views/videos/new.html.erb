@@ -1,6 +1,6 @@
 <!--view file for uploading video-->
 <div id="videos" class="">
-  <%= simple_form_for(@video) do |f| %>
+  <%= simple_form_for @video, :html => {:multipart => true} do |f| %>
     <%= f.error_notification %>
 
     <div class=" grid_16 inputs">
@@ -11,7 +11,11 @@
       <%= f.input :comments %>
     </div>
 
-    <div class="grid _16 actions">
+    <div class=" grid_16 uploads">
+      <%= f.file_field :image %>
+    </div>
+
+    <div class=" grid_16 actions">
       <%= f.button :submit %>
     </div>
 
