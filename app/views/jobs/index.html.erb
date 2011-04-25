@@ -1,25 +1,21 @@
 <h1>Listing jobs</h1>
 
 <table>
-  <tr>
-    <th>Budget</th>
-    <th>Spent</th>
-    <th>Active</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+	<tr>
+		<th>Videos</th>
+		<th>Codes</th>
+		<th>Funding</th>
+		<th></th>
+	</tr>
 
-<% @jobs.each do |job| %>
-  <tr>
-    <td><%= job.budget %></td>
-    <td><%= job.spent %></td>
-    <td><%= job.active %></td>
-    <td><%= link_to 'Show', job %></td>
-    <td><%= link_to 'Edit', edit_job_path(job) %></td>
-    <td><%= link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<% @jobs.each do |job| %>
+		<tr class="active<%= job.active %>">
+			<td><%= job.videonames.join(", ") %></td>
+			<td><%= job.codenames.join(", ") %></td>
+			<td><%= job.spent %> / <%= job.budget%></td>
+			<td><%= link_to 'Edit', edit_job_path(job) %></td>
+		</tr>
+	<% end %>
 </table>
 
 <br />

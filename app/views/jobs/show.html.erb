@@ -2,17 +2,22 @@
 
 <p>
   <b>Budget:</b>
-  <%= @job.budget %>
-</p>
-
-<p>
-  <b>Spent:</b>
-  <%= @job.spent %>
+  <%= @job.spent %> / <%= @job.budget %>
 </p>
 
 <p>
   <b>Active:</b>
   <%= @job.active %>
+</p>
+
+<p>
+  <b>Videos:</b>
+  <%= @job.videonames.join(", ") %>
+</p>
+
+<p>
+  <b>Codes:</b>
+  <%= @job.codenames.join(", ") %>
 </p>
 
 

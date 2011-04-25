@@ -42,6 +42,9 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(params[:job])
 
+    @job.code_ids = params[:code_ids];
+    @job.video_ids= params[:video_ids];
+
     respond_to do |format|
       if @job.save
         format.html { redirect_to(@job, :notice => 'Job was successfully created.') }
@@ -57,6 +60,9 @@ class JobsController < ApplicationController
   # PUT /jobs/1.xml
   def update
     @job = Job.find(params[:id])
+
+    @job.code_ids = params[:code_ids];
+    @job.video_ids= params[:video_ids];
 
     respond_to do |format|
       if @job.update_attributes(params[:job])

@@ -1,29 +1,37 @@
 <%= form_for(@job) do |f| %>
-  <% if @job.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+	<% if @job.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
 
-      <ul>
-      <% @job.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+			<ul>
+				<% @job.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-  <div class="field">
-    <%= f.label :budget %><br />
-    <%= f.text_field :budget %>
-  </div>
-  <div class="field">
-    <%= f.label :spent %><br />
-    <%= f.text_field :spent %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<div class="field">
+		<%= f.label :budget %><br />
+		<%= f.text_field :budget %>
+	</div>
+	<div class="field">
+		<%= f.label :spent %><br />
+		<%= f.text_field :spent %>
+	</div>
+	<div class="field">
+		<%= f.label :active %><br />
+		<%= f.check_box :active %>
+	</div>
+	<div class="field">
+		<%= f.label :codes %><br />
+		<%= select_tag "code_ids[]", options_from_collection_for_select(Code.all, "id", "name", @job.codes.map{|c| c.id}), :multiple => true %>
+	</div>
+	<div class="field">
+		<%= f.label :videos%><br />
+		<%= select_tag "video_ids[]", options_from_collection_for_select(Video.all, "id", "name", @job.videos.map{|v| v.id}), :multiple => true %>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
 <% end %>
