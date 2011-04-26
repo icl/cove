@@ -46,7 +46,7 @@ function updateStatusBar(currPosition, duration) {
 function handleTagClick(tag) {
 	resetTagDivs();
 
-	var tagActive = isTagActive(tag);
+	var tagActive = toggleTagActive(tag);
 
 	if (tagActive)
 		markTag(tag);
@@ -82,7 +82,7 @@ function appendDivText(element, text) {
 	element.innerHTML += text;
 }
 
-function isTagActive(tag) {
+function toggleTagActive(tag) {
 	var startTag = false;
 
 	/* Determine if we have an active tag */
