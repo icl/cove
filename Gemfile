@@ -20,7 +20,7 @@ gem 'streamio-ffmpeg'
 #still need the USP segmenter
 
 #pagination tool
-gem "will_paginate", "~> 3.0pre2"
+#gem "will_paginate", "~> 3.0pre2"
 
 gem "resque", :require => "resque/server"
 
