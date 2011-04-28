@@ -1,11 +1,12 @@
 <!--Index for videos-->
 <div id="vidoes">  
-  <% @videos.each do |video| %>  
+  place holding
+  <% @videos.each do |video| %>
     <div class="video">  
-      <%= video_tag video.image_url.to_s %>  
+      <%= video_tag video.filepath.to_s %>  
       <div class="name"><%= video.name %></div>  
       <div class="actions">  
-        <%= link_to "edit", edit_video_path(painting) %> |  
+        <%= link_to "edit", edit_video_path(video) %> |  
         <%= link_to "remove", video, :confirm => 'Are you sure?', :method => :delete %>  
       </div>  
     </div>  

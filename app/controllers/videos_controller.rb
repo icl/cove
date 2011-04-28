@@ -7,4 +7,23 @@ class VideosController < ApplicationController
 
     render "new"
   end
+
+  def index
+    @videos = Video.all
+
+    render "index"
+  end
+
+  def create
+    @video = Video.new(params[:video])
+    if @video.save
+      redirect_to(@video, :notice => 'Interval was successfully created.')
+    else
+      render :action => "new"
+    end
+  end
+
+  def show
+    render "show"
+  end
 end

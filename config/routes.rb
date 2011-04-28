@@ -3,8 +3,7 @@ Cove::Application.routes.draw do
 
   root :to => "home#index"
 
-  get "videos/index"
-  get "videos/new"
+  resources :videos
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
