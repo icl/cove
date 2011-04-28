@@ -17,16 +17,13 @@
 	var seekBack = 0.04;
 
 	/* This would be populated by some server side deal */
-	var activeTag = new Array(3);
-	activeTag[0] = ["surprise", false];
-	activeTag[1] = ["anger", false];
-	activeTag[2] = ["intimidation", false];
-
+	var activeTag = new Array(1);
+	activeTag[0] = ["riffing", false];
     </script>
 </head>
 <body>
 
-<h2>Tag all instances of Surprise, Anger, and Intimidation</h2>
+<h2>Tag all instances of Riffing</h2>
 
 <div id="container">Loading the player ...</div>
 <script type="text/javascript">
@@ -45,18 +42,20 @@
     });
 </script>
 
-<br />
-
 <div id="prog"></div>
 <div id="progbar">[]</div>
 
 <input type="button" value="Pause/Play" onclick="jwplayer('container').play();" />
-<input type="button" value="Tag Surprise" onclick="handleTagClick('surprise');" />
-<input type="button" value="Tag Anger" onclick="handleTagClick('anger');" />
-<input type="button" value="Tag Intimidation" onclick="handleTagClick('intimidation');" />
+
+
+Hold to click:
+<input type="button" id="tagbutton" value="Hold to tag riffing" onMouseDown="handleTagClick('riffing');" onMouseUp="handleTagClick('riffing');" onMouseOut="handleTagClick('riffing', true);"  style="width: 300px; height: 150px;" />
+
+Push to toggle:
+<input type="button" id="tagbutton_2" value="Click to Toggle riffing" onClick="handleTagClick('riffing');" />
 
 <h3>Active Tags</h3>
-<div id="activeTags"></div>
+<div id="activeTags" style="font-size: 32px; color: green;"></div>
 
 <h3>Completed Tags</h3>
 <div id="tagList">No Tags</div>

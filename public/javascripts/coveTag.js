@@ -6,6 +6,7 @@
 */
 
 var tagArray = new Array();
+var halt = false;
 
 function jwTimeHandler(jwTime) {
 	currPosition = jwplayer().getPosition();
@@ -43,16 +44,56 @@ function updateStatusBar(currPosition, duration) {
 	element.innerHTML = "[" + statusText + "]";
 }
 
-function handleTagClick(tag) {
-	resetTagDivs();
-
-	var tagActive = toggleTagActive(tag);
-
-	if (tagActive)
-		markTag(tag);
-
+function handleTagClick(tag, haltTagging) {
+	if (haltTagging == null && halt == false) {
+		resetTagDivs();
+		toggleTagActive(tag);
 		updateTagDivs();
 	}
+
+	/* The user created an interrupt event
+	 * and wishes to recover */
+	if (haltTagging == null && halt == true) {
+		halt = false;
+		jwplayer().pause("false");
+	}
+
+	if (haltTagging != null && isTagActive(tag)[0] == true) {
+	//	interruptTagging();
+		destroyPartialTags();
+	}
+}
+
+function interruptTagging() {
+	/* Pause the video player and instruct the user */
+	jwplayer().pause("true");
+
+	if (confirm("You left the tagging area in the middle of a tag. To continue tagging, choose OK, then go hold the tag button again.")) {
+		halt = true;
+	} else {
+		destroyPartialTags();
+		alert("You decided to abandon the tag. Click ok to resume.");
+		jwplayer().pause("false");
+	}
+}
+
+function destroyPartialTags() {
+	/* Loop through and destroy any tags without an end time,
+	 * set all current active tags to false */
+
+	for (var i=0; i<activeTag.length; i++) {
+		activeTag[i][1] = false;
+	}
+
+	for (var i=0; i<tagArray.length; i++) {
+		if (tagArray[i][2] == null) {
+			tagArray.splice(i,1);
+		}
+	}
+
+	resetTagDivs();
+	updateTagDivs();
+}
 
 function updateTagDivs() {
 	var tagListElement = document.getElementById(tagListDiv);
@@ -68,7 +109,9 @@ function updateTagDivs() {
 		var tagListText = tagName + " Start: " + startTime + 
 			" End: " + endTime + "<br />";
 
-		var activeTagText = tagName + "<br />";
+	 	var activeTagText = "!! YOU ARE TAGGING HOLD THE BUTTON " +
+			"UNTIL YOU ARE DONE !!";
+
 
 		if (tagArray[i][2] != null) {
 			appendDivText(tagListElement, tagListText);
@@ -82,29 +125,30 @@ function appendDivText(element, text) {
 	element.innerHTML += text;
 }
 
-function toggleTagActive(tag) {
-	var startTag = false;
-
-	/* Determine if we have an active tag */
+function isTagActive(tag) {
 	for (var i=0; i<activeTag.length; i++) {
-		if (activeTag[i][0] == tag && activeTag[i][1] == true) {
-			activeTag[i][1] = false;
+		if (activeTag[i][0] == tag) {
+			/* Return tag state, and index */
+			return [activeTag[i][1], i];
+			break;
+		}
+	}
 
+	/* Invalid */
+	return [-1, -1];
+}
+
+function toggleTagActive(tag) {
+	var tagIndexStatus = isTagActive(tag);
 
 	/* If the tag is finishing, just mark the end time */
-	for (var i=0; i<tagArray.length; i++) {
-		if (tagArray[i][0] == tag && tagArray[i][2] == null) {
-			tagArray[i][2] = jwplayer().getPosition().toFixed(2);
-		}
+	if (tagIndexStatus[0] == true) {
+		endTag(tag);
+		activeTag[tagIndexStatus[1]][1] = false;
+	} else {
+		startTag(tag);
+		activeTag[tagIndexStatus[1]][1] = true;
 	}
-
-		} else if (activeTag[i][0] == tag && activeTag[i][1] == false) {
-			startTag = true;
-			activeTag[i][1] = true;
-		}
-	}
-
-	return startTag;
 }
 
 function resetTagDivs() {
@@ -112,11 +156,19 @@ function resetTagDivs() {
 	document.getElementById(tagListDiv).innerHTML = "";
 }
 
-function markTag(tag) {
-	/* Compensate for muscle delay and jump back */
+function endTag(tag) {
+	/* Find the tag with no end point and end it */
+	for (var i=0; i<tagArray.length; i++) {
+		if (tagArray[i][0] == tag && tagArray[i][2] == null) 
+			tagArray[i][2] = jwplayer().getPosition().toFixed(2);
+	}
+}
+
+function startTag(tag) {
+	/* Compensate for muscle delay and jump the tag start
+	 * time back */
 	var curPosition = jwplayer().getPosition();
-	var seekPosition = curPosition - (curPosition*seekBack);
-	jwplayer().seek(seekPosition);
+	var seekPosition = curPosition - seekBack;
 
 	var t = new Array(3);
 
@@ -125,4 +177,6 @@ function markTag(tag) {
 
 
 	tagArray[tagArray.length] = t;
+
+	t = null;
 }
