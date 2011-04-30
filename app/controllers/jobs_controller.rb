@@ -86,4 +86,12 @@ class JobsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def work
+    @job = Job.find(params[:id])
+    respond_to do |format|
+      format.html # work.html.erb
+      format.xml  { render :xml => @job }
+    end
+  end
 end

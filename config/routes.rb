@@ -8,6 +8,8 @@ Cove::Application.routes.draw do
   resources :jobcodes
 
   resources :jobs
+  
+  match 'jobs/:id/work' => 'jobs#work'
 
   devise_for :users
 
