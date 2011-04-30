@@ -13,7 +13,7 @@
 	/* This would be populated by some server side deal */
 	var activeTag = new Array(<%= @job.codes.length %>);
 	<% @job.codes.each_index do |i| %>
-		activeTag[<%= i %>] = new Array('<%= @job.codes[i].name %>', false);
+		activeTag[<%= i %>] = ['<%= @job.codes[i].name %>', false];
 	<% end %>
 </script>
 
@@ -43,10 +43,10 @@
 
 
 <!--Hold to click:
-<input type="button" id="tagbutton" value="Hold to tag riffing" onMouseDown="handleTagClick('riffing');" onMouseUp="handleTagClick('riffing');" onMouseOut="handleTagClick('riffing', true);"  style="width: 300px; height: 150px;" /> -->
+<input type="button" id="tagbutton" value="Hold to tag riffing" onMouseDown="handleTagClick('Riffing');" onMouseUp="handleTagClick('Riffing');" onMouseOut="handleTagClick('Riffing', true);"  style="width: 300px; height: 150px;" /> -->
 
 Push to toggle:
-<input type="button" id="tagbutton_2" value="Click to Toggle riffing" onClick="handleTagClick('riffing');" />
+<input type="button" id="tagbutton_2" value="Click to Toggle Riffing" onClick="handleTagClick('Riffing');" />
 
 <h3>Active Tags</h3>
 <div id="activeTags" style="font-size: 32px; color: green;"></div>
