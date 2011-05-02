@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   // jwplayer config for job work page
 	jwplayer("jwplayer_container").setup({
 		flashplayer: "/jwplayer/player.swf",
@@ -16,7 +15,11 @@ $(document).ready(function(){
 	});
 	
 	// javascript events for job work page
-	$('#tagButton').bind("mousedown mouseup", function() { handleTagClick('Riffing') });
-	$('#tagButton').mouseout(function() { handleTagClick('Riffing', true )});
-	$('#tagButton_2').click(function() { handleTagClick('Riffing') });
+	for (i=0; i<activeTag.length; i++) {
+		var tagValue = activeTag[i][0];
+
+		$('#tagButton_hold_' + tagValue).bind("mousedown mouseup", { vars: tagValue }, function() { handleTagClick(tagValue) });
+		$('#tagButton_hold_' + tagValue).mouseout(function() { destroyPartialTags() });
+		$('#tagButton_toggle_' + tagValue).click( { vars: tagValue}, function() { handleTagClick(tagValue) });
+	}
 });
