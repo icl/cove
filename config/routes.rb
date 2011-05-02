@@ -1,4 +1,12 @@
 Cove::Application.routes.draw do
+  resources :videos
+  match 'videos/:video_id/tag', :to => 'videos#tag'
+
+  resources :codes
+
+  resources :jobs
+  match 'jobs/:id/work' => 'jobs#work'
+
   devise_for :users
 
   root :to => "home#index"

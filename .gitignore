@@ -26,6 +26,7 @@ db/*.sqlite3
 log/*.log
 log/*.lck
 tmp/**/*
+public/jwplayer/*
 public/archive
 public/archive/*
 deploy.rb
