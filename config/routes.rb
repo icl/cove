@@ -1,5 +1,6 @@
 Cove::Application.routes.draw do
-  resources :videocodes
+  resources :videos
+  match 'videos/:video_id/tag', :to => 'videos#tag'
 
   resources :jobvideos
 

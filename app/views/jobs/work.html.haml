@@ -1,0 +1,43 @@
+﻿%script
+  -# Init global variables
+  var timerDiv = "prog";
+  var progressBar = "progbar";
+  var activeTagDiv = "activeTags";
+  var tagListDiv = "tagList";
+  var statusLength = 10;
+  var seekBack = 0.04;
+  var filepath = '/#{@job.videos.first.filepath}';
+
+  -# This would be populated by some server side deal
+  var activeTag = new Array(#{@job.codes.length});
+  
+  - @job.codes.each_index do |i|
+    activeTag[#{i}] = ['#{@job.codes[i].name}', false];
+    
+%h2 Tag all instances of Riffing
+
+#jwplayer_container Loading the player ...
+
+#prog
+#progbar []
+
+- @job.codes.each_index do |i|
+  -# Hold to click:
+  - tagButton_hold = "tagButton_hold_" + @job.codes[i].name
+  - tagButton_toggle = "tagButton_toggle_" + @job.codes[i].name
+
+  %button(id=tagButton_hold)
+    = "Hold to tag " << @job.codes[i].name
+
+  -# Push to toggle:
+  %button(id=tagButton_toggle)
+    = "Click to toggle " << @job.codes[i].name
+
+%h3 Active Tags
+#activeTags
+
+%h3 Completed Tags
+#tagList No tags
+
+  
+  

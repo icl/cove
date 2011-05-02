@@ -1,0 +1,9 @@
+#tagbutton {
+  width: 300px;
+  height: 150px;
+}
+
+#activeTags {
+  font-size: 32px;
+  color: green;
+}
