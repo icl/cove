@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  budget: 1.5
+  spent: 1.5
+  active: false
+
+two:
+  budget: 1.5
+  spent: 1.5
+  active: false
