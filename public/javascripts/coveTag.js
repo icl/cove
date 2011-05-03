@@ -129,13 +129,13 @@ function isTagActive(tag) {
 	for (var i=0; i<activeTag.length; i++) {
 		if (activeTag[i][0] == tag) {
 			/* Return tag state, and index */
-			return [activeTag[i][1], i];
+			return [activeTag[i][1], i, activeTag[i][2]];
 			break;
 		}
 	}
 
 	/* Invalid */
-	return [-1, -1];
+	return [-1, -1, -1];
 }
 
 function toggleTagActive(tag) {
@@ -145,6 +145,12 @@ function toggleTagActive(tag) {
 	if (tagIndexStatus[0] == true) {
 		endTag(tag);
 		activeTag[tagIndexStatus[1]][1] = false;
+		postTag(
+			videoId,
+			activeTag[tagIndexStatus[1]][2],
+			tagArray[tagIndexStatus[1]][1],
+			tagArray[tagIndexStatus[1]][2]
+		);
 	} else {
 		startTag(tag);
 		activeTag[tagIndexStatus[1]][1] = true;
