@@ -7,7 +7,6 @@ class Videocode < ActiveRecord::Base
 	def length
 		end_time - start_time
 	end
-
 	def length=(newlen)
 		end_time = start_time + newlen
 	end
