@@ -8,6 +8,7 @@ class Videocode < ActiveRecord::Base
 		end_time - start_time
 	end
 	def length=(newlen)
-		end_time = start_time + newlen
+		st = read_attribute(:start_time);
+		write_attribute(:end_time, st + newlen)
 	end
 end
