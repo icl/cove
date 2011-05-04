@@ -2,6 +2,8 @@ Factory.define :job do |f|
 	f.budget 100
 	f.spent 0
 	f.active true
+	f.videos { [Factory(:video)] }
+	f.codes { [Factory(:code)] }
 end
 
 Factory.define :jobvideo do |f|
