@@ -1,0 +1,2 @@
+module JobvideosHelper
+end

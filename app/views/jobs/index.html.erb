@@ -1,0 +1,23 @@
+<h1>Listing jobs</h1>
+
+<table>
+	<tr>
+		<th>Videos</th>
+		<th>Codes</th>
+		<th>Funding</th>
+		<th></th>
+	</tr>
+
+	<% @jobs.each do |job| %>
+		<tr class="active<%= job.active %>">
+			<td><%= job.videonames.join(", ") %></td>
+			<td><%= job.codenames.join(", ") %></td>
+			<td><%= job.spent %> / <%= job.budget%></td>
+			<td><%= link_to 'Edit', edit_job_path(job) %></td>
+		</tr>
+	<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Job', new_job_path %>
