@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  filepath: MyString
+  duration: 1.5
+  starttime: 2011-04-18 21:00:11
+
+two:
+  name: MyString
+  filepath: MyString
+  duration: 1.5
+  starttime: 2011-04-18 21:00:11

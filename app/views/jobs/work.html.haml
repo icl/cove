@@ -1,0 +1,53 @@
+﻿%script
+  -# Init global variables
+  var coveTag = new coveTag();
+  coveTag.setCurTimeDiv("curTime");
+  coveTag.setTotTimeDiv("totTime");
+  coveTag.setProgressBar("progbar");
+  coveTag.setActiveTagDiv("activeTags");
+  coveTag.setTagListDiv("tagList");
+  coveTag.setStatusLength(10);
+  coveTag.setSeekBack(0.04);
+  coveTag.setFilepath('/#{@job.videos.first.filepath}');
+  coveTag.setVideoId('#{@job.id}');
+  coveTag.setActiveTagText('YOU ARE NOW TAGGING!');
+
+  -# This would be populated by some server side deal
+  var activeTag = new Array(#{@job.codes.length});
+  
+  - @job.codes.each_index do |i|
+    activeTag[#{i}] = ['#{@job.codes[i].name}', false, '#{@job.codes[i].id}'];
+
+  coveTag.setActiveTag(activeTag);
+    
+%h2 Tag all instances of Riffing
+
+#jwplayer_container Loading the player ...
+
+#timeContainer
+  #curTime 
+  of
+  #totTime
+   
+#progbar []
+
+- @job.codes.each_index do |i|
+  -# Hold to click:
+  - tagButton_hold = "tagButton_hold_" + @job.codes[i].name
+  - tagButton_toggle = "tagButton_toggle_" + @job.codes[i].name
+
+  %button(id=tagButton_hold)
+    = "Hold to tag " << @job.codes[i].name
+
+  -# Push to toggle:
+  %button(id=tagButton_toggle)
+    = "Click to toggle " << @job.codes[i].name
+
+%h3 Active Tags
+#activeTags
+
+%h3 Completed Tags
+#tagList No tags
+
+  
+  
