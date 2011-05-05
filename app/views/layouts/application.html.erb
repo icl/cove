@@ -13,12 +13,16 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-  <nav>
-    <ul>
-      <li><%= link_to "Jobs", :jobs %></li>
-      <li><%= link_to "Codes", :codes%></li>
-    </ul>
-  </nav>
+  <% if current_user %>
+    <p>Current user: <%= current_user.email %></p>
+    <p>Current user kind: <%= current_user.kind %></p>
+    <nav>
+      <ul>
+        <li><%= link_to "Jobs", :jobs %></li>
+        <li><%= link_to "Codes", :codes%></li>
+      </ul>
+    </nav>
+  <% end %>
 
 <%= yield %>
 
