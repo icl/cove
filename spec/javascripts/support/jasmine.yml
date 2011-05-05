@@ -12,6 +12,7 @@
 #
 src_files:
   - public/javascripts/prototype.js
+  - public/javascripts/coveTag.js
   - public/javascripts/effects.js
   - public/javascripts/controls.js
   - public/javascripts/dragdrop.js
