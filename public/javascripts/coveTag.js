@@ -71,15 +71,15 @@ function coveTag() {
 	}
 
 	function jwTimeHandler(jwTime) {
-		currPosition = jwplayer().getPosition();
-		duration = jwTime.duration;
+		currPosition = jwPlayer().getPosition();
+		duration = jwPlayer().getDuration();
 
-		updateTimer(currPosition, duration);
+		updateTimer(currPosition);
 
 		updateStatusBar(currPosition, duration);
 	}
 
-	function updateTimer(currPosition, duration) {
+	function updateTimer(currPosition) {
 		var element = document.getElementById(curTimeDiv);
 
 		element.innerHTML = currPosition.toFixed(1);
@@ -118,7 +118,7 @@ function handleTagClick(tag, haltTagging) {
 	 * and wishes to recover */
 	if (haltTagging == null && halt == true) {
 		halt = false;
-		jwplayer().pause("false");
+		jwPlayer().pause("false");
 	}
 
 	if (haltTagging != null && isTagActive(tag)[0] == true) {
@@ -129,14 +129,14 @@ function handleTagClick(tag, haltTagging) {
 
 function interruptTagging() {
 	/* Pause the video player and instruct the user */
-	jwplayer().pause("true");
+	jwPlayer().pause("true");
 
 	if (confirm(tagInterruptMSG)) {
 		halt = true;
 	} else {
 		destroyPartialTags();
 		alert(tagAbandonMSG);
-		jwplayer().pause("false");
+		jwPlayer().pause("false");
 	}
 }
 
@@ -226,14 +226,14 @@ function endTag(tag) {
 	/* Find the tag with no end point and end it */
 	for (var i=0; i<tagArray.length; i++) {
 		if (tagArray[i][0] == tag && tagArray[i][2] == null) 
-			tagArray[i][2] = jwplayer().getPosition().toFixed(2);
+			tagArray[i][2] = jwPlayer().getPosition().toFixed(2);
 	}
 }
 
 function startTag(tag) {
 	/* Compensate for muscle delay and jump the tag start
 	 * time back */
-	var curPosition = jwplayer().getPosition();
+	var curPosition = jwPlayer().getPosition();
 	var seekPosition = curPosition - seekBack;
 
 	var t = new Array(3);

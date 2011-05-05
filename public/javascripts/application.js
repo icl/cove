@@ -17,6 +17,9 @@ $(document).ready(function(){
 		}
 	});
 
+	// set the jwplayer reference in our coveTag object
+	coveTag.setJwPlayer(jwplayer);
+
 	// javascript events for job work page
 	for (i=0; i<activeTag.length; i++) {
 		var tagValue = activeTag[i][0];
