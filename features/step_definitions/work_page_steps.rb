@@ -1,4 +1,4 @@
-CODE_ACCURACY_THRESHOLD = 1
+CODE_ACCURACY_THRESHOLD = 2
 
 Given /^a turk job$/ do
   @job = Factory(:job)
