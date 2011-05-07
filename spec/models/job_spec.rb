@@ -4,9 +4,9 @@ describe Job do
 	before(:each) do
 		@job = Factory(:job)
 	end
-	it "should have associated codes" do
+	it "should have associated tags" do
 		@job.tags.length.should == 1
-		@job.tags << Factory(:code)
+		@job.tags << Factory(:tag)
 		@job.tags.length.should == 2
 	end
 	it "should have associated videos" do

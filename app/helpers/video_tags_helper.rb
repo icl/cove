@@ -1,2 +1,2 @@
-module VideocodesHelper
+module VideoTagsHelper
 end

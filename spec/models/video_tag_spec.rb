@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Videocode do
+describe VideoTag do
 	before(:each) do
 		@tagging = Factory(:tagging)
 	end

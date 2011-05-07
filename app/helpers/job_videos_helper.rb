@@ -1,2 +1,2 @@
-module JobvideosHelper
+module JobVideosHelper
 end

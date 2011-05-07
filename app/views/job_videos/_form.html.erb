@@ -1,10 +1,10 @@
-<%= form_for(@jobvideo) do |f| %>
-  <% if @jobvideo.errors.any? %>
+<%= form_for(@job_video) do |f| %>
+  <% if @job_video.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@jobvideo.errors.count, "error") %> prohibited this jobvideo from being saved:</h2>
+      <h2><%= pluralize(@job_video.errors.count, "error") %> prohibited this job video from being saved:</h2>
 
       <ul>
-      <% @jobvideo.errors.full_messages.each do |msg| %>
+      <% @job_video.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

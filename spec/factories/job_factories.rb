@@ -3,7 +3,7 @@ Factory.define :job do |f|
 	f.spent 0
 	f.active true
 	f.videos { [Factory(:video)] }
-	f.codes { [Factory(:code)] }
+	f.tags { [Factory(:tag)] }
 end
 
 Factory.define :job_video do |f|
@@ -16,7 +16,7 @@ Factory.define :job_video do |f|
 end
 
 Factory.define :job_code do |f|
-	f.code_id do
+	f.tag_id do
 		Tag.first ? Tag.first : Factory(:tag)
 	end
 	f.job_id do

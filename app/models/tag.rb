@@ -1,6 +1,6 @@
-class Code < ActiveRecord::Base
-	has_many :jobcodes
-	has_many :jobs, :through => :jobcodes
-	has_many :videocodes
-	has_many :videos, :through => :videocodes
+class Tag < ActiveRecord::Base
+	has_many :job_tags
+	has_many :jobs, :through => :job_tags
+	has_many :video_tags
+	has_many :videos, :through => :video_tags
 end

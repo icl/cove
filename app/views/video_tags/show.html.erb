@@ -2,14 +2,14 @@
 
 <p>
   <b>Video:</b>
-  <%= @videocode.video_id %>
+  <%= @video_tag.video_id %>
 </p>
 
 <p>
-  <b>Code:</b>
-  <%= @videocode.code_id %>
+  <b>Tag:</b>
+  <%= @video_tag.tag_id %>
 </p>
 
 
-<%= link_to 'Edit', edit_videocode_path(@videocode) %> |
-<%= link_to 'Back', videocodes_path %>
+<%= link_to 'Edit', edit_video_tag_path(@video_tag) %> |
+<%= link_to 'Back', video_tags_path %>

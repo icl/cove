@@ -42,7 +42,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(params[:job])
 
-    @job.code_ids = params[:code_ids];
+    @job.tag_ids = params[:tag_ids];
     @job.video_ids= params[:video_ids];
 
     respond_to do |format|
@@ -61,7 +61,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
 
-    @job.code_ids = params[:code_ids];
+    @job.tag_ids = params[:tag_ids];
     @job.video_ids= params[:video_ids];
 
     respond_to do |format|

@@ -1,4 +1,4 @@
-<h1>Listing jobvideos</h1>
+<h1>Listing job videos</h1>
 
 <table>
   <tr>
@@ -9,17 +9,17 @@
     <th></th>
   </tr>
 
-<% @jobvideos.each do |jobvideo| %>
+<% @job_videos.each do |job_video| %>
   <tr>
-    <td><%= jobvideo.job_id %></td>
-    <td><%= jobvideo.video_id %></td>
-    <td><%= link_to 'Show', jobvideo %></td>
-    <td><%= link_to 'Edit', edit_jobvideo_path(jobvideo) %></td>
-    <td><%= link_to 'Destroy', jobvideo, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= job_video.job_id %></td>
+    <td><%= job_video.video_id %></td>
+    <td><%= link_to 'Show', job_video %></td>
+    <td><%= link_to 'Edit', edit_job_video_path(jobvideo) %></td>
+    <td><%= link_to 'Destroy', job_video, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Jobvideo', new_jobvideo_path %>
+<%= link_to 'New Jobvideo', new_job_video_path %>

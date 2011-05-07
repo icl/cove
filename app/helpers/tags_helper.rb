@@ -1,2 +1,2 @@
-module CodesHelper
+module TagsHelper
 end

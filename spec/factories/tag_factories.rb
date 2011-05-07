@@ -8,7 +8,7 @@ Factory.define :tagging, :class => VideoTag do |f|
 	f.video_id do
 		Video.first ? Video.first : Factory(:video)
 	end
-	f.code_id do
+	f.tag_id do
 		Tag.first ? Tag.first : Factory(:tag)
 	end
 	f.job_id do

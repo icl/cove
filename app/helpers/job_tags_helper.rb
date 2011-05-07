@@ -1,0 +1,2 @@
+module JobTagsHelper
+end

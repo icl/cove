@@ -1,25 +1,25 @@
-<h1>Listing jobcodes</h1>
+<h1>Listing Job Tags</h1>
 
 <table>
   <tr>
     <th>Job</th>
-    <th>Code</th>
+    <th>Tag</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @jobcodes.each do |jobcode| %>
+<% @job_tags.each do |job_tag| %>
   <tr>
-    <td><%= jobcode.job_id %></td>
-    <td><%= jobcode.code_id %></td>
-    <td><%= link_to 'Show', jobcode %></td>
-    <td><%= link_to 'Edit', edit_jobcode_path(jobcode) %></td>
-    <td><%= link_to 'Destroy', jobcode, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= job_tag.job_id %></td>
+    <td><%= job_tag.tag_id %></td>
+    <td><%= link_to 'Show', job_tag %></td>
+    <td><%= link_to 'Edit', edit_job_tag_path(job_tag) %></td>
+    <td><%= link_to 'Destroy', job_tag, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Jobcode', new_jobcode_path %>
+<%= link_to 'New Job Tag', new_job_tag_path %>

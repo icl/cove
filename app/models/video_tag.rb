@@ -1,4 +1,4 @@
-class Videotag < ActiveRecord::Base
+class VideoTag < ActiveRecord::Base
 	belongs_to :video
 	belongs_to :tag
 	belongs_to :user

@@ -247,9 +247,9 @@ function startTag(tag) {
 	t = null;
 }
 
-function postTag(video_id, code_id, start_time, end_time) {
+function postTag(video_id, tag_id, start_time, end_time) {
   var url = "/videos/" + video_id + "/tag";
-  var data = {code_id: code_id, start_time: start_time, end_time: end_time};
+  var data = {tag_id: tag_id, start_time: start_time, end_time: end_time};
   var callback = function(data) {
     // do something with the post response
   };
