@@ -1,4 +1,4 @@
-CODE_ACCURACY_THRESHOLD = 2
+TAG_ACCURACY_THRESHOLD = 4
 
 Given /^a turk job$/ do
   @job = Factory(:job)
@@ -35,6 +35,6 @@ Then /^a code should be created for the video with approximate range \[(\d+),(\d
   end_time_diff = end_time - tag.end_time
   
   [start_time_diff,end_time_diff].each do |diff|
-    diff.abs.to_f.should < CODE_ACCURACY_THRESHOLD
+    diff.abs.to_f.should < TAG_ACCURACY_THRESHOLD
   end
 end
