@@ -1,0 +1,80 @@
+		<style type="text/css">
+			body {
+				font-family: arial;
+			}
+			.container_12 ul {
+				list-style-type: none;
+			}
+			.container_12 ul li {
+				margin-top: 20px; 
+				font-size: 1.2em;
+			}
+			.container_12 ul li ul li {
+				margin-top: 10px;
+				font-size: 0.8em;
+				background: none;
+				color: #666;
+			}
+			.container_12 ul li.top {
+				margin-top: 0px;
+			}
+			.container_12 ul li ul li span{
+				margin-top: 10px;
+				font-size: 0.8em;
+				background: none;
+				font-style: italic;
+			}
+			span.count {
+				float: right;
+				background: #eee;
+				text-align: center;
+				padding: 5px 10px;
+				font-size: 0.8em;
+			}	
+			#list_riffing, #list_showing {
+				display: none;
+			}
+		</style>
+
+	<div class="container_12">
+		<p class="prefix_9 grid_3" style="text-align: right;">basic version | <a href="viewVideo-f.html">fancy version</a></p>
+	
+		<h1>Viewing video #168 (basic version)</h1>
+	
+		<div class="grid_8" style="background: #e2e2e2; height: 150px;">&nbsp;</div>
+		
+		<h4 style="clear:both;" class="grid_8">Tags</h4>
+		<p class="grid_8">Click on tag to show intervals marked with tag.</p>
+		
+		<ul class="grid_7">
+			<li id="tag_riffing" class="top">Riffing<span class="count grid_1">4</span>
+				<ul id="list_riffing">
+					<li>2:30 - 3:10<span>, by turk1</span></li>
+					<li>2:45 - 2:50<span>, by turk4</span></li>
+					<li>2:45 - 3:00<span>, by turk500</span></li>
+					<li>4:05 - 4:20<span>, by turk1</span></li>				
+				</ul>
+			</li>
+		
+		
+			<li id="tag_showing">Showing<span class="count grid_1">3</span>
+				<ul id="list_showing">
+					<li>1:05 - 1:30<span>, by turk1</span></li>
+					<li>1:05 - 1:25<span>, by turk3</span></li>
+					<li>1:07 - 1:29<span>, by turk5</span></li>
+				</ul>
+			</li>
+		</ul>
+		
+	</div>
+	
+	<script>
+    $("li#tag_riffing").click(function () {
+      $("ul#list_riffing").slideToggle("slow");
+    });
+    
+    
+      $("li#tag_showing").click(function () {
+      $("ul#list_showing").slideToggle("slow");
+    });
+	</script>

@@ -1,4 +1,10 @@
 class VideosController < ApplicationController
+  def show 
+     respond_to do |format|
+	format.html
+     end
+  end
+
   def tag
     @coding = Videocode.new(:video_id => params[:video_id], :code_id => params[:code_id], :start_time => params[:start_time], :end_time => params[:end_time]);
     
