@@ -6,7 +6,7 @@ Factory.define :job do |f|
 	f.codes { [Factory(:code)] }
 end
 
-Factory.define :jobvideo do |f|
+Factory.define :job_video do |f|
 	f.video_id do
 		Video.first ? Video.first : Factory(:video)
 	end
@@ -15,9 +15,9 @@ Factory.define :jobvideo do |f|
 	end
 end
 
-Factory.define :jobcode do |f|
+Factory.define :job_code do |f|
 	f.code_id do
-		Code.first ? Code.first : Factory(:code)
+		Tag.first ? Tag.first : Factory(:tag)
 	end
 	f.job_id do
 		Job.first ? Job.first : Factory(:job)

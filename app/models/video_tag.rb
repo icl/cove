@@ -1,6 +1,6 @@
-class Videocode < ActiveRecord::Base
+class Videotag < ActiveRecord::Base
 	belongs_to :video
-	belongs_to :code
+	belongs_to :tag
 	belongs_to :user
 	belongs_to :job
 
