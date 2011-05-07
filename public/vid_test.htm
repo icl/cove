@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Video Test</title>
+
+    <script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
+    <script type="text/javascript" src="/javascripts/coveTag.js"></script>
+
+
+    <script language="javascript">
+	coveTag = new coveTag();
+	/* Init global variables */
+	var timerDiv = "prog";
+	var progressBar = "progbar";
+	var activeTagDiv = "activeTags";
+	var tagListDiv = "tagList";
+	var statusLength = 10;
+	var seekBack = 0.04;
+
+	/* This would be populated by some server side deal */
+	var activeTag = new Array(1);
+	activeTag[0] = ["riffing", false];
+    </script>
+</head>
+<body>
+
+<h2>Tag all instances of Riffing</h2>
+
+<div id="container">Loading the player ...</div>
+<script type="text/javascript">
+    jwplayer("container").setup({
+        flashplayer: "/jwplayer/player.swf",
+        file: "/videos/wabbit.mp4",
+        height: 270,
+        width: 480,
+        controlbar: "none",
+        events: {
+            onTime: function (event) {
+                jwTimeHandler(event);
+            },
+            onComplete: function () { document.getElementById("progbar").innerHTML = "[COMPLETE]"; }
+        }
+    });
+</script>
+
+<div id="prog"></div>
+<div id="progbar">[]</div>
+
+<input type="button" value="Pause/Play" onclick="jwplayer('container').play();" />
+
+
+Hold to click:
+<input type="button" id="tagbutton" value="Hold to tag riffing" onMouseDown="handleTagClick('riffing');" onMouseUp="handleTagClick('riffing');" onMouseOut="handleTagClick('riffing', true);"  style="width: 300px; height: 150px;" />
+
+Push to toggle:
+<input type="button" id="tagbutton_2" value="Click to Toggle riffing" onClick="handleTagClick('riffing');" />
+
+<h3>Active Tags</h3>
+<div id="activeTags" style="font-size: 32px; color: green;"></div>
+
+<h3>Completed Tags</h3>
+<div id="tagList">No Tags</div>
+
+</body>
+</html>
