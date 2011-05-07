@@ -31,10 +31,10 @@ end
 Then /^a code should be created for the video with approximate range \[(\d+),(\d+)\]$/ do |start_time, end_time|
   tag = VideoTag.last
   
-  start_time_diff = start_time - code.start_time
-  end_time_diff = end_time - code.end_time
+  start_time_diff = start_time - tag.start_time
+  end_time_diff = end_time - tag.end_time
   
   [start_time_diff,end_time_diff].each do |diff|
-    diff.abs.should < CODE_ACCURACY_THRESHOLD
+    diff.abs.to_f.should < CODE_ACCURACY_THRESHOLD
   end
 end
