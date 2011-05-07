@@ -29,4 +29,10 @@ describe VideosContoller do
       response.should be_success
     end
   end
+
+  describe "Uploading a video" do
+    it "should put a file on the server" do
+      #something
+    end
+  end
 end
