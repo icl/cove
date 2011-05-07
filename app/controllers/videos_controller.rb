@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
   def tag
-    @coding = Videocode.new(:video_id => params[:video_id], :code_id => params[:code_id], :start_time => params[:start_time], :end_time => params[:end_time]);
+    @coding = Videocode.new(:video_id => params[:video_id], :code_id => params[:code_id], :start_time => params[:start_time], :end_time => params[:end_time], :user_id => current_user.id);
     
     respond_to do |format|
       if @coding.save
