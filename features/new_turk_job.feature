@@ -1,5 +1,5 @@
 Feature: New Turk Job
-  In order to get large videos coded quickly
+  In order to get large videos tagged quickly
   As Gina
   I should be able to create and dispatch a turk job
   

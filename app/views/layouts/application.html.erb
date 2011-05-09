@@ -4,9 +4,9 @@
   <title>Cove</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag "jquery.js" %>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "/jwplayer/jwplayer.js"%>
   <%= javascript_include_tag "coveTag.js"%>  
+  <%= javascript_include_tag "/jwplayer/jwplayer.js"%>
+  <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -19,7 +19,7 @@
       <ul>
         <li><%= link_to "Jobs", :jobs %></li>
         <% if current_user.kind != "turk" %>
-          <li><%= link_to "Codes", :codes %></li>
+          <li><%= link_to "Tags", :tags %></li>
         <% end %>
       </ul>
     </nav>
