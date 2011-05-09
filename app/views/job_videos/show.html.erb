@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Job:</b>
+  <%= @job_video.job_id %>
+</p>
+
+<p>
+  <b>Video:</b>
+  <%= @job_video.video_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_video_path(@job_video) %> |
+<%= link_to 'Back', job_videos_path %>

@@ -3,15 +3,15 @@
 <table>
 	<tr>
 		<th>Videos</th>
-		<th>Codes</th>
+		<th>Tags</th>
 		<th>Funding</th>
 		<th></th>
 	</tr>
 
 	<% @jobs.each do |job| %>
 		<tr class="active<%= job.active %>">
-			<td><%= job.videonames.join(", ") %></td>
-			<td><%= job.codenames.join(", ") %></td>
+			<td><%= job.video_names.join(", ") %></td>
+			<td><%= job.tag_names.join(", ") %></td>
 			<td><%= job.spent %> / <%= job.budget%></td>
 			<% if current_user.kind == "turk" %>
 				<td><%= link_to 'Work', "jobs/#{job.id}/work" %></td>
