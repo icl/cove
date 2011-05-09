@@ -25,7 +25,7 @@
 	</div>
 	<div class="field">
 		<%= f.label :tags %><br />
-		<%= select_tag "tag_ids[]", options_from_collection_for_select(Tag.all, "id", "name", @job.tag.map{|c| c.id}), :multiple => true %>
+		<%= select_tag "tag_ids[]", options_from_collection_for_select(Tag.all, "id", "name", @job.tags.map{|t| t.id}), :multiple => true %>
 	</div>
 	<div class="field">
 		<%= f.label :videos%><br />
