@@ -10,6 +10,6 @@ class Job < ActiveRecord::Base
 		videos.map{|v| v.name}
 	end
 	def tag_names
-		tags.map{|c| t.name}
+		tags.map{|t| t.name}
 	end
 end

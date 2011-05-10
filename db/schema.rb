@@ -90,14 +90,6 @@ ActiveRecord::Schema.define(:version => 20110507015501) do
     t.datetime "starttime"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "orig_filepath"
-    t.string   "source_cam"
-    t.string   "project"
-    t.datetime "uploaded"
-    t.integer  "offset"
-    t.string   "location"
-    t.string   "orig_res"
-    t.string   "cam_type"
   end
 
 end
