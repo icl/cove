@@ -10,17 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110502233447) do
+ActiveRecord::Schema.define(:version => 20110507015501) do
 
-  create_table "codes", :force => true do |t|
-    t.string   "name"
+  create_table "job_tags", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "jobcodes", :force => true do |t|
+  create_table "job_videos", :force => true do |t|
     t.integer  "job_id"
-    t.integer  "code_id"
+    t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,13 +30,6 @@ ActiveRecord::Schema.define(:version => 20110502233447) do
     t.float    "budget"
     t.float    "spent"
     t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "jobvideos", :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,6 +46,12 @@ ActiveRecord::Schema.define(:version => 20110502233447) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -72,9 +72,9 @@ ActiveRecord::Schema.define(:version => 20110502233447) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-  create_table "videocodes", :force => true do |t|
+  create_table "video_tags", :force => true do |t|
     t.integer  "video_id"
-    t.integer  "code_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "job_id"

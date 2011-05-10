@@ -13,10 +13,10 @@
   coveTag.setActiveTagText('YOU ARE NOW TAGGING!');
 
   -# This would be populated by some server side deal
-  var activeTag = new Array(#{@job.codes.length});
+  var activeTag = new Array(#{@job.tags.length});
   
-  - @job.codes.each_index do |i|
-    activeTag[#{i}] = ['#{@job.codes[i].name}', false, '#{@job.codes[i].id}'];
+  - @job.tags.each_index do |i|
+    activeTag[#{i}] = ['#{@job.tags[i].name}', false, '#{@job.tags[i].id}'];
 
   coveTag.setActiveTag(activeTag);
     
@@ -31,17 +31,17 @@
    
 #progbar []
 
-- @job.codes.each_index do |i|
+- @job.tags.each_index do |i|
   -# Hold to click:
-  - tagButton_hold = "tagButton_hold_" + @job.codes[i].name
-  - tagButton_toggle = "tagButton_toggle_" + @job.codes[i].name
+  - tagButton_hold = "tagButton_hold_" + @job.tags[i].name
+  - tagButton_toggle = "tagButton_toggle_" + @job.tags[i].name
 
   %button(id=tagButton_hold)
-    = "Hold to tag " << @job.codes[i].name
+    = "Hold to tag " << @job.tags[i].name
 
   -# Push to toggle:
   %button(id=tagButton_toggle)
-    = "Click to toggle " << @job.codes[i].name
+    = "Click to toggle " << @job.tags[i].name
 
 %h3 Active Tags
 #activeTags
