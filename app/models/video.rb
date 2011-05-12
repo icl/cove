@@ -3,9 +3,8 @@ class Video < ActiveRecord::Base
   #mount uploader for carrierwave
   mount_uploader :video_up, VideoFileUploader
 
-	has_many :jobvideos
-	has_many :jobs, :through => :jobvideos
-	has_many :videocodes
-	has_many :codes, :through => :videocodes
-
+	has_many :job_videos
+	has_many :jobs, :through => :job_videos
+	has_many :video_tags
+	has_many :tags, :through => :video_tags
 end

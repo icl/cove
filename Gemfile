@@ -7,6 +7,9 @@ gem 'simple_form'
 gem 'capistrano'
 gem 'fastercsv'
 
+# Jasmine
+gem 'jasmine'
+
 gem 'meta_search'
 gem 'haml'
 gem 'compass'

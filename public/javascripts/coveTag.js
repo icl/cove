@@ -1,27 +1,89 @@
-/* 
-   Author: Aaron Hunter
-   Version: 0.1
-   Date: Apr 21, 2011
-   Description: Library to work with JWPlayer and handle interval tagging
+/*   
+	Description: Library to work with JWPlayer and handle interval tagging
 */
+function coveTag() {
 
-var tagArray = new Array();
-var halt = false;
+	/* Private variables */
+	var tagArray = new Array();
+	var halt = false;
+	var curTimeDiv = '';
+	var totTimeDiv = '';
+	var progressBar = '';
+	var activeTagDiv = '';
+	var tagListDiv = '';
+	var statusLength = '';
+	var seekBack = '';
+	var filepath = '';
+	var videoId = '';
+	var activeTag = '';
+	var jwPlayer = '';
+	var tagInterruptMSG = '';
+	var tagAbandonMSG = '';
+	var activeTagText = '';
 
-function jwTimeHandler(jwTime) {
-	currPosition = jwplayer().getPosition();
-	duration = jwTime.duration;
+	return createApi();
 
-	updateTimer(currPosition, duration);
+	function createApi() {
+		return {
+			handleTagClick : handleTagClick,
+			jwTimeHandler : jwTimeHandler,
+			setTotTimeDiv : setTotTimeDiv,
+			setTotTime : setTotTime,
+			setCurTimeDiv : setCurTimeDiv,
+			setProgressBar : setProgressBar,
+			setActiveTagDiv : setActiveTagDiv,
+			setTagListDiv : setTagListDiv,
+			setStatusLength : setStatusLength,
+			setSeekBack : setSeekBack,
+			setFilepath : setFilepath,
+			setVideoId : setVideoId,
+			setActiveTag : setActiveTag,
+			setJwPlayer : setJwPlayer,
+			setTagInterruptMSG : setTagInterruptMSG,
+			setTagAbandonMSG : setTagAbandonMSG,
+			setActiveTagText : setActiveTagText,
+			getFilepath : getFilepath
+		}
+	}
 
-	updateStatusBar(currPosition, duration);
-}
+	/* Setter Methods */
+	function setTagInterruptMSG(in_tagInterruptMSG) { tagInterruptMSG = in_tagInterruptMSG; }
+	function setTagAbandonMSG(in_tagAbandonMSG) { tagAbandonMSG = in_tagAbandonMSG; }
+	function setActiveTagText(in_activeTagText) { activeTagText = in_activeTagText; }
+	function setTotTimeDiv(in_totTimeDiv) { totTimeDiv = in_totTimeDiv; }
+	function setCurTimeDiv(in_curTimeDiv) { curTimeDiv = in_curTimeDiv; }
+	function setProgressBar(in_progressBar) { progressBar = in_progressBar; }
+	function setActiveTagDiv(in_activeTagDiv) { activeTagDiv = in_activeTagDiv; }
+	function setTagListDiv(in_tagListDiv) { tagListDiv = in_tagListDiv; }
+	function setStatusLength(in_statusLength) { statusLength = in_statusLength; }
+	function setSeekBack(in_seekBack) { seekBack = in_seekBack; }
+	function setFilepath(in_filepath) { filepath = in_filepath; }
+	function setVideoId(in_videoId) { videoId = in_videoId; }
+	function setActiveTag(in_activeTag) { activeTag = in_activeTag; }
+	function setJwPlayer(in_jwPlayer) { jwPlayer = in_jwPlayer; }
 
-function updateTimer(currPosition, duration) {
-	var element = document.getElementById(timerDiv);
+	/* Getter methods */
+	function getFilepath() { return filepath; }
 
-	element.innerHTML = currPosition.toFixed(1) + " of " + duration.toFixed(1);
-}
+	function setTotTime(totTime) {
+		var element = document.getElementById(totTimeDiv);
+		element.innerHTML = totTime.toFixed(1);
+	}
+
+	function jwTimeHandler(jwTime) {
+		currPosition = jwPlayer().getPosition();
+		duration = jwPlayer().getDuration();
+
+		updateTimer(currPosition);
+
+		updateStatusBar(currPosition, duration);
+	}
+
+	function updateTimer(currPosition) {
+		var element = document.getElementById(curTimeDiv);
+
+		element.innerHTML = currPosition.toFixed(1);
+	}
 
 function updateStatusBar(currPosition, duration) {
 	var remaining = 0;
@@ -44,6 +106,7 @@ function updateStatusBar(currPosition, duration) {
 	element.innerHTML = "[" + statusText + "]";
 }
 
+
 function handleTagClick(tag, haltTagging) {
 	if (haltTagging == null && halt == false) {
 		resetTagDivs();
@@ -55,7 +118,7 @@ function handleTagClick(tag, haltTagging) {
 	 * and wishes to recover */
 	if (haltTagging == null && halt == true) {
 		halt = false;
-		jwplayer().pause("false");
+		jwPlayer().pause("false");
 	}
 
 	if (haltTagging != null && isTagActive(tag)[0] == true) {
@@ -66,14 +129,14 @@ function handleTagClick(tag, haltTagging) {
 
 function interruptTagging() {
 	/* Pause the video player and instruct the user */
-	jwplayer().pause("true");
+	jwPlayer().pause("true");
 
-	if (confirm("You left the tagging area in the middle of a tag. To continue tagging, choose OK, then go hold the tag button again.")) {
+	if (confirm(tagInterruptMSG)) {
 		halt = true;
 	} else {
 		destroyPartialTags();
-		alert("You decided to abandon the tag. Click ok to resume.");
-		jwplayer().pause("false");
+		alert(tagAbandonMSG);
+		jwPlayer().pause("false");
 	}
 }
 
@@ -105,13 +168,10 @@ function updateTagDivs() {
 		var endTime = tagArray[i][2];
 
 		tagName = '<a href="#" onClick="jwplayer().seek('+ startTime +');">' +
+
 			tagName + "</a>";
 		var tagListText = tagName + " Start: " + startTime + 
 			" End: " + endTime + "<br />";
-
-	 	var activeTagText = "!! YOU ARE TAGGING HOLD THE BUTTON " +
-			"UNTIL YOU ARE DONE !!";
-
 
 		if (tagArray[i][2] != null) {
 			appendDivText(tagListElement, tagListText);
@@ -166,14 +226,14 @@ function endTag(tag) {
 	/* Find the tag with no end point and end it */
 	for (var i=0; i<tagArray.length; i++) {
 		if (tagArray[i][0] == tag && tagArray[i][2] == null) 
-			tagArray[i][2] = jwplayer().getPosition().toFixed(2);
+			tagArray[i][2] = jwPlayer().getPosition().toFixed(2);
 	}
 }
 
 function startTag(tag) {
 	/* Compensate for muscle delay and jump the tag start
 	 * time back */
-	var curPosition = jwplayer().getPosition();
+	var curPosition = jwPlayer().getPosition();
 	var seekPosition = curPosition - seekBack;
 
 	var t = new Array(3);
@@ -187,11 +247,13 @@ function startTag(tag) {
 	t = null;
 }
 
-function postTag(video_id, code_id, start_time, end_time) {
+function postTag(video_id, tag_id, start_time, end_time) {
   var url = "/videos/" + video_id + "/tag";
-  var data = {code_id: code_id, start_time: start_time, end_time: end_time};
+  var data = {tag_id: tag_id, start_time: start_time, end_time: end_time};
   var callback = function(data) {
     // do something with the post response
   };
   $.post(url, data, callback);
+}
+
 }
