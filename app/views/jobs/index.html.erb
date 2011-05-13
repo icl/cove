@@ -13,10 +13,10 @@
 			<td><%= job.video_names.join(", ") %></td>
 			<td><%= job.tag_names.join(", ") %></td>
 			<td><%= job.spent %> / <%= job.budget%></td>
-			<% if current_user.kind == "turk" %>
-				<td><%= link_to 'Work', "jobs/#{job.id}/work" %></td>
-			<% else %>
+			<% if current_user.kind == "admin" %>
 				<td><%= link_to 'Edit', edit_job_path(job) %></td>
+			<% else %>
+			  <td><%= link_to 'Work', "/jobs/#{job.id}/work" %></td>
 			<% end %>
 		</tr>
 	<% end %>
