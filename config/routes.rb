@@ -7,6 +7,8 @@ Cove::Application.routes.draw do
   resources :jobs
   match 'jobs/:id/work' => 'jobs#work'
 
+  resource :logging
+
   devise_for :users
 
   root :to => "home#index"

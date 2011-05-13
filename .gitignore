@@ -23,6 +23,7 @@ features_rcov/*
 solr/data
 .bundle
 db/*.sqlite3
+log/
 log/*.log
 log/*.lck
 tmp/**/*
@@ -38,3 +39,4 @@ public/videos
 public/stylesheets/compiled
 .autotest
 private
+Termfile
