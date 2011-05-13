@@ -27,3 +27,9 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 end
+
+def parse_json_response(&block)
+  resp = yield
+  @response = JSON.parse(resp.body)
+end
+  
