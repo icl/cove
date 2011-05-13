@@ -14,4 +14,5 @@ describe Job do
 		@job.videos << Factory(:video)
 		@job.videos.length.should == 2
 	end
+	it "should return a joblet that has been shown the fewest times to the user"
 end

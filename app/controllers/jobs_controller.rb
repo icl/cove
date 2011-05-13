@@ -89,6 +89,7 @@ class JobsController < ApplicationController
 
   def work
     @job = Job.find(params[:id])
+    @video = @job.next_joblet current_user
     respond_to do |format|
       format.html # work.html.erb
       format.xml  { render :xml => @job }

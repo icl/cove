@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110507015501) do
+ActiveRecord::Schema.define(:version => 20110513012458) do
 
   create_table "job_tags", :force => true do |t|
     t.integer  "job_id"
@@ -88,6 +88,14 @@ ActiveRecord::Schema.define(:version => 20110507015501) do
     t.string   "filepath"
     t.float    "duration"
     t.datetime "starttime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "work_records", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "user_id"
+    t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
