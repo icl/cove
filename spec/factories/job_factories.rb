@@ -2,8 +2,10 @@ Factory.define :job do |f|
 	f.budget 100
 	f.spent 0
 	f.active true
+	f.description "Find all instances of riffing in days 1-5"
 	f.videos { [Factory(:video)] }
 	f.tags { [Factory(:tag)] }
+	f.requestor { [Factory(:gina)] }
 end
 
 Factory.define :job_video do |f|
