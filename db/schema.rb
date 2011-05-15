@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20110513234410) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
-    t.integer  "requestor"
+    t.integer  "requestor_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|

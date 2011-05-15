@@ -4,7 +4,7 @@ class Job < ActiveRecord::Base
 	has_many :job_videos
 	has_many :videos, :through => :job_videos
 	has_many :work_records
-	belongs_to :requestor, :class_name => "User", :foreign_key => "requestor_id"
+	belongs_to :requestor, :class_name => "User"
 	#has_and_belongs_to_many :videos
 	#has_and_belongs_to_many :tags
 

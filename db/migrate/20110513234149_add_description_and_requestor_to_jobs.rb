@@ -1,7 +1,7 @@
 class AddDescriptionAndRequestorToJobs < ActiveRecord::Migration
   def self.up
     add_column :jobs, :description, :string
-    add_column :jobs, :requestor, :integer
+    add_column :jobs, :requestor_id, :integer
   end
 
   def self.down
