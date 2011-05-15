@@ -1,0 +1,37 @@
+<%= form_for(@training) do |f| %>
+  <% if @training.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>
+
+      <ul>
+      <% @training.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+
+	<div class="field">
+		<%= f.label :tag %><br />
+		<%= select_tag "unbound_tag_ids[]", options_from_collection_for_select(Tag.all, "id", "name", @training.tags.map{|t| t.id}), :multiple => false %>
+	</div>
+
+	<div class="field">
+		<%= f.label :videos%><br />
+		<%= select_tag "unbound_video_ids[]", options_from_collection_for_select(Video.all, "id", "name", @training.videos.map{|v| v.id}), :multiple => false %>
+	</div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

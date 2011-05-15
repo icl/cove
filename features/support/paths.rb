@@ -23,6 +23,11 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    # Training module paths
+    when /new training modules/
+      '/trainings/new'
+      
+
     else
       begin
         page_name =~ /the (.*) page/
