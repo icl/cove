@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110514205459) do
+ActiveRecord::Schema.define(:version => 20110515193725) do
 
   create_table "job_tags", :force => true do |t|
     t.integer  "job_id"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20110514205459) do
 
   create_table "training_videos", :force => true do |t|
     t.integer  "training_id"
-    t.integer  "video_id"
+    t.integer  "video_training_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -102,6 +102,13 @@ ActiveRecord::Schema.define(:version => 20110514205459) do
     t.integer  "user_id"
     t.decimal  "start_time"
     t.decimal  "end_time"
+  end
+
+  create_table "video_trainings", :force => true do |t|
+    t.string   "name"
+    t.string   "filepath"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "videos", :force => true do |t|

@@ -81,6 +81,14 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.destroy
 
+    JobTag.where(:job_id => params[:id]).each do |job_tag|
+      job_tag.destroy
+    end
+
+    JobVideo.where(:job_id => params[:id]).each do |job_video|
+      job_video.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to(jobs_url) }
       format.xml  { head :ok }

@@ -26,6 +26,12 @@ module NavigationHelpers
     # Training module paths
     when /new training modules/
       '/trainings/new'
+
+    when /training module list page/
+      '/trainings'
+
+    when /training edit page/
+      '/trainings/1/edit'
       
 
     else

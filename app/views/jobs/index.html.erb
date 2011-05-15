@@ -15,6 +15,7 @@
 			<td><%= job.spent %> / <%= job.budget%></td>
 			<% if current_user.kind == "admin" %>
 				<td><%= link_to 'Edit', edit_job_path(job) %></td>
+            <td><%= link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete %></td>
 			<% else %>
 			  <td><%= link_to 'Work', "/jobs/#{job.id}/work" %></td>
 			<% end %>

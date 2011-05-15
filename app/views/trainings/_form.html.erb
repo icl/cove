@@ -28,7 +28,7 @@
 
 	<div class="field">
 		<%= f.label :videos%><br />
-		<%= select_tag "unbound_video_ids[]", options_from_collection_for_select(Video.all, "id", "name", @training.videos.map{|v| v.id}), :multiple => false %>
+		<%= select_tag "unbound_video_training_ids[]", options_from_collection_for_select(VideoTraining.all, "id", "name", @training.video_trainings.map{|v| v.id}), :multiple => false %>
 	</div>
 
   <div class="actions">

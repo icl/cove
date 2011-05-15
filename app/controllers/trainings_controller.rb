@@ -27,7 +27,7 @@ class TrainingsController < ApplicationController
     @training = Training.new(params[:training])
 
     @training.tag_ids = params[:unbound_tag_ids];
-    @training.video_ids= params[:unbound_video_ids];
+    @training.video_training_ids= params[:unbound_video_training_ids];
 
     respond_to do |format|
       if @training.save
@@ -63,7 +63,7 @@ class TrainingsController < ApplicationController
     @training = Training.find(params[:id])
 
     @training.tag_ids = params[:unbound_tag_ids];
-    @training.video_ids= params[:unbound_video_ids];
+    @training.video_training_ids= params[:unbound_video_training_ids];
 
     respond_to do |format|
       if @training.update_attributes(params[:training])
@@ -77,7 +77,17 @@ class TrainingsController < ApplicationController
   end
 
   def destroy
-   Training.delete(params[:id])
+    TrainingVideo.where(:training_id => params[:id]).each do |training_video|
+      training_video.destroy
+    end
+
+    TrainingTag.where(:training_id => params[:id]).each do |training_tag|
+      training_tag.destroy
+    end
+
+    @training = Training.find(params[:id])
+    @training.destroy
+
    redirect_to(trainings_url)
   end
 end
