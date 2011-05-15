@@ -5,7 +5,7 @@ class AddDescriptionAndRequestorToJobs < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :jobs, :requestor
+    remove_column :jobs, :requestor_id
     remove_column :jobs, :description
   end
 end

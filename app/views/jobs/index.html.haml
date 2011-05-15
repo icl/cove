@@ -2,13 +2,13 @@
 #jobs_container
   - @jobs.each do |job|
     .job_container
-      .job_description= @job.description
+      .job_description= job.description
       .job_field
         Requestor:
-        = @job.requestor
+        = job.requestor.name
       .job_field
         Tags:
-        = @job.tag_names.join(', ')
+        = job.tag_names.join(', ')
       .job_actions
         - if current_user.kind == "admin"
           = link_to 'Edit', edit_job_path(job)
