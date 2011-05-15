@@ -5,14 +5,18 @@
 
     <div class=" grid_16 inputs">
       <%= f.input :name %>
-      <%= f.input :filepath %>
       <%= f.input :duration %>
       <%= f.input :starttime %>
       <%= f.input :comments %>
+      <%= f.input :project %>
+      <%= f.input :offset %>
+      <%= f.input :location %>
+      <%= f.input :source_cam %>
+      <%= f.input :cam_type %>
     </div>
 
     <div class=" grid_16 uploads">
-      <%= f.file_field :image %>
+      <%= f.file_field :video_up %>
     </div>
 
     <div class=" grid_16 actions">

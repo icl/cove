@@ -67,6 +67,10 @@ task :sync_vid_db => [:environment, "public/videos"] do
     #7. videos should be placed in a folder-bucket(name: db ID) if not in a folder already
     newfile.filepath = "public/videos/"+newfile.id.to_s+"/video/"+File.basename(file)
     newfile.name = File.basename(file) #takes the base name of the file as the name of the video for now
+    
+    #should probably add current time
+    #should probably try to grab metadata as well :/
+    
     mkdir newfile.id.to_s       #making directory to move file to
     mv file,newfile.id.to_s+"/"+File.basename(file) #move
     newfile.save
