@@ -1,9 +1,9 @@
 TAG_ACCURACY_THRESHOLD = 4
 
-Given /^a turk job$/ do
-  @job = Factory(:job)
-  @video = @job.videos.first
-  @tag = @job.tags.first
+Given /^a turk job$/ do  
+  @video = Factory(:video)
+  @tag = Factory(:tag)
+  @job = Factory(:job, :videos => [@video], :tags => [@tag])
 end
 
 When /^(?:|I )click the play button$/ do
