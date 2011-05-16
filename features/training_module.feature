@@ -3,7 +3,7 @@ Feature: Create training module
   The turk should go through some training for a tag
   I should be able to create a training module and attach it to a video
 
-   Background: Create an admin user to test with and sign in
+   Background: Sign in as a Gina and then add some test videos and tags
       Given I am an admin user who is logged in
       Then I should see "Signed in successfully."
       Given I want to create a "Test Video" training video located in "/videos/trainings/test.mp4"

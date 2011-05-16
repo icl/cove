@@ -2,11 +2,8 @@ require 'spec_helper'
 
 describe VideoTraining do
    before(:each) do
-      @attr = Factory(:video_training)
-   end
-
-   after(:each) do
-      @attr = nil
+      @video_training = Factory(:video_training)
+      @attr = { :name => "Test Video", :filepath => "test.mp4" }
    end
 
    it "should require a name" do

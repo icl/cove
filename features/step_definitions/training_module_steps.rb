@@ -1,22 +1,14 @@
 Given /^(?:|I )am an admin user who is logged in$/ do
- unless User.find(:first, :conditions => { :email => "test@test.com" })
- User.new(:email => "test@test.com",
-   :password => "testtest",
-   :password_confirmation => "testtest",
-   :kind => "admin").save!
- end
+   Factory(:gina)
 
    visit("/users/sign_in")
-   fill_in("user_email", :with => "test@test.com")
-   fill_in("user_password", :with => "testtest")
+   fill_in("user_email", :with => "gina@cove.ucsd.edu")
+   fill_in("user_password", :with => "foobar")
    click_button("user_submit")
 end
 
 Given /^(?:|I )want to create a "([^"]*)" training video located in "([^"]*)"$/ do |arg1,arg2|
- unless VideoTraining.find(:first, :conditions => { :name => arg1 })
-    VideoTraining.new(:name => arg1,
-              :filepath => arg2).save!
- end
+   Factory(:video_training, {:name => arg1, :filepath => arg2})
 end
 
 Then /^A "([^"]*)" training video should exist$/ do |arg1|
@@ -26,10 +18,9 @@ Then /^A "([^"]*)" training video should exist$/ do |arg1|
 end
 
 Given /^(?:|I )want to create a "([^"]*)" training module with description "([^"]*)" bound to tag "([^"]*)" and bound to video "([^"]*)"$/ do |arg1,arg2,arg3,arg4|
- unless Training.find(:first, :conditions => { :title => arg1 })
+unless Training.find(:first, :conditions => { :title => arg1 })
     Training.new(:title => arg1,
                  :description => arg2).save!
-
     TrainingVideo.new(:training_id => 
          Training.find(:first, :conditions => { :title => arg1 }).id, 
          :video_training_id => 

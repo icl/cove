@@ -12,8 +12,8 @@ class Training < ActiveRecord::Base
                      :presence => true,
                      :length   => { :maximum => 255 }
 
-   validates_presence_of :training_videos
-   validates_presence_of :training_tags
+#   validates_presence_of :tags
+#   validates_presence_of :video_trainings
 
 	def video_names 
 		video_trainings.map{|v| v.name}
