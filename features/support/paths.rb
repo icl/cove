@@ -35,7 +35,7 @@ module NavigationHelpers
       
     # Job work page
     when /the work page/
-      '/jobs/#{@job.id}/work'
+      "/jobs/#{@job.id}/work"
 
     else
       begin
