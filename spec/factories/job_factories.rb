@@ -3,8 +3,8 @@ Factory.define :job do |f|
 	f.spent 0
 	f.active true
 	f.description "Find all instances of riffing in days 1-5"
-	f.videos { [Video.first] }
-	f.tags { [Tag.first] }
+	f.videos { [Factory(:video)] }
+	f.tags { [ Factory(:tag)] }
 	f.requestor { User.first }
 end
 
