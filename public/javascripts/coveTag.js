@@ -247,13 +247,23 @@ function startTag(tag) {
 	t = null;
 }
 
-function postTag(video_id, code_id, start_time, end_time) {
-  var url = "/videos/" + video_id + "/tag";
-  var data = {code_id: code_id, start_time: start_time, end_time: end_time};
-  var callback = function(data) {
-    // do something with the post response
-  };
-  $.post(url, data, callback);
+function postTag(video_id, tag_id, start_time, end_time) {
+  // Ryan's code from last quarter
+  $.ajax({
+    url: "/videos/" + video_id + "/tag",
+    type: 'POST',
+    dateType: 'JSON',
+    data: {tag_id: tag_id, start_time: start_time, end_time: end_time},
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'));
+    },
+    failure:function(){
+      $("body").append('<div class="flash alert"> Your tag could not be submitted at this time </div>');
+    },
+    success: function(data, status, xhr){
+      // do something
+    }
+  });
 }
 
 }

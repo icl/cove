@@ -24,8 +24,8 @@
 		<%= f.check_box :active %>
 	</div>
 	<div class="field">
-		<%= f.label :codes %><br />
-		<%= select_tag "code_ids[]", options_from_collection_for_select(Code.all, "id", "name", @job.codes.map{|c| c.id}), :multiple => true %>
+		<%= f.label :tags %><br />
+		<%= select_tag "tag_ids[]", options_from_collection_for_select(Tag.all, "id", "name", @job.tags.map{|t| t.id}), :multiple => true %>
 	</div>
 	<div class="field">
 		<%= f.label :videos%><br />

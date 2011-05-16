@@ -2,9 +2,12 @@ Cove::Application.routes.draw do
   resources :videos
   match 'videos/:video_id/tag', :to => 'videos#tag'
 
-  resources :codes
+  resources :tags
 
   resources :jobs
+
+  resources :trainings
+
   match 'jobs/:id/work' => 'jobs#work'
 
   resource :logging

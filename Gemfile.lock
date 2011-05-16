@@ -178,19 +178,19 @@ GEM
       redis-namespace (~> 0.7.0)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
-    rspec (2.5.0)
-      rspec-core (~> 2.5.0)
-      rspec-expectations (~> 2.5.0)
-      rspec-mocks (~> 2.5.0)
-    rspec-core (2.5.1)
-    rspec-expectations (2.5.0)
+    rspec (2.6.0)
+      rspec-core (~> 2.6.0)
+      rspec-expectations (~> 2.6.0)
+      rspec-mocks (~> 2.6.0)
+    rspec-core (2.6.0)
+    rspec-expectations (2.6.0)
       diff-lcs (~> 1.1.2)
-    rspec-mocks (2.5.0)
-    rspec-rails (2.5.0)
+    rspec-mocks (2.6.0)
+    rspec-rails (2.6.0)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
-      rspec (~> 2.5.0)
+      rspec (~> 2.6.0)
     ruby-debug (0.10.4)
       columnize (>= 0.1)
       ruby-debug-base (~> 0.10.4.0)
@@ -262,8 +262,8 @@ DEPENDENCIES
   rails3-generators
   rails_admin!
   resque
-  rspec
-  rspec-rails
+  rspec (>= 2.6.0.rc2)
+  rspec-rails (>= 2.6.0.rc2)
   ruby-debug
   shoulda
   simple_form

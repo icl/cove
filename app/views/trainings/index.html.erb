@@ -1,0 +1,32 @@
+<h1>Listing training videos</h1>
+
+<table border="1">
+<tr>
+   <td>Title</td>
+   <td>Tags</td>
+   <td>Videos</td>
+   <td>Description</td>
+	<% if current_user.kind == "admin" %>
+      <td>Edit</td>
+      <td>Delete</td>
+   <% end %>
+</tr>
+
+	<% @trainings.each do |training| %>
+      <tr>
+         <td><%= training.title %></td>
+         <td><%= training.tag_names.join(", ") %></td>
+         <td><%= training.video_names.join(", ") %></td>
+         <td><%= training.description %></td>
+			<% if current_user.kind == "admin" %>
+				<td><%= link_to 'Edit', edit_training_path(training) %></td>
+            <td><%= link_to 'Destroy', training, :confirm => 'Are you sure?', :method => :delete %></td>
+			<% end %>
+      </tr>
+	<% end %>
+
+</table>
+
+<br />
+
+<%= link_to 'New Training Module', new_training_path %>

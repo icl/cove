@@ -42,7 +42,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(params[:job])
 
-    @job.code_ids = params[:code_ids];
+    @job.tag_ids = params[:tag_ids];
     @job.video_ids= params[:video_ids];
 
     respond_to do |format|
@@ -61,7 +61,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
 
-    @job.code_ids = params[:code_ids];
+    @job.tag_ids = params[:tag_ids];
     @job.video_ids= params[:video_ids];
 
     respond_to do |format|
@@ -81,6 +81,14 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.destroy
 
+    JobTag.where(:job_id => params[:id]).each do |job_tag|
+      job_tag.destroy
+    end
+
+    JobVideo.where(:job_id => params[:id]).each do |job_video|
+      job_video.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to(jobs_url) }
       format.xml  { head :ok }
@@ -89,6 +97,7 @@ class JobsController < ApplicationController
 
   def work
     @job = Job.find(params[:id])
+    @video = @job.next_joblet current_user
     respond_to do |format|
       format.html # work.html.erb
       format.xml  { render :xml => @job }

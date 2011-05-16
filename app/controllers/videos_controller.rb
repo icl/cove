@@ -1,12 +1,12 @@
 class VideosController < ApplicationController
   def tag
-    @coding = Videocode.new(:video_id => params[:video_id], :code_id => params[:code_id], :start_time => params[:start_time], :end_time => params[:end_time]);
+    @tagging = VideoTag.new(:video_id => params[:video_id], :tag_id => params[:tag_id], :start_time => params[:start_time], :end_time => params[:end_time], :user => current_user)
     
     respond_to do |format|
-      if @coding.save
-        format.json { render :json => @coding, :status => :created }
+      if @tagging.save
+        format.json { render :json => @tagging, :status => :created }
       else
-        format.json { render :json => @coding.errors, :status => :unprocessable_entity }
+        format.json { render :json => @tagging.errors, :status => :unprocessable_entity }
       end
     end
   end  
