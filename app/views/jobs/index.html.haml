@@ -1,0 +1,20 @@
+%h1 Available Jobs
+#jobs_container
+  - @jobs.each do |job|
+    .job_container
+      .job_description= job.description
+      .job_field
+        Requestor:
+        = job.requestor.name
+      .job_field
+        Tags:
+        = job.tag_names.join(', ')
+      .job_actions
+        - if current_user.kind == "admin"
+          = link_to 'Edit', edit_job_path(job)
+        - else
+          = link_to 'Work', "/jobs/#{job.id}/work"
+
+  - if current_user.kind == "admin"
+    = link_to 'New Job', new_job_path
+  
