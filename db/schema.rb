@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110515193725) do
-=======
-ActiveRecord::Schema.define(:version => 20110513234410) do
->>>>>>> remotes/jsonnikson/integration
 
   create_table "job_tags", :force => true do |t|
     t.integer  "job_id"
@@ -36,8 +32,6 @@ ActiveRecord::Schema.define(:version => 20110513234410) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "description"
-    t.integer  "requestor_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -94,7 +88,6 @@ ActiveRecord::Schema.define(:version => 20110513234410) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "kind",                                  :default => "turk"
-    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
