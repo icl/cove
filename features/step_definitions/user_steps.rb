@@ -1,3 +1,12 @@
+Given /^(?:|I )am an admin user who is logged in$/ do
+   Factory(:gina)
+
+   visit("/users/sign_in")
+   fill_in("user_email", :with => "gina@cove.ucsd.edu")
+   fill_in("user_password", :with => "foobar")
+   click_button("user_submit")
+end
+
 Given /^no user exists with an email of "(.*)"$/ do |email|
   assert_nil User.find(:first, :conditions => { :email => email })
 end

@@ -1,12 +1,3 @@
-Given /^(?:|I )am an admin user who is logged in$/ do
-   Factory(:gina)
-
-   visit("/users/sign_in")
-   fill_in("user_email", :with => "gina@cove.ucsd.edu")
-   fill_in("user_password", :with => "foobar")
-   click_button("user_submit")
-end
-
 Given /^(?:|I )want to create a "([^"]*)" training video located in "([^"]*)"$/ do |arg1,arg2|
    Factory(:video_training, {:name => arg1, :filepath => arg2})
 end
