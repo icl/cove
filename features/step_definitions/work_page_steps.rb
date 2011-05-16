@@ -1,4 +1,4 @@
-TAG_ACCURACY_THRESHOLD = 1
+TAG_ACCURACY_THRESHOLD = 1.1
 
 Given /^a turk job$/ do  
   @video = Factory(:video)
