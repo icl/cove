@@ -5,5 +5,7 @@ Given /^(?:|I )want to create a "([^"]*)" tag$/ do |arg1|
 end
 
 Then /^A "([^"]*)" tag should exist$/ do |arg1|
-   Tag.find(:first, :conditions => { :name => arg1 }).nil?
+   if Tag.find(:first, :conditions => { :name => arg1 }).nil?
+      scenario.fail("Tag couldn't be found!")
+   end
 end

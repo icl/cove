@@ -23,12 +23,18 @@
 
 	<div class="field">
 		<%= f.label :tag %><br />
-		<%= select_tag "unbound_tag_ids[]", options_from_collection_for_select(Tag.all, "id", "name", @training.tags.map{|t| t.id}), :multiple => false %>
+		<%= select_tag "unbound_tag_ids[]", 
+            options_from_collection_for_select(Tag.all, "id", "name",
+             @training.tags.map{|t| t.id}), :multiple => false, 
+             :include_blank => "Select a tag" %>
 	</div>
 
 	<div class="field">
 		<%= f.label :videos%><br />
-		<%= select_tag "unbound_video_training_ids[]", options_from_collection_for_select(VideoTraining.all, "id", "name", @training.video_trainings.map{|v| v.id}), :multiple => false %>
+		<%= select_tag "unbound_video_training_ids[]", 
+            options_from_collection_for_select(VideoTraining.all, "id", "name", 
+            @training.video_trainings.map{|v| v.id}), :multiple => false, 
+            :include_blank => "Select a video" %>
 	</div>
 
   <div class="actions">
