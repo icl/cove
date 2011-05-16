@@ -5,6 +5,7 @@ Feature: Turk Tags a Video
   
   Background:
     Given a turk job
+    And I am a turk who is logged in
     And I am on the work page
   
   @javascript
