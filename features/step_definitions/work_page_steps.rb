@@ -13,7 +13,7 @@ When /^(?:|I )click the play button$/ do
 end
 
 When /^(?:|I )wait (\d+) seconds$/ do |n|
-  sleep n
+  sleep n.to_f
 end
 
 When /^(?:|I )click the click-to-tag button$/ do
