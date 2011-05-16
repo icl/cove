@@ -33,6 +33,9 @@ module NavigationHelpers
     when /training edit page/
       '/trainings/1/edit'
       
+    # Job work page
+    when /the work page/
+      '/jobs/#{@job.id}/work'
 
     else
       begin
