@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20110515193725) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
+    t.integer  "requestor_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20110515193725) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "kind",                                  :default => "turk"
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
