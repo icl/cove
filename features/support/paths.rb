@@ -11,12 +11,29 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
 
+    when /the sign up page/
+      '/users/sign_up'
+
+    when /the sign in page/
+      '/users/sign_in'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    # Training module paths
+    when /new training modules/
+      '/trainings/new'
+
+    when /training module list page/
+      '/trainings'
+
+    when /training edit page/
+      '/trainings/1/edit'
+      
+    # Job work page
     when /the work page/
       "/jobs/#{@job.id}/work"
 

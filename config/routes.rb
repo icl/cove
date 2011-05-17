@@ -5,7 +5,12 @@ Cove::Application.routes.draw do
   resources :tags
 
   resources :jobs
+
+  resources :trainings
+
   match 'jobs/:id/work' => 'jobs#work'
+
+  resource :logging
 
   devise_for :users
 

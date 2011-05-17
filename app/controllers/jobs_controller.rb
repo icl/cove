@@ -1,5 +1,9 @@
 class JobsController < ApplicationController
+  before_filter :authenticate_user!
+  
+  
   # GET /jobs
+
   # GET /jobs.xml
   def index
     @jobs = Job.all
@@ -81,6 +85,14 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.destroy
 
+    JobTag.where(:job_id => params[:id]).each do |job_tag|
+      job_tag.destroy
+    end
+
+    JobVideo.where(:job_id => params[:id]).each do |job_video|
+      job_video.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to(jobs_url) }
       format.xml  { head :ok }
@@ -89,6 +101,7 @@ class JobsController < ApplicationController
 
   def work
     @job = Job.find(params[:id])
+    @video = @job.next_joblet current_user
     respond_to do |format|
       format.html # work.html.erb
       format.xml  { render :xml => @job }
