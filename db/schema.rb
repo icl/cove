@@ -119,7 +119,6 @@ ActiveRecord::Schema.define(:version => 20110515193725) do
     t.string   "filepath"
     t.float    "duration"
     t.datetime "starttime"
-    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "orig_filepath"
