@@ -119,8 +119,17 @@ ActiveRecord::Schema.define(:version => 20110515193725) do
     t.string   "filepath"
     t.float    "duration"
     t.datetime "starttime"
+    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "orig_filepath"
+    t.string   "source_cam"
+    t.string   "project"
+    t.datetime "uploaded"
+    t.integer  "offset"
+    t.string   "location"
+    t.string   "orig_res"
+    t.string   "cam_type"
   end
 
   create_table "work_records", :force => true do |t|

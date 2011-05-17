@@ -17,6 +17,11 @@ gem 'kaminari'
 gem 'newrelic_rpm'
 #necessary for sunspot solr in rails 3
 
+#File/Video Upload tool
+gem 'carrierwave'
+gem 'streamio-ffmpeg'
+#still need the USP segmenter
+
 #pagination tool
 #gem "will_paginate", "~> 3.0pre2"
 
