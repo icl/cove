@@ -1,0 +1,108 @@
+<html>
+<head>
+	<title>COVE</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/960.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/layout.css">
+	<script src="/javascripts/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class="container_12">
+		<div class="grid_3">
+			COVE Analytics
+		</div>
+		<div class="grid_5 nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="analytics-view.html" class="currPage">Analytics</a></li>
+				<li><a href="turks-view.html">Turks</a></li>
+				<li><a href="upload-view.html">Upload</a></li>
+			</ul>
+		</div>
+		<div class="grid_4 loginBar">
+			<a href="#" id="login">Log in</a>
+		</div>
+		
+		
+			<h2 class="grid_12">Viewing video #168</h2>
+	
+	
+		<div class="grid_8" style="background: #e2e2e2; width: 480px; height: 270px; margin-bottom: 20px;">&nbsp;</div>
+		
+		<ul class="grid_2 prefix_1 suffix_1 tags" id="tagBar">
+			<li id="riffing">Riffing</li>
+			<li>Marking</li>
+			<li id="showing">Showing</li>
+			<li>Doodeedah</li>
+			<li>Gesture</li>
+			<li>Speaking</li>
+			<li>Pirouettes</li>
+			<li>Study</li>
+			<li>Bending</li>
+		</ul>
+		
+		<p class="grid_8">Click once to activate a tag: data is shown on graph. Click again to deactivate (<em>not implemented yet:</em> and remove data from graph. Activated tags go to the top, whereas deactivated tags go to the bottom.
+		</p>
+		<p class="grid_8">Note: only "riffing" and "showing" will toggle graph data.</p>
+		
+		<div class="grid_8" id="graph"></div>
+		
+		<script>
+			$("li").click(function () {
+				if (  rgb2hex($(this).css("backgroundColor")) === "#eeeeee" ) {
+					$("ul#tagbar").prepend(this);
+					$(this).css("background-color","#98FB98");
+				}
+				else {
+					$(this).css("background-color","#eeeeee");
+					$("ul#tagbar").append(this);
+				}
+				
+			});
+	
+			$("li#riffing").click(function () {
+				var old = $("div#graph").css("backgroundImage");
+				var newStr = "url('images/green.png'), "+old;
+				$("div#graph").css("backgroundImage", newStr );	
+	
+			});
+			
+			$("li#showing").click(function () {
+				var old = $("div#graph").css("backgroundImage");
+				var newStr = "url('images/blue.png'), "+old;
+				$("div#graph").css("backgroundImage", newStr );	
+			});
+
+			function rgb2hex(rgb) {
+				rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+				function hex(x) {
+					return ("0" + parseInt(x).toString(16)).slice(-2);
+				}
+				return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+			}
+		</script>
+
+		
+		<div class="grid_12 footer">
+			<p>
+				Copyright &copy; 2011 -- COVE
+			</p>
+		</div>
+		
+		<script>
+		
+			$("#login").click(function() {
+				var htmlStr = $("#login").html();
+				var loginForm = '<form method="post" action="index.html"><input type="text" name="user" id="username" placeholder="username" size="12"><input type="password" name="pass" placeholder="password" size="12"><input type="submit" value="log in"></form>'
+				if ( htmlStr === "Log in" ) {
+					$("#login").html(loginForm);
+				}
+
+			});
+		
+		</script>
+		
+	</div>
+
+</body>
+</html>
