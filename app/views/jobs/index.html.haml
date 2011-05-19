@@ -1,14 +1,14 @@
-%h1 Available Jobs
+h1 Available Jobs
 #jobs_container
   - @jobs.each do |job|
     .job_container
       .job_description= job.description
       .job_field
         Requestor:
-        = job.requestor.name
+        = job.requestor_name
       .job_field
         Tags:
-        = job.tag_names.join(', ')
+        = job.tags.collect { | tag| tag.name}.join(', ')
       .job_actions
         - if current_user.kind == "admin"
           = link_to 'Edit', edit_job_path(job)
