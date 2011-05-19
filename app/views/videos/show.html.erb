@@ -1,6 +1,96 @@
-<div id="videos">
-  hello placeholder
-  Name: <%= @video.name %>
-  ID: <%= @video.id %>
 
-</div>
+		<style type="text/css">
+			body {
+				font-family: verdana;
+				padding: 25px;
+			}
+			h1 {
+				color: brown;
+			}
+			.container_12 ul {
+				list-style-type: none;
+				padding-left: 0px;
+			}
+			.container_12 ul li {
+				margin-bottom: 20px; 
+				font-size: 1.2em;
+				color: blue;
+				padding-left: 25px;
+				background: url('/images/right_tri.png') no-repeat top left;
+			}
+			.container_12 ul li ul li {
+				margin-top: 10px;
+				margin-bottom: 0px;
+				font-size: 0.9em;
+				background: none;
+				color: #000;
+			}
+			.container_12 ul li ul li span{
+				margin-top: 10px;
+				font-size: 0.8em;
+				background: none;
+				font-style: italic;
+			}
+			span.count {
+				float: right;
+				background: #eee;
+				text-align: center;
+				padding: 5px 10px;
+				font-size: 0.8em;
+				color: #000;
+			}
+
+		</style>
+
+	<div class="container_12">
+		<h1 class="grid_8 suffix_4">Viewing video #168 (basic version)</h1>
+	
+		<div class="grid_8" style="background: #e2e2e2; width: 480px; height: 270px;">&nbsp;</div>
+		
+		<p class="grid_8 suffix_4" style="clear:both;" class="grid_8"><b>Tags:</b> Click on tag to show intervals marked with tag. </p>
+		
+		<ul class="grid_6">
+			<li id="tag_riffing" class="link">Riffing<span class="count grid_1">4</span>
+				<ul id="list_riffing">
+					<!-- list start times and end times for riffing, ordered by start time -->
+					<li>2:30 - 3:10</li>
+					<li>2:45 - 2:50</li>
+					<li>2:45 - 3:00</li>
+					<li>4:05 - 4:20</li>				
+				</ul>
+			</li>
+		
+		
+			<li id="tag_showing" class="link">Showing<span class="count grid_1">3</span>
+				<ul id="list_showing">
+					<!-- list start times and end times for showing, ordered by start time -->
+					<li>1:05 - 1:30</li>
+					<li>1:05 - 1:25</li>
+					<li>1:07 - 1:29</li>
+				</ul>
+			</li>
+		</ul>
+		
+	</div>
+	
+	<script>
+	
+		$("ul#list_riffing").hide();
+		$("ul#list_showing").hide();
+		
+		$("li#tag_riffing").click(function () {
+		  $("ul#list_riffing").slideToggle("slow");
+		  if ($("li#tag_riffing").css("backgroundImage").indexOf("right_tri.png")!=-1) {
+		  	$("li#tag_riffing").css("backgroundImage", "url('/images/down_tri.png')");
+		  }
+		  else {
+		  $("li#tag_riffing").css("backgroundImage", "url('/images/right_tri.png')");
+		  }
+		});
+		
+		$("li#tag_showing").click(function () {
+		  $("ul#list_showing").slideToggle("slow");
+		});
+		
+	</script>
+
