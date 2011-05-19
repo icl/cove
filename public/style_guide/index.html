@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title>COVE</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/960.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/layout.css">
+	<script src="/javascripts/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class="container_12">
+		<div class="grid_3">
+			COVE
+		</div>
+		<div class="grid_5 nav">
+			<ul>
+				<li><a href="index.html" class="currPage">Home</a></li>
+				<li><a href="analytics-view.html">Analytics</a></li>
+				<li><a href="turks-view.html">Turks</a></li>
+				<li><a href="upload-view.html">Upload</a></li>
+			</ul>
+		</div>
+		<div class="grid_4 loginBar">
+			<a href="#" id="login">Log in</a>
+		</div>
+		
+			<h2 class="grid_12">Home page</h2>
+			<ul class="grid_12">
+				<li><b>To be implemented</b>:</li> 
+				<li>the navigation bar changes based on the user logged in</li>
+			</ul>
+			<dl class="grid_4">
+				<dt>Analytics</dt>
+				<dd>Browse Videos</dd>
+			</dl>
+			<dl class="grid_4">
+				<dt>Turk</dt>
+				<dd>Jobs</dd>
+			</dl>
+			<dl class="grid_4">
+				<dt>Upload</dt>
+				<dd>Upload a video</dd>
+				<dd>Edit video metadata</dd>
+			</dl>
+		
+		
+		<div class="grid_12 footer">
+			<p>
+				Copyright &copy; 2011 -- COVE
+			</p>
+		</div>
+		
+		<script>
+		
+			$("#login").click(function() {
+				var htmlStr = $("#login").html();
+				var loginForm = '<form method="post" action="index.html"><input type="text" name="user" id="username" placeholder="username" size="12"><input type="password" name="pass" placeholder="password" size="12"><input type="submit" value="log in"></form>'
+				if ( htmlStr === "Log in" ) {
+					$("#login").html(loginForm);
+				}
+
+			});
+		
+		</script>
+		<div style="clear:both;"></div>
+	</div>
+
+</body>
+</html>
