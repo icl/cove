@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe VideosContoller do
+describe VideosController do
 
   describe "GET 'new'" do
     it "should be successful" do
-      get 'home'
+      get 'new'
       response.should be_success
     end
   end
@@ -18,14 +18,16 @@ describe VideosContoller do
 
   describe "GET 'show'" do
     it "should be successful" do
+      pending
       get 'show'
       response.should be_success
     end
   end
 
-  describe "GET 'create'" do
+  describe "PUT 'create'" do
     it "should be successful" do
-      get 'create'
+      pending
+      put 'create'
       response.should be_success
     end
   end
