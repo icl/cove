@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>COVE</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/960.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/layout.css">
+	<script src="/javascripts/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class="container_12">
+		<div class="grid_3">
+			COVE Upload
+		</div>
+		<div class="grid_5 nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="analytics-view.html">Analytics</a></li>
+				<li><a href="turks-view.html">Turks</a></li>
+				<li><a href="upload-view.html" class="currPage">Upload</a></li>
+			</ul>
+		</div>
+		<div class="grid_4 loginBar">
+			<a href="#" id="login">Log in</a>
+		</div>
+		
+		
+		<h2 class="grid_12">Upload a video</h2>
+		
+		<dl>
+			<form>
+				<dt class="prefix_1 grid_3">Choose a file:</dt>
+				<dd class="grid_3 suffix_2"><input type="text" name="file_name"><input type="submit" value="browse" class="sButton"></dd>
+				<dt class="prefix_1 grid_3">Title:</dt>
+				<dd class="grid_3 suffix_2"><input type="text" name="file_name"></dd>
+				<dt class="prefix_1 grid_3">Duration:</dt>
+				<dd class="grid_3 suffix_2"><input type="text" name="file_name"></dd>
+				<dt class="prefix_1 grid_3">Angle:</dt>
+				<dd class="grid_3 suffix_2"><input type="text" name="file_name"></dd>
+				<dd class="prefix_4 grid_3 suffix_2"><input type="submit" value="Upload video" class="sButton"></dd>
+			</form>
+		</dl>
+	
+		<div class="grid_12 footer">
+			<p>
+				Copyright &copy; 2011 -- COVE
+			</p>
+		</div>
+		
+		<script>
+		
+			$("#login").click(function() {
+				var htmlStr = $("#login").html();
+				var loginForm = '<form method="post" action="index.html"><input type="text" name="user" id="username" placeholder="username" size="12"><input type="password" name="pass" placeholder="password" size="12"><input type="submit" value="log in"></form>'
+				if ( htmlStr === "Log in" ) {
+					$("#login").html(loginForm);
+				}
+
+			});
+		
+		</script>
+		
+	</div>
+
+</body>
+</html>
