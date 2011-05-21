@@ -1,0 +1,17 @@
+.grid_12
+  %p
+    %b Description:
+    = @job.description
+  %p
+    %b Requestor:
+    = @job.requestor_name
+  %p
+    %b Videos:
+    = @job.video_names.join(", ") 
+  %p
+    %b Tags:
+    = @job.tag_names.join(", ")
+
+.grid_12
+  = link_to 'Edit', edit_job_path(@job)
+  = link_to 'Back', jobs_path
