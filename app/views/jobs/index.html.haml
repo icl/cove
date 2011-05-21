@@ -2,6 +2,7 @@
 .grid_12#jobs_container
   - @jobs.each do |job|
     .job_container
+      %h3 Job ##{job.id}
       .job_description= job.description
       .job_field
         Requestor:
@@ -16,5 +17,6 @@
           = link_to 'Work', "/jobs/#{job.id}/work"
 
   - if current_user.kind == "admin"
-    = link_to 'New Job', new_job_path
+    #new_job_link
+      = link_to 'New Job', new_job_path
   
