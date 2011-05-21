@@ -1,5 +1,5 @@
-%h1 Available Jobs
-#jobs_container
+%h2.grid_12 Available Jobs
+.grid_12#jobs_container
   - @jobs.each do |job|
     .job_container
       .job_description= job.description
