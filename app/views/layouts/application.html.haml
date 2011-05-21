@@ -20,32 +20,14 @@
           %li= link_to "Jobs", :jobs
           %li= link_to "Tags", :tags
       .grid_4.loginBar
-        = link_to "Login", new_user_session_path, :class => "login"
-  
-    /
-      - if user_signed_in?
-        %p
+        - if user_signed_in?
           Logged in as:
           = current_user.email
-          (
-          = link_to "Logout", destroy_user_session_path
-          )
-
-
-        %nav
-          %ul
-            %li
-              = link_to "Jobs", :jobs
-            - if current_user.kind != "turk" 
-              %li
-                = link_to "Tags", :tags
-
-
-      - else
-        = link_to "Login", new_user_session_path
-        = link_to "Sign up", new_user_registration_path
-
-
+          (#{link_to "Logout", destroy_user_session_path})
+        - else
+          = link_to "Login", new_user_session_path, :class => "login"
+          = link_to "Sign up", new_user_registration_path
+  
     .container_12.content
       = yield
 
