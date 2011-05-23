@@ -6,6 +6,14 @@ Given /^a turk job$/ do
   @job = Factory(:job, :videos => [@video], :tags => [@tag])
 end
 
+Given /^(\d+) turk jobs$/ do |n|
+  @video = Factory(:video)
+  @tag = Factory(:tag)
+  @jobs = Array.new n.to_i do
+    Factory(:job, :videos => [@video], :tags => [@tag])
+  end
+end
+
 When /^(?:|I )click the play button$/ do
   # TODO: better way of waiting for jwplayer to load
   sleep 1

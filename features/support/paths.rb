@@ -34,8 +34,11 @@ module NavigationHelpers
       '/trainings/1/edit'
       
     # Job work page
-    when /the work page/
+    when /^the work page$/
       "/jobs/#{@job.id}/work"
+    when /^the work page for job (\d+)$/
+      n = page_name[/(\d+)/].to_i
+      "/jobs/#{@jobs[n-1].id}/work"
 
     else
       begin
