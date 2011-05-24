@@ -7,7 +7,9 @@ class Job < ActiveRecord::Base
 	belongs_to :requestor, :class_name => "User"
 	#has_and_belongs_to_many :videos
 	#has_and_belongs_to_many :tags
-
+	
+	delegate :name, :to => :requestor, :prefix => true, :allow_nil => true
+	#result will be job.requestor_name
 	def video_names 
 		videos.map{|v| v.name}
 	end
