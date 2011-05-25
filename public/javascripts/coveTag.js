@@ -20,6 +20,9 @@ function coveTag() {
 	var tagInterruptMSG = '';
 	var tagAbandonMSG = '';
 	var activeTagText = '';
+	var progressID = '';
+   var progressBarID = '';
+   var playerFrameDiv = '';
 
 	return createApi();
 
@@ -27,6 +30,11 @@ function coveTag() {
 		return {
 			handleTagClick : handleTagClick,
 			jwTimeHandler : jwTimeHandler,
+			getFilepath : getFilepath,
+			moveProgress : moveProgress,
+			initPlayerContainer : initPlayerContainer,
+         togglePausePlay : togglePausePlay,
+         handleVolume : handleVolume,
 			setTotTimeDiv : setTotTimeDiv,
 			setTotTime : setTotTime,
 			setCurTimeDiv : setCurTimeDiv,
@@ -42,7 +50,9 @@ function coveTag() {
 			setTagInterruptMSG : setTagInterruptMSG,
 			setTagAbandonMSG : setTagAbandonMSG,
 			setActiveTagText : setActiveTagText,
-			getFilepath : getFilepath
+			setProgressMeterDiv : setProgressMeterDiv,
+			setProgressBarDiv : setProgressBarDiv,
+			setPlayerFrameDiv : setPlayerFrameDiv
 		}
 	}
 
@@ -61,13 +71,19 @@ function coveTag() {
 	function setVideoId(in_videoId) { videoId = in_videoId; }
 	function setActiveTag(in_activeTag) { activeTag = in_activeTag; }
 	function setJwPlayer(in_jwPlayer) { jwPlayer = in_jwPlayer; }
+	function setProgressMeterDiv(in_progressID) { progressID = in_progressID; }
+   function setProgressBarDiv(in_progressBarID) { progressBarID = in_progressBarID; }
+   function setPlayerFrameDiv(in_playerFrameDiv) { playerFrameDiv = in_playerFrameDiv; }
 
 	/* Getter methods */
 	function getFilepath() { return filepath; }
 
 	function setTotTime(totTime) {
 		var element = document.getElementById(totTimeDiv);
-		element.innerHTML = totTime.toFixed(1);
+      var totTimeMin = Math.floor(totTime/60);
+      var totTimeSec = Math.floor(totTime%60);
+
+		element.innerHTML = totTimeMin + ":" + totTimeSec;
 	}
 
 	function jwTimeHandler(jwTime) {
@@ -75,14 +91,17 @@ function coveTag() {
 		duration = jwPlayer().getDuration();
 
 		updateTimer(currPosition);
-
-		updateStatusBar(currPosition, duration);
+      updateTagText(currPosition);
+		//updateStatusBar(currPosition, duration);
 	}
 
 	function updateTimer(currPosition) {
 		var element = document.getElementById(curTimeDiv);
+      
+      var curTimeMin = Math.floor(currPosition/60);
+      var curTimeSec = Math.floor(currPosition%60);
 
-		element.innerHTML = currPosition.toFixed(1);
+		element.innerHTML = curTimeMin + ":" + curTimeSec;
 	}
 
 function updateStatusBar(currPosition, duration) {
@@ -109,7 +128,7 @@ function updateStatusBar(currPosition, duration) {
 
 function handleTagClick(tag, haltTagging) {
 	if (haltTagging == null && halt == false) {
-		resetTagDivs();
+//		resetTagDivs();
 		toggleTagActive(tag);
 		updateTagDivs();
 	}
@@ -154,7 +173,7 @@ function destroyPartialTags() {
 		}
 	}
 
-	resetTagDivs();
+//	resetTagDivs();
 	updateTagDivs();
 }
 
@@ -167,18 +186,50 @@ function updateTagDivs() {
 		var startTime = tagArray[i][1];
 		var endTime = tagArray[i][2];
 
-		tagName = '<a href="#" onClick="jwplayer().seek('+ startTime +');">' +
+		var tagHref = '<a href="#" onClick="jwplayer().seek('+ startTime +');">' +
 
 			tagName + "</a>";
-		var tagListText = tagName + " Start: " + startTime + 
+		var tagListText = tagHref + " Start: " + startTime + 
 			" End: " + endTime + "<br />";
 
 		if (tagArray[i][2] != null) {
-			appendDivText(tagListElement, tagListText);
+			//appendDivText(tagListElement, tagListText);
+         updateProgressBar(startTime, endTime, tagName);
 		} else {
-			appendDivText(activeTagElement, activeTagText);
+			//appendDivText(activeTagElement, activeTagText);
 		}
 	}
+}
+
+function updateTagText(curPosition) {
+   var i = tagArray.length-1;
+
+   if(i >= 0 && tagArray[i][3] != 1) {
+		var tagName = tagArray[i][0];
+		var startTime = tagArray[i][1];
+		var endTime = tagArray[i][2];
+
+		if (endTime != null) {
+         $("#tagText").text(tagName + " +1 NICE WORK");
+         $("#tagText").val("pulsing");
+         $("#tagText").pulse({
+          opacity: [.3,1]
+         }, {
+          backgroundColor: ['red', 'yellow', 'green', 'blue'],
+          duration: 100, // duration of EACH individual animation
+          times: 3, // Will go three times through the pulse array [0,1]
+          easing: 'linear',
+    complete: function() { 
+         $("#tagText").text("");
+      	tagArray[i][3] = 1;
+      }
+      });
+		} else {
+         $("#tagText").stop(true, true);
+         var tagLen = (curPosition - startTime).toFixed(2)
+         $("#tagText").text("Tagging for " + tagLen + " seconds");
+		}
+   }
 }
 
 function appendDivText(element, text) {
@@ -205,6 +256,8 @@ function toggleTagActive(tag) {
 	if (tagIndexStatus[0] == true) {
 		endTag(tag);
 		activeTag[tagIndexStatus[1]][1] = false;
+      /* Refactor this */
+
 		postTag(
 			videoId,
 			activeTag[tagIndexStatus[1]][2],
@@ -264,6 +317,69 @@ function postTag(video_id, tag_id, start_time, end_time) {
       // do something
     }
   });
+}
+
+function togglePausePlay() {
+   var state = jwPlayer().getState();
+
+   /* Change the state and switch up the images */
+   if (state == "PLAYING") {
+      jwPlayer().pause(true);
+      $("#pausePlay").attr("src", "/images/icons/play.png");
+   } else {
+      jwPlayer().play(true);
+      $("#pausePlay").attr("src", "/images/icons/pause.png");
+   }
+}
+function handleVolume(percent) {
+   var newVolume = (jwPlayer().getVolume() + percent);
+   
+   if (newVolume > 100)
+      newVolume = 100;
+
+   if (newVolume < 0)
+      newVolume = 0;
+
+   jwPlayer().setVolume(newVolume);
+   $("#volLevel").text(newVolume + "%");
+}
+
+function initPlayerContainer(jwEvent) {
+   $("#player_wrapper").css('width', (jwPlayer().getWidth()) + "px");
+   $("#player_wrapper").css('height', (jwPlayer().getHeight()+50) + "px");
+   $("#progress_bar").css('width', (jwPlayer().getWidth()-54) + "px");
+   $("#player_progress_bar_interior").css('width', (jwPlayer().getWidth()-54) + "px");
+   $("#jwplayer_wrapper").css('width', (jwPlayer().getWidth()) + "px");
+   $("#control_wrapper").css('width', (jwPlayer().getWidth()) + "px");
+   $("#lower_control_wrapper").css('width', (jwPlayer().getWidth()) + "px");
+   $("#volLevel").text(jwPlayer().getVolume() + "%");
+
+   $(".button_container").css('width', (jwPlayer().getWidth()) + "px");
+}
+
+function updateProgressBar(startTime, endTime, tagName) {
+   var width = jwPlayer().getWidth() * 1;
+   var duration = jwPlayer().getDuration() * 1;
+
+   var offset = ((width/duration)*startTime).toFixed(2);
+   
+   var tagLen = (endTime - startTime);
+
+   var tagWidth = ((width/duration)*tagLen).toFixed(2);
+
+   $("#"+progressBarID).after('<a class="playerBarTag" style="float: left; display: block; width: '+tagWidth+'px; height: 20px; background-color: yellow; margin-top: -20px; margin-left: '+offset+'px;" title="'+ tagName +' From: '+ startTime +' To: '+endTime+'" onclick="javascript:jwplayer().seek('+startTime+');">&nbsp;</a>');
+
+   $(".playerBarTag").tipTip({maxWidth: "auto", edgeOffset: 10});
+}
+
+function moveProgress(jwEvent) {
+   var width = jwPlayer().getWidth() * 1;
+   var duration = jwPlayer().getDuration() * 1;
+   var pos = jwPlayer().getPosition() * 1;
+
+   var offset = (((width/duration)*pos)).toFixed(2);
+
+   $("#"+progressID).css('margin-left', offset + "px");
 }
 
 }
