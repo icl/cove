@@ -23,6 +23,9 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    when /new jobs/
+      '/jobs/new'
+
     # Training module paths
     when /new training modules/
       '/trainings/new'
