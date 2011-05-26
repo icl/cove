@@ -9,8 +9,7 @@ Feature: Create jobs
 
   Scenario: Try to create a job without videos
     Given I am on new jobs
-    Then show me the page
-    Given I should select a "Test Tag" tag for this new job
+    And I should select a "Test Tag" tag for this new job
     And I press the "Create Job" button
     Then I should see "Videos must have at least one selected"
 
