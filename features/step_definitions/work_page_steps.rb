@@ -34,11 +34,15 @@ When /^I tag the range \[(\d+),(\d+)\] using the click\-to\-tag button$/ do |sta
   click_button "tagButton_toggle_#{@tag.name}"
 end
 
-Then /^a code should be created for the video with approximate range \[(\d+),(\d+)\]$/ do |start_time, end_time|
+Then /^the tag should be applied the job\/video with approximate range \[(\d+),(\d+)\]$/ do |start_time, end_time|
   # TODO: should instead wait for AJAX call to complete, probably using browser.wait_for_element
   sleep 1
   
   tag = VideoTag.last
+  
+  tag.tag_id.should == @tag.id
+  tag.video_id.should == @video.id
+  tag.job_id.should == @job.id
   
   start_time_diff = start_time.to_f - tag.start_time
   end_time_diff = end_time.to_f - tag.end_time
