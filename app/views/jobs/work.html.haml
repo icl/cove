@@ -9,7 +9,8 @@
   coveTag.setStatusLength(10);
   coveTag.setSeekBack(0.04);
   coveTag.setFilepath('/#{@video.filepath}');
-  coveTag.setVideoId('#{@job.id}');
+  coveTag.setVideoId('#{@video.id}');
+  coveTag.setJobId('#{@job.id}');
   coveTag.setActiveTagText('YOU ARE NOW TAGGING!');
 
   -# This would be populated by some server side deal

@@ -15,6 +15,7 @@ function coveTag() {
 	var seekBack = '';
 	var filepath = '';
 	var videoId = '';
+	var jobId = '';
 	var activeTag = '';
 	var jwPlayer = '';
 	var tagInterruptMSG = '';
@@ -37,6 +38,7 @@ function coveTag() {
 			setSeekBack : setSeekBack,
 			setFilepath : setFilepath,
 			setVideoId : setVideoId,
+			setJobId : setJobId,
 			setActiveTag : setActiveTag,
 			setJwPlayer : setJwPlayer,
 			setTagInterruptMSG : setTagInterruptMSG,
@@ -59,6 +61,7 @@ function coveTag() {
 	function setSeekBack(in_seekBack) { seekBack = in_seekBack; }
 	function setFilepath(in_filepath) { filepath = in_filepath; }
 	function setVideoId(in_videoId) { videoId = in_videoId; }
+	function setJobId(in_jobId) { jobId = in_jobId; }
 	function setActiveTag(in_activeTag) { activeTag = in_activeTag; }
 	function setJwPlayer(in_jwPlayer) { jwPlayer = in_jwPlayer; }
 
@@ -206,7 +209,6 @@ function toggleTagActive(tag) {
 		endTag(tag);
 		activeTag[tagIndexStatus[1]][1] = false;
 		postTag(
-			videoId,
 			activeTag[tagIndexStatus[1]][2],
 			tagArray[tagIndexStatus[1]][1],
 			tagArray[tagIndexStatus[1]][2]
@@ -247,13 +249,13 @@ function startTag(tag) {
 	t = null;
 }
 
-function postTag(video_id, tag_id, start_time, end_time) {
+function postTag(tagId, startTime, endTime) {
   // Ryan's code from last quarter
   $.ajax({
-    url: "/videos/" + video_id + "/tag",
+    url: "/videos/" + videoId + "/tag",
     type: 'POST',
     dateType: 'JSON',
-    data: {tag_id: tag_id, start_time: start_time, end_time: end_time},
+    data: {job_id: jobId, tag_id: tagId, start_time: startTime, end_time: endTime},
     beforeSend: function(xhr) {
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'));
     },
