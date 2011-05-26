@@ -1,0 +1,27 @@
+<!--view file for uploading video-->
+<div id="videos" class="">
+  <%= simple_form_for @video, :html => {:multipart => true} do |f| %>
+    <%= f.error_notification %>
+
+    <div class=" grid_16 inputs">
+      <%= f.input :name %>
+      <%= f.input :duration %>
+      <%= f.input :starttime %>
+      <%= f.input :project %>
+      <%= f.input :offset %>
+      <%= f.input :location %>
+      <%= f.input :source_cam %>
+      <%= f.input :cam_type %>
+    </div>
+
+    <div class=" grid_16 uploads">
+      <%= f.file_field :video_up %>
+    </div>
+
+    <div class=" grid_16 actions">
+      <%= f.button :submit %>
+    </div>
+
+  </div>
+  <% end %>
+</div>
