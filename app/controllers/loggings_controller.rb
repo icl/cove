@@ -1,5 +1,6 @@
 class LoggingsController < ApplicationController
   respond_to :json
+  
   def create
     uuid = ActiveSupport::SecureRandom.hex(12)
     timestamp = DateTime.now.to_s

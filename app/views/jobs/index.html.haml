@@ -1,0 +1,22 @@
+%h2.grid_12 Available Jobs
+.grid_12#jobs_container
+  - @jobs.each do |job|
+    .job_container
+      %h3 Job ##{job.id}
+      .job_description= job.description
+      .job_field
+        Requestor:
+        = job.requestor_name
+      .job_field
+        Tags:
+        = job.tags.collect { | tag| tag.name}.join(', ')
+      .job_actions
+        - if current_user.kind == "admin"
+          = link_to 'Edit', edit_job_path(job)
+        - else
+          = link_to 'Work', "/jobs/#{job.id}/work"
+
+  - if current_user.kind == "admin"
+    #new_job_link
+      = link_to 'New Job', new_job_path
+  

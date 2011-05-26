@@ -1,0 +1,5 @@
+<h2>Are you sure you want to delete this Training?</h2>
+<% form_for @post, :html => { :method => 'delete' } do |f| %>
+    <%= submit_tag "Yes" %>
+    <%= submit_tag "No", :name => "cancel" %>
+<% end %>
