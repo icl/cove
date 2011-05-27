@@ -1,74 +1,41 @@
-.clear {
-	clear: both;
-	display: block;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
-}
-
-/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
-
-.clearfix:before,
-.clearfix:after {
-	content: '\0020';
-	display: block;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
-}
-
-.clearfix:after {
-	clear: both;
-}
 
 body {
 	font-size: 0.8em;
 	font-family: verdana;
-	padding: 0px;
-	margin: 0px;
-	background: #334;
 }
 
-header {
-	background: #fff;
-	padding: 15px 0px 15px 0px;
-	margin: 0px;
-	border-bottom: 3px #fb9 solid; 
-	background: #fff url('/images/black_grad_btm.png') top left repeat-x;
-}
-
-footer {
-	/*background: #555578 url('/images/grad_top.png') top left repeat-x;*/
-	background: #fff url('/images/grad_top.png') top left repeat-x;
-	color: #000;
-	font-size: 1.05em;
-	text-align: center;
-	padding: 20px 0px;
-	position: relative;
-	bottom: 0px;
-
-}
-
-
-a:link, a:visited, a:active {
+a {
 	color: #1E90FF;
 	text-decoration: none;
-	padding: 5px 10px;
 }
 
 a:hover {
 	color: #00FA9A;
-	background: none;
-	background: url('/images/triangle.png') bottom center no-repeat;
-	padding-bottom: 20px
 }
 
 a.currPage {
 	font-weight: bold;
 }
 
+
+div.container_12 {
+	margin-top: 20px;
+	/*background: url('images/tartan_grad.png') repeat-x 27px left;*/
+}
+
+.footer {
+	border-top: 1px solid #e2e2e2;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.footer p {
+	text-align: center;
+	font-size: 1.05em;
+	color: #777;
+}
 
 .nav ul {
 	list-style-type: none;
@@ -77,7 +44,7 @@ a.currPage {
 
 .nav ul li {
 	display: inline;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 .loginBar {
@@ -88,13 +55,11 @@ h2 {
 	color: brown;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	font-size: 1.6em;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 1.3em;
 	color: #8B4513;
-
-}
-
-div.logo {
-	color: #000;
+	border-top: 1px solid #e2e2e2;
 }
 
 .container_12 ul.tags {
@@ -116,12 +81,6 @@ p {
 
 b {
 	color: #555;
-}
-
-div#middle {
-	background: #334;
-	/*background: #334 url('/images/grad_top.png') top left repeat-x;*/
-	min-height: 550px;
 }
 
 div#graph {
