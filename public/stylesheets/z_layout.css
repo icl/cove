@@ -1,0 +1,121 @@
+
+body {
+	font-size: 0.8em;
+	font-family: verdana;
+}
+
+a {
+	color: #1E90FF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #00FA9A;
+}
+
+a.currPage {
+	font-weight: bold;
+}
+
+
+div.container_12 {
+	margin-top: 20px;
+	/*background: url('images/tartan_grad.png') repeat-x 27px left;*/
+}
+
+.footer {
+	border-top: 1px solid #e2e2e2;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.footer p {
+	text-align: center;
+	font-size: 1.05em;
+	color: #777;
+}
+
+.nav ul {
+	list-style-type: none;
+	margin: 0px;
+}
+
+.nav ul li {
+	display: inline;
+	margin-right: 20px;
+}
+
+.loginBar {
+	text-align: right;
+}
+
+h2 {
+	color: brown;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 1.3em;
+	color: #8B4513;
+	border-top: 1px solid #e2e2e2;
+}
+
+.container_12 ul.tags {
+	list-style-type: none;
+	float: right;
+}
+.container_12 ul.tags li {
+	margin-bottom: 10px;
+	padding: 10px 5px;
+	background: #eee;
+	text-align: center;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+p {
+	margin-bottom: 10px;
+}
+
+b {
+	color: #555;
+}
+
+div#graph {
+	height: 300px;
+	width: 480px;
+	background: #eef;
+	background-image: url('images/graph_bg.gif');
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+dt {
+	font-weight: bold;
+	color: #555;
+	margin-bottom: 10px;
+}
+
+dd {
+	padding-left: 20px;
+	margin-bottom: 10px;
+}
+
+dl form dt {
+	text-align: right;
+}
+
+.sButton {
+	margin-left: 20px;
+}
+
+ul {
+	list-style-type: none;
+	margin-bottom: 20px;
+}
+
+li {
+	margin-bottom: 10px;	
+}
