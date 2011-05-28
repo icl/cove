@@ -31,12 +31,13 @@
 
     #middle
       .container_12.clearfix#content
+      .grid_12
+        %p.notice
+          = notice
+        %p.alert
+          = alert
         = yield
-        .grid_12
-          %p.notice
-            = notice
-          %p.alert
-            = alert
+
 
     %footer
       .container_12.clearfix
