@@ -13,8 +13,7 @@ class VideosController < ApplicationController
   end
 
   def create
-    #@video = Video.add_file params #offloaded to model
-    
+    #block add
     unless params[:video]
       @video = Video.new(params)
     else
