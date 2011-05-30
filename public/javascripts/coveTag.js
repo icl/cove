@@ -11,11 +11,6 @@ function coveTag() {
 	var seekBack = '';
 	var filepath = '';
 	var videoId = '';
-<<<<<<< HEAD
-	var jobId = '';
-	var activeTag = '';
-=======
->>>>>>> b7c95ac2c90c6699674970485eaaba78e21a4479
 	var jwPlayer = '';
 
 	var progressID = '';
@@ -55,11 +50,6 @@ function coveTag() {
 			setSeekBack : setSeekBack,
 			setFilepath : setFilepath,
 			setVideoId : setVideoId,
-<<<<<<< HEAD
-			setJobId : setJobId,
-			setActiveTag : setActiveTag,
-=======
->>>>>>> b7c95ac2c90c6699674970485eaaba78e21a4479
 			setJwPlayer : setJwPlayer,
 			setProgressMeterDiv : setProgressMeterDiv,
 			setProgressBarDiv : setProgressBarDiv,
@@ -82,11 +72,6 @@ function coveTag() {
 	function setSeekBack(in_seekBack) { seekBack = in_seekBack; }
 	function setFilepath(in_filepath) { filepath = in_filepath; }
 	function setVideoId(in_videoId) { videoId = in_videoId; }
-<<<<<<< HEAD
-	function setJobId(in_jobId) { jobId = in_jobId; }
-	function setActiveTag(in_activeTag) { activeTag = in_activeTag; }
-=======
->>>>>>> b7c95ac2c90c6699674970485eaaba78e21a4479
 	function setJwPlayer(in_jwPlayer) { jwPlayer = in_jwPlayer; }
 	function setProgressMeterDiv(in_progressID) { progressID = in_progressID; }
    function setProgressBarDiv(in_progressBarID) { progressBarID = in_progressBarID; }
@@ -109,135 +94,6 @@ function coveTag() {
       var curTime = new convertSecToMinSec(currPosition);
 		$('#'+curTimeDiv).text(curTime.minutes + ":" + curTime.seconds);
 	}
-<<<<<<< HEAD
-}
-
-function destroyPartialTags() {
-	/* Loop through and destroy any tags without an end time,
-	 * set all current active tags to false */
-
-	for (var i=0; i<activeTag.length; i++) {
-		activeTag[i][1] = false;
-	}
-
-	for (var i=0; i<tagArray.length; i++) {
-		if (tagArray[i][2] == null) {
-			tagArray.splice(i,1);
-		}
-	}
-
-	resetTagDivs();
-	updateTagDivs();
-}
-
-function updateTagDivs() {
-	var tagListElement = document.getElementById(tagListDiv);
-	var activeTagElement = document.getElementById(activeTagDiv);
-
-	for (var i=0; i<tagArray.length; i++) {
-		var tagName = tagArray[i][0];
-		var startTime = tagArray[i][1];
-		var endTime = tagArray[i][2];
-
-		tagName = '<a href="#" onClick="jwplayer().seek('+ startTime +');">' +
-
-			tagName + "</a>";
-		var tagListText = tagName + " Start: " + startTime + 
-			" End: " + endTime + "<br />";
-
-		if (tagArray[i][2] != null) {
-			appendDivText(tagListElement, tagListText);
-		} else {
-			appendDivText(activeTagElement, activeTagText);
-		}
-	}
-}
-
-function appendDivText(element, text) {
-	element.innerHTML += text;
-}
-
-function isTagActive(tag) {
-	for (var i=0; i<activeTag.length; i++) {
-		if (activeTag[i][0] == tag) {
-			/* Return tag state, and index */
-			return [activeTag[i][1], i, activeTag[i][2]];
-			break;
-		}
-	}
-
-	/* Invalid */
-	return [-1, -1, -1];
-}
-
-function toggleTagActive(tag) {
-	var tagIndexStatus = isTagActive(tag);
-
-	/* If the tag is finishing, just mark the end time */
-	if (tagIndexStatus[0] == true) {
-		endTag(tag);
-		activeTag[tagIndexStatus[1]][1] = false;
-		postTag(
-			activeTag[tagIndexStatus[1]][2],
-			tagArray[tagIndexStatus[1]][1],
-			tagArray[tagIndexStatus[1]][2]
-		);
-	} else {
-		startTag(tag);
-		activeTag[tagIndexStatus[1]][1] = true;
-	}
-}
-
-function resetTagDivs() {
-	document.getElementById(activeTagDiv).innerHTML = "";
-	document.getElementById(tagListDiv).innerHTML = "";
-}
-
-function endTag(tag) {
-	/* Find the tag with no end point and end it */
-	for (var i=0; i<tagArray.length; i++) {
-		if (tagArray[i][0] == tag && tagArray[i][2] == null) 
-			tagArray[i][2] = jwPlayer().getPosition().toFixed(2);
-	}
-}
-
-function startTag(tag) {
-	/* Compensate for muscle delay and jump the tag start
-	 * time back */
-	var curPosition = jwPlayer().getPosition();
-	var seekPosition = curPosition - seekBack;
-
-	var t = new Array(3);
-
-	t[0] = tag;
-	t[1] = seekPosition.toFixed(2);
-
-
-	tagArray[tagArray.length] = t;
-
-	t = null;
-}
-
-function postTag(tagId, startTime, endTime) {
-  // Ryan's code from last quarter
-  $.ajax({
-    url: "/videos/" + videoId + "/tag",
-    type: 'POST',
-    dateType: 'JSON',
-    data: {job_id: jobId, tag_id: tagId, start_time: startTime, end_time: endTime},
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'));
-    },
-    failure:function(){
-      $("body").append('<div class="flash alert"> Your tag could not be submitted at this time </div>');
-    },
-    success: function(data, status, xhr){
-      // do something
-    }
-  });
-}
-=======
->>>>>>> b7c95ac2c90c6699674970485eaaba78e21a4479
 
    function convertSecToMinSec(seconds) {
       this.minutes = Math.floor(seconds/60);
