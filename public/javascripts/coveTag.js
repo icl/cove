@@ -8,48 +8,49 @@ function coveTag() {
 	var halt = false;
 	var curTimeDiv = '';
 	var totTimeDiv = '';
-	var progressBar = '';
-	var activeTagDiv = '';
-	var tagListDiv = '';
-	var statusLength = '';
 	var seekBack = '';
 	var filepath = '';
 	var videoId = '';
-	var activeTag = '';
 	var jwPlayer = '';
-	var tagInterruptMSG = '';
-	var tagAbandonMSG = '';
-	var activeTagText = '';
+
 	var progressID = '';
-   var progressBarID = '';
-   var playerFrameDiv = '';
+  	var progressBarID = '';
+  	var playerFrameDiv = '';
+
+   var tagSetJSON;
+   var pausePlayDiv = '';
+   var volLevelDiv = '';
+   var pausePlayFilePath ='';
+   var statusOffset = 0;
 
 	return createApi();
 
 	function createApi() {
 		return {
+
 			handleTagClick : handleTagClick,
 			jwTimeHandler : jwTimeHandler,
 			getFilepath : getFilepath,
+         getTagSetJSON : getTagSetJSON,
 			moveProgress : moveProgress,
 			initPlayerContainer : initPlayerContainer,
          togglePausePlay : togglePausePlay,
-         handleVolume : handleVolume,
+			changeButtonState : changeButtonState,
+     		handleVolume : handleVolume,
+
+         setPausePlayDiv : setPausePlayDiv,
+         setVolLevelDiv : setVolLevelDiv,
+         setPauseFilePath : setPauseFilePath,
+         setPlayFilePath : setPlayFilePath,
+         setStatusOffset : setStatusOffset,
+
+			setTagSetJSON : setTagSetJSON,
 			setTotTimeDiv : setTotTimeDiv,
-			setTotTime : setTotTime,
 			setCurTimeDiv : setCurTimeDiv,
-			setProgressBar : setProgressBar,
-			setActiveTagDiv : setActiveTagDiv,
-			setTagListDiv : setTagListDiv,
-			setStatusLength : setStatusLength,
 			setSeekBack : setSeekBack,
 			setFilepath : setFilepath,
 			setVideoId : setVideoId,
-			setActiveTag : setActiveTag,
 			setJwPlayer : setJwPlayer,
-			setTagInterruptMSG : setTagInterruptMSG,
-			setTagAbandonMSG : setTagAbandonMSG,
-			setActiveTagText : setActiveTagText,
 			setProgressMeterDiv : setProgressMeterDiv,
 			setProgressBarDiv : setProgressBarDiv,
 			setPlayerFrameDiv : setPlayerFrameDiv
@@ -57,19 +58,20 @@ function coveTag() {
 	}
 
 	/* Setter Methods */
-	function setTagInterruptMSG(in_tagInterruptMSG) { tagInterruptMSG = in_tagInterruptMSG; }
-	function setTagAbandonMSG(in_tagAbandonMSG) { tagAbandonMSG = in_tagAbandonMSG; }
-	function setActiveTagText(in_activeTagText) { activeTagText = in_activeTagText; }
+	function setTagSetJSON(in_tagSetJSON) { tagSetJSON = in_tagSetJSON; }
 	function setTotTimeDiv(in_totTimeDiv) { totTimeDiv = in_totTimeDiv; }
 	function setCurTimeDiv(in_curTimeDiv) { curTimeDiv = in_curTimeDiv; }
-	function setProgressBar(in_progressBar) { progressBar = in_progressBar; }
-	function setActiveTagDiv(in_activeTagDiv) { activeTagDiv = in_activeTagDiv; }
-	function setTagListDiv(in_tagListDiv) { tagListDiv = in_tagListDiv; }
-	function setStatusLength(in_statusLength) { statusLength = in_statusLength; }
+
+   function setPausePlayDiv(in_pausePlayDiv) {  pausePlayDiv = in_pausePlayDiv; }
+   function setPlayFilePath(in_playFilePath) {  playFilePath = in_playFilePath; }
+   function setPauseFilePath(in_pauseFilePath) {  pauseFilePath = in_pauseFilePath; }
+
+   function setVolLevelDiv(in_volLevelDiv) {  volLevelDiv = in_volLevelDiv; }
+   function setStatusOffset(in_statusOffset) {  statusOffset = in_statusOffset; }
+
 	function setSeekBack(in_seekBack) { seekBack = in_seekBack; }
 	function setFilepath(in_filepath) { filepath = in_filepath; }
 	function setVideoId(in_videoId) { videoId = in_videoId; }
-	function setActiveTag(in_activeTag) { activeTag = in_activeTag; }
 	function setJwPlayer(in_jwPlayer) { jwPlayer = in_jwPlayer; }
 	function setProgressMeterDiv(in_progressID) { progressID = in_progressID; }
    function setProgressBarDiv(in_progressBarID) { progressBarID = in_progressBarID; }
@@ -77,309 +79,230 @@ function coveTag() {
 
 	/* Getter methods */
 	function getFilepath() { return filepath; }
-
-	function setTotTime(totTime) {
-		var element = document.getElementById(totTimeDiv);
-      var totTimeMin = Math.floor(totTime/60);
-      var totTimeSec = Math.floor(totTime%60);
-
-		element.innerHTML = totTimeMin + ":" + totTimeSec;
-	}
+   function getTagSetJSON() { return tagSetJSON; }
 
 	function jwTimeHandler(jwTime) {
+      /* Convert seconds into minutes and seconds, then update our timers */
 		currPosition = jwPlayer().getPosition();
 		duration = jwPlayer().getDuration();
 
-		updateTimer(currPosition);
-      updateTagText(currPosition);
-		//updateStatusBar(currPosition, duration);
+      /* Total Duration */
+      var totTime = new convertSecToMinSec(duration);
+		$('#'+totTimeDiv).text(totTime.minutes + ":" + totTime.seconds);
+
+      /* Elapsed Time */
+      var curTime = new convertSecToMinSec(currPosition);
+		$('#'+curTimeDiv).text(curTime.minutes + ":" + curTime.seconds);
 	}
 
-	function updateTimer(currPosition) {
-		var element = document.getElementById(curTimeDiv);
-      
-      var curTimeMin = Math.floor(currPosition/60);
-      var curTimeSec = Math.floor(currPosition%60);
+   function convertSecToMinSec(seconds) {
+      this.minutes = Math.floor(seconds/60);
+      this.seconds = Math.floor(seconds%60);
+   }
 
-		element.innerHTML = curTimeMin + ":" + curTimeSec;
-	}
+   function handleTagClick(tag, haltTagging, evtSource) {
+      /* We are starting or ending a tag */
+	   if (haltTagging == null && halt == false) {
+		   toggleTagActive(tag, evtSource);
+	   }
 
-function updateStatusBar(currPosition, duration) {
-	var remaining = 0;
-	var statusText = "";
-	var elapsedPosition = ( (currPosition/duration) * statusLength);
+      /* Due to an interrupt event we are going to cancel any active tags */
+	   if (haltTagging != null) {
+		   destroyPartialTag(tag);
+	   }
+   }
 
-	var element = document.getElementById(progressBar);
-
-	/* Create our ='s text for our current position */
-	for (var i = 0; i < elapsedPosition; i++) {
-		statusText = statusText + "=";
-		++remaining;
-	}
-
-	/* Append our *'s text for our remaining length */
-	for (var i = 0; i <= (statusLength - remaining); i++) {
-		statusText = statusText + "*";
-	}
-
-	element.innerHTML = "[" + statusText + "]";
-}
-
-
-function handleTagClick(tag, haltTagging) {
-	if (haltTagging == null && halt == false) {
-//		resetTagDivs();
-		toggleTagActive(tag);
-		updateTagDivs();
-	}
-
-	/* The user created an interrupt event
-	 * and wishes to recover */
-	if (haltTagging == null && halt == true) {
-		halt = false;
-		jwPlayer().pause("false");
-	}
-
-	if (haltTagging != null && isTagActive(tag)[0] == true) {
-	//	interruptTagging();
-		destroyPartialTags();
-	}
-}
-
-function interruptTagging() {
-	/* Pause the video player and instruct the user */
-	jwPlayer().pause("true");
-
-	if (confirm(tagInterruptMSG)) {
-		halt = true;
-	} else {
-		destroyPartialTags();
-		alert(tagAbandonMSG);
-		jwPlayer().pause("false");
-	}
-}
-
-function destroyPartialTags() {
-	/* Loop through and destroy any tags without an end time,
-	 * set all current active tags to false */
-
-	for (var i=0; i<activeTag.length; i++) {
-		activeTag[i][1] = false;
-	}
-
-	for (var i=0; i<tagArray.length; i++) {
-		if (tagArray[i][2] == null) {
-			tagArray.splice(i,1);
-		}
-	}
-
-//	resetTagDivs();
-	updateTagDivs();
-}
-
-function updateTagDivs() {
-	var tagListElement = document.getElementById(tagListDiv);
-	var activeTagElement = document.getElementById(activeTagDiv);
-
-	for (var i=0; i<tagArray.length; i++) {
-		var tagName = tagArray[i][0];
-		var startTime = tagArray[i][1];
-		var endTime = tagArray[i][2];
-
-		var tagHref = '<a href="#" onClick="jwplayer().seek('+ startTime +');">' +
-
-			tagName + "</a>";
-		var tagListText = tagHref + " Start: " + startTime + 
-			" End: " + endTime + "<br />";
-
-		if (tagArray[i][2] != null) {
-			//appendDivText(tagListElement, tagListText);
-         updateProgressBar(startTime, endTime, tagName);
-		} else {
-			//appendDivText(activeTagElement, activeTagText);
-		}
-	}
-}
-
-function updateTagText(curPosition) {
-   var i = tagArray.length-1;
-
-   if(i >= 0 && tagArray[i][3] != 1) {
-		var tagName = tagArray[i][0];
-		var startTime = tagArray[i][1];
-		var endTime = tagArray[i][2];
-
-		if (endTime != null) {
-         $("#tagText").text(tagName + " +1 NICE WORK");
-         $("#tagText").val("pulsing");
-         $("#tagText").pulse({
-          opacity: [.3,1]
-         }, {
-          backgroundColor: ['red', 'yellow', 'green', 'blue'],
-          duration: 100, // duration of EACH individual animation
-          times: 3, // Will go three times through the pulse array [0,1]
-          easing: 'linear',
-    complete: function() { 
-         $("#tagText").text("");
-      	tagArray[i][3] = 1;
+   function destroyPartialTag(tag) {
+	   /* Loop through and destroy any tags without an end time,
+	    * set all current active tags to false */
+      for (var i=0; i<tagArray.length; i++) {
+         if (tagArray[i].isActive == true && tagArray[i].name == tag && tagArray[i].evtSource == "mousedown") {
+            tagArray.splice(i,1);
+         }
       }
+   }
+
+   /* Determine if we are starting or ending a particular tag */
+   function toggleTagActive(tag, evtSource) {
+      /* The current position will be needed for any work we do */
+      var curPosition = jwPlayer().getPosition().toFixed(2);
+
+      /* Assume we are creating a new tag */
+      var newTag = true;
+
+      /* Look for any tags that match the given name, and check if they're already active */
+      for (var i=0; i<tagArray.length; i++) {
+         if (tagArray[i].name == tag && tagArray[i].isActive == true) {
+            /* An active tag was found. Don't create a new one. */
+            newTag = false;
+
+            /* Make this tag object no longer active */
+            tagArray[i].setTagActive(false);
+
+            /* Update the time the tag obj ended at */
+            tagArray[i].setEndTime(curPosition);
+
+            /* Send the tag information to the database */
+            tagArray[i].postTag();
+
+            /* Update the progress bar to show the tag */
+            updateProgressBar(tagArray[i].startTime, tagArray[i].endTime, tagArray[i].name);
+
+            break;
+         }
+      }
+
+      if (newTag == true) {
+               /* Create a new tag */
+
+               /* Subtract any given additional time */
+	            var seekPosition = (curPosition - seekBack).toFixed(2);
+
+               /* Create the new tag object */
+               var newTagObj = new tagEntries(tag, seekPosition, true, evtSource);
+
+               /* Find the database ID for the tag from the page tag object */
+               $.each(tagSetJSON, function() {
+                  if (this.name == tag)
+                     newTagObj.setTagID(this.id);
+               });
+
+               /* Add the new object to our tag object array */
+               tagArray[tagArray.length] = newTagObj;
+      }
+   }
+
+   function togglePausePlay() {
+      var state = jwPlayer().getState();
+
+      /* Change the state and switch up the images */
+      if (state == "PLAYING") {
+         jwPlayer().pause(true);
+         $("#" + pausePlayDiv).attr("src", playFilePath);
+         changeButtonState();
+      } else {
+         jwPlayer().play(true);
+         $("#" + pausePlayDiv).attr("src", pauseFilePath);
+         changeButtonState();
+      }
+   }
+
+   function changeButtonState() {
+      var state = jwPlayer().getState();
+
+      $.each(tagSetJSON, function() {
+         if (state == "PLAYING") {
+			   $("#tagButton_toggle_" + this.name).attr("disabled", false);
+			   $("#tagButton_hold_" + this.name).attr("disabled", false);
+		   } else {
+			   $("#tagButton_toggle_" + this.name).attr("disabled", true);
+			   $("#tagButton_hold_" + this.name).attr("disabled", true);
+		   }
       });
-		} else {
-         $("#tagText").stop(true, true);
-         var tagLen = (curPosition - startTime).toFixed(2)
-         $("#tagText").text("Tagging for " + tagLen + " seconds");
-		}
    }
-}
 
-function appendDivText(element, text) {
-	element.innerHTML += text;
-}
+   function handleVolume(percent) {
 
-function isTagActive(tag) {
-	for (var i=0; i<activeTag.length; i++) {
-		if (activeTag[i][0] == tag) {
-			/* Return tag state, and index */
-			return [activeTag[i][1], i, activeTag[i][2]];
-			break;
-		}
-	}
+      var newVolume = (jwPlayer().getVolume() + percent);
+      
+      if (newVolume > 100)
+         newVolume = 100;
 
-	/* Invalid */
-	return [-1, -1, -1];
-}
+      if (newVolume < 0)
+         newVolume = 0;
 
-function toggleTagActive(tag) {
-	var tagIndexStatus = isTagActive(tag);
-
-	/* If the tag is finishing, just mark the end time */
-	if (tagIndexStatus[0] == true) {
-		endTag(tag);
-		activeTag[tagIndexStatus[1]][1] = false;
-      /* Refactor this */
-
-		postTag(
-			videoId,
-			activeTag[tagIndexStatus[1]][2],
-			tagArray[tagIndexStatus[1]][1],
-			tagArray[tagIndexStatus[1]][2]
-		);
-	} else {
-		startTag(tag);
-		activeTag[tagIndexStatus[1]][1] = true;
-	}
-}
-
-function resetTagDivs() {
-	document.getElementById(activeTagDiv).innerHTML = "";
-	document.getElementById(tagListDiv).innerHTML = "";
-}
-
-function endTag(tag) {
-	/* Find the tag with no end point and end it */
-	for (var i=0; i<tagArray.length; i++) {
-		if (tagArray[i][0] == tag && tagArray[i][2] == null) 
-			tagArray[i][2] = jwPlayer().getPosition().toFixed(2);
-	}
-}
-
-function startTag(tag) {
-	/* Compensate for muscle delay and jump the tag start
-	 * time back */
-	var curPosition = jwPlayer().getPosition();
-	var seekPosition = curPosition - seekBack;
-
-	var t = new Array(3);
-
-	t[0] = tag;
-	t[1] = seekPosition.toFixed(2);
-
-
-	tagArray[tagArray.length] = t;
-
-	t = null;
-}
-
-function postTag(video_id, tag_id, start_time, end_time) {
-  // Ryan's code from last quarter
-  $.ajax({
-    url: "/videos/" + video_id + "/tag",
-    type: 'POST',
-    dateType: 'JSON',
-    data: {tag_id: tag_id, start_time: start_time, end_time: end_time},
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'));
-    },
-    failure:function(){
-      $("body").append('<div class="flash alert"> Your tag could not be submitted at this time </div>');
-    },
-    success: function(data, status, xhr){
-      // do something
-    }
-  });
-}
-
-function togglePausePlay() {
-   var state = jwPlayer().getState();
-
-   /* Change the state and switch up the images */
-   if (state == "PLAYING") {
-      jwPlayer().pause(true);
-      $("#pausePlay").attr("src", "/images/icons/play.png");
-   } else {
-      jwPlayer().play(true);
-      $("#pausePlay").attr("src", "/images/icons/pause.png");
+      jwPlayer().setVolume(newVolume);
+      $("#" + volLevelDiv).text(newVolume + "%");
    }
-}
-function handleVolume(percent) {
-   var newVolume = (jwPlayer().getVolume() + percent);
-   
-   if (newVolume > 100)
-      newVolume = 100;
 
-   if (newVolume < 0)
-      newVolume = 0;
+   function initPlayerContainer(jwEvent) {
+      $("#player_wrapper").css('width', (jwPlayer().getWidth()) + "px");
+      $("#player_wrapper").css('height', (jwPlayer().getHeight()+50) + "px");
+      $("#progress_bar").css('width', (jwPlayer().getWidth()-54) + "px");
+      $("#player_progress_bar_interior").css('width', (jwPlayer().getWidth()-54) + "px");
+      $("#jwplayer_wrapper").css('width', (jwPlayer().getWidth()) + "px");
+      $("#control_wrapper").css('width', (jwPlayer().getWidth()) + "px");
+      $("#lower_control_wrapper").css('width', (jwPlayer().getWidth()) + "px");
+      $("#volLevel").text(jwPlayer().getVolume() + "%");
 
-   jwPlayer().setVolume(newVolume);
-   $("#volLevel").text(newVolume + "%");
-}
+      $(".button_container").css('width', (jwPlayer().getWidth()) + "px");
+   }
 
-function initPlayerContainer(jwEvent) {
-   $("#player_wrapper").css('width', (jwPlayer().getWidth()) + "px");
-   $("#player_wrapper").css('height', (jwPlayer().getHeight()+50) + "px");
-   $("#progress_bar").css('width', (jwPlayer().getWidth()-54) + "px");
-   $("#player_progress_bar_interior").css('width', (jwPlayer().getWidth()-54) + "px");
-   $("#jwplayer_wrapper").css('width', (jwPlayer().getWidth()) + "px");
-   $("#control_wrapper").css('width', (jwPlayer().getWidth()) + "px");
-   $("#lower_control_wrapper").css('width', (jwPlayer().getWidth()) + "px");
-   $("#volLevel").text(jwPlayer().getVolume() + "%");
+   function updateProgressBar(startTime, endTime, tagName) {
+      var width = jwPlayer().getWidth() * 1;
+      width = (width-statusOffset);
 
-   $(".button_container").css('width', (jwPlayer().getWidth()) + "px");
-}
+      var duration = jwPlayer().getDuration() * 1;
 
-function updateProgressBar(startTime, endTime, tagName) {
-   var width = jwPlayer().getWidth() * 1;
-   var duration = jwPlayer().getDuration() * 1;
+      var offset = ((width/duration)*startTime).toFixed(2);
+      
+      var tagLen = (endTime - startTime);
 
-   var offset = ((width/duration)*startTime).toFixed(2);
-   
-   var tagLen = (endTime - startTime);
+      var tagWidth = ((width/duration)*tagLen).toFixed(2);
 
-   var tagWidth = ((width/duration)*tagLen).toFixed(2);
+      $("#"+progressBarID).after('<a class="playerBarTag" style="width: '+tagWidth+'px;  margin-left: '
+         +offset+'px;" title="'+ tagName +' From: '+ startTime +' To: '
+         +endTime+'" onclick="amplify.publish(\'coveSeek\', { mode: \'fixed\', time: '+startTime+' })">&nbsp;</a>');
 
-   $("#"+progressBarID).after('<a class="playerBarTag" style="float: left; display: block; width: '+tagWidth+'px; height: 20px; background-color: yellow; margin-top: -20px; margin-left: '+offset+'px;" title="'+ tagName +' From: '+ startTime +' To: '+endTime+'" onclick="javascript:jwplayer().seek('+startTime+');">&nbsp;</a>');
+      $(".playerBarTag").tipTip({maxWidth: "auto", edgeOffset: 10});
+   }
 
-   $(".playerBarTag").tipTip({maxWidth: "auto", edgeOffset: 10});
-}
+   function moveProgress(jwEvent) {
+      var width = jwPlayer().getWidth() * 1;
+      width = (width-statusOffset);
+      var duration = jwPlayer().getDuration() * 1;
+      var pos = jwPlayer().getPosition() * 1;
 
-function moveProgress(jwEvent) {
-   var width = jwPlayer().getWidth() * 1;
-   var duration = jwPlayer().getDuration() * 1;
-   var pos = jwPlayer().getPosition() * 1;
+      var offset = (((width/duration)*pos)).toFixed(2);
 
-   var offset = (((width/duration)*pos)).toFixed(2);
+      $("#"+progressID).css('margin-left', offset + "px");
+   }
 
-   $("#"+progressID).css('margin-left', offset + "px");
-}
+   /* Tag Entry object constructor */
+   function tagEntries(name, startTime, isActive, evtSource) {
+      /* Variables */
+      this.name = name;
+      this.startTime = startTime;
+      this.isActive = isActive;
+      this.evtSource = evtSource;
 
+      /* Methods */
+      this.setEndTime = setEndTime;
+      this.postTag = postTag;
+      this.setTagID = setTagID;
+      this.setTagActive = setTagActive;
+   }
+
+   /* Tag entry setter methods */
+   function setTagActive(isActive) {
+      this.isActive = isActive;
+   }
+
+   function setTagID(tagID) {
+      this.tagID = tagID;
+   }
+
+   function setEndTime(endTime) {
+      this.endTime = endTime
+   }
+
+
+   function postTag() {
+     // Ryan's code from last quarter
+     $.ajax({
+       url: "/videos/" + videoId + "/tag",
+       type: 'POST',
+       dateType: 'JSON',
+       data: {tag_id: this.tagID, start_time: this.startTime, end_time: this.endTime},
+       beforeSend: function(xhr) {
+         xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'));
+       },
+       failure:function(){
+         $("body").append('<div class="flash alert"> Your tag could not be submitted at this time </div>');
+       },
+       success: function(data, status, xhr){
+         // do something
+       }
+     });
+   }
 }

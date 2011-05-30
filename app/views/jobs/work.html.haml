@@ -1,163 +1,64 @@
-﻿%script
-  -# Init global variables
+= javascript_include_tag "coveTag.js"
+= javascript_include_tag "coveTagWork.js"
+= javascript_include_tag "/jwplayer/jwplayer.js"
+= javascript_include_tag "jquery.tipTip.js"
+= javascript_include_tag "jquery.pulse.js"
+= javascript_include_tag "jquery.color.js"
+= javascript_include_tag "amplify.js"
+= stylesheet_link_tag "tiptip.css"
+= stylesheet_link_tag "coveTag_game.css"
+
+:javascript
   var coveTag = new coveTag();
   coveTag.setCurTimeDiv("curTime");
   coveTag.setTotTimeDiv("totTime");
-  coveTag.setProgressBar("progbar");
-  coveTag.setActiveTagDiv("activeTags");
-  coveTag.setTagListDiv("tagList");
-  coveTag.setStatusLength(10);
+
   coveTag.setSeekBack(0.04);
+
   coveTag.setFilepath('/#{@video.filepath}');
   coveTag.setVideoId('#{@job.id}');
-  coveTag.setActiveTagText('YOU ARE NOW TAGGING!');
+
   coveTag.setProgressMeterDiv('player_progress_meter');
   coveTag.setProgressBarDiv('player_progress_bar_interior');
   coveTag.setPlayerFrameDiv('player_wrapper');
+  coveTag.setPausePlayDiv('pausePlay');
+  coveTag.setVolLevelDiv('volLevel');
 
-  -# This would be populated by some server side deal
-  var activeTag = new Array(#{@job.tags.length});
-  
-  - @job.tags.each_index do |i|
-    activeTag[#{i}] = ['#{@job.tags[i].name}', false, '#{@job.tags[i].id}'];
+  /* Set this to the amount of pixels taken up by buttons on the status bar vs player width */
+  coveTag.setStatusOffset(50);
 
-  coveTag.setActiveTag(activeTag);
-    
+  coveTag.setPauseFilePath("/images/icons/pause.png");
+  coveTag.setPlayFilePath("/images/icons/play.png");
+
+  var tagSetJSON = [
+    #{@jsonStr}
+  ];
+
+  coveTag.setTagSetJSON(tagSetJSON);
+
+
 %h2 Video Tagging
-
-%style{:type => "text/css", :media => "screen"}
-  :plain
-    .player_frame {
-      display: block;
-      height: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: #000;
-    }
-    .player_progress_bar {
-      height: 20px;
-      float: left;
-      background-color: #858585;
-      border-width: 1px;
-      border-style: solid;
-      border-color: #FFF;
-    }
-    .player_progress_bar_interior {
-      height: 10px;
-      background-color: #E1E1E1;
-      margin-top: 5px;
-      margin-bottom: 5px;
-    }
-    .player_progress_meter {
-      float: left;
-      width: 5px;
-      height: 10px;
-      background-color: #FF0000;
-    }
-    .player_control {
-      width: 25px;
-      height: 20px;
-      border-color: #FFF;
-      border-style: solid;
-      background-color: yellow;
-      float: left;
-    }
-    .player_control_right {
-      border-width: 1px 1px 1px 0px;
-    }
-    .player_control_left {
-      border-width: 1px 0px 1px 1px;
-    }
-    .jwplayer_wrapper {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .control_wrapper {
-      height: 22px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .lower_control_wrapper {
-      height: 28px;
-      margin-left: auto;
-      padding-left: 5px;
-      padding-right: 5px;
-      color: #FFF;
-      margin-right: auto;
-    }
-    .time_bar {
-      margin-top: 7px;
-      height: 15px;
-      margin-right: 0px;
-      float: left;
-    }
-    .time_bar_right {
-     float: right;
-     margin-right: 5px;
-     margin-top: 3px;
-    }
-    .button_container {
-     height: 30px;
-     margin-left: auto;
-     margin-right: auto;
-     border-style: solid;
-     border-color #000;
-     border-width: 1px;
-    }
-    .tagButtons {
-     margin-top: 5px;
-     margin-left: auto;
-     margin-right: auto;
-     -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -khtml-border-radius: 10px;
-      border-radius: 10px;
-      background: #dbdbdb;
-    }
-    .tagbutton_left {
-      float: left;
-      width: 150px;
-      margin-left: 10px;
-    }
-    .tagbutton_right {
-      float: left;
-      width: 150px;
-      margin-left: 10px;
-    }
-    .tag_text {
-      text-align: center;
-      font: verdana;
-      font-size: 14px;
-      font-weight: bold;
-      margin-left: 30px;
-      margin-right: 30px;
-      display: block;
-      float: left;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
 
 #player_wrapper.player_frame
   #jwplayer_wrapper.jwplayer_wrapper
     #jwplayer_container
   #control_wrapper.control_wrapper
     #player_play_button.player_control.player_control_left
-      %img.buttonTipTip{:id => "pausePlay", :title => "Toggle Play/Pause", :onclick => "coveTag.togglePausePlay()", :src => "/images/icons/play.png"}
+      %img.buttonTipTip{:id => "pausePlay", :title => "Toggle Play/Pause", :onclick => "amplify.publish('pausePlay')", :src => "/images/icons/play.png"}
     #progress_bar.player_progress_bar
       #player_progress_bar_interior.player_progress_bar_interior
         #player_progress_meter.player_progress_meter
     #player_time.player_control.player_control_right
-      %img.buttonTipTip{:title => "Rewind 10 seconds", :onclick => "jwplayer().seek(jwplayer().getPosition()-10)", :src => "/images/icons/rewind.png"}
+      %img.buttonTipTip{:title => "Rewind 10 seconds", :onclick => "amplify.publish('coveSeek', { mode: 'rewind' })", :src => "/images/icons/rewind.png"}
   #lower_control_wrapper.lower_control_wrapper
     #timeContainer
       %span.time_bar Video Time:&nbsp;
       %span.time_bar{:id => "curTime"}
       %span.time_bar /
       %span.time_bar{:id => "totTime"}
-      %img.time_bar_right{:onclick => "coveTag.handleVolume(5);", :id => "volume", :src => "/images/icons/vol_down.png"}
+      %img.time_bar_right{:onclick => "amplify.publish('volume', { mode: 'up' })", :id => "volume", :src => "/images/icons/vol_down.png"}
       %p.time_bar_right{:id => "volLevel"}
-      %img.time_bar_right{:onclick => "coveTag.handleVolume(-5);", :id => "volume", :src => "/images/icons/vol_up.png"}
+      %img.time_bar_right{:onclick => "amplify.publish('volume', { mode: 'down' })", :id => "volume", :src => "/images/icons/vol_up.png"}
 
 #buttonContainer.button_container
   - @job.tags.each_index do |i|
@@ -166,10 +67,10 @@
     - tagButton_toggle = "tagButton_toggle_" + @job.tags[i].name
 
     %button.tagButtons.tagbutton_left(id=tagButton_hold)
-      = "Hold to tag " << @job.tags[i].name
+      = "Hold to tag " << @tagDisplayNames[i]
 
     %button.tagButtons.tagbutton_right(id=tagButton_toggle)
-      = "Click to toggle " << @job.tags[i].name
+      = "Click to toggle " << @tagDisplayNames[i]
 
   #tagText.tag_text
 

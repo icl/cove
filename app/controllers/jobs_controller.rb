@@ -102,6 +102,15 @@ class JobsController < ApplicationController
   def work
     @job = Job.find(params[:id])
     @video = @job.next_joblet current_user
+
+    @tagDisplayNames = Array.new(@job.tags.size());
+    @jsonStr = ""
+
+    @job.tags.each_index do |i|
+       @tagDisplayNames[i] = @job.tags[i].name
+       @job.tags[i].name = @job.tags[i].name.sub(" ", "_")
+       @jsonStr << '{"id":' + @job.tags[i].id.to_s() + ',' + ' "name":' + '\'' + @job.tags[i].name + '\''+'},'
+    end
     respond_to do |format|
       format.html # work.html.erb
       format.xml  { render :xml => @job }
