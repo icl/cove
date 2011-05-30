@@ -44,6 +44,8 @@ describe("coveTagTest", function() {
 	$('#volLevel').remove();
 	$('body').append('<div id="volLevel"></div>');
 
+	$('#tagHref').remove();
+
 	/* Init the coveTagObj library so we can test it */
   coveTagObj.setCurTimeDiv("curTime");
   coveTagObj.setTotTimeDiv("totTime");
@@ -67,24 +69,56 @@ describe("coveTagTest", function() {
   ];
 
   coveTagObj.setTagSetJSON(tagSetJSON);
+	
+  	/* Faux tiptip function */
+  	function tipTip() {
+		//null
+	}
 
 	/* Faux jwPlayer object */
 	jwplayer = function() { 
+		var volume = 95;
+		var state = "PAUSED";
+
 		return createAPI();
 
 		function createAPI() {
 			return {
 				getPosition : getPosition,
+				getWidth : getWidth,
+				getHeight : getHeight,
+				getVolume : getVolume,
+				getState : getState,
+				pause : pause,
+				play : play,
 				getDuration : getDuration
 			}
 		}
 
+		function pause() {
+			state="PAUSED";
+		}
+		function play() {
+			state="PLAYING";
+		}
+		function getState() {
+			alert(state);
+			return state;
+		}
 		function getPosition() {
 			return 1.0;
 		}
-
+		function getVolume() {
+			return volume;
+		}
 		function getDuration() {
 			return 124.9;
+		}
+		function getWidth() {
+			return 400;
+		}
+		function getHeight() {
+			return 600;
 		}
 	};
 	coveTagObj.setJwPlayer(jwplayer);
@@ -100,5 +134,41 @@ describe("coveTagTest", function() {
    it("Should return the file path the same way that we set it.", function() {
 		coveTagObj.setFilepath("/fauxPath");
 		expect(coveTagObj.getFilepath()).toEqual("/fauxPath");
-	});
+   });
+
+   it("Should create a tag, and add the tag to the progress bar.", function() {
+		expect($('body').children('a').length).toEqual(0);
+		coveTagObj.handleTagClick("testTag");
+		coveTagObj.handleTagClick("testTag");
+		expect($('body').children('a').length).toEqual(1);
+   });
+
+   it("Should create a tag, then abandon the tag.", function() {
+		expect($('body').children('a').length).toEqual(0);
+		coveTagObj.handleTagClick("testTag", null, "mousedown");
+		coveTagObj.handleTagClick("testTag", true, "mousedown");
+		expect($('body').children('a').length).toEqual(0);
+   });
+
+   it("Should create two tags at the same time.", function() {
+		expect($('body').children('a').length).toEqual(0);
+		coveTagObj.handleTagClick("testTag");
+		coveTagObj.handleTagClick("testTag2");
+		coveTagObj.handleTagClick("testTag2");
+		coveTagObj.handleTagClick("testTag");
+		expect($('body').children('a').length).toEqual(2);
+   });
+
+   it("Should move the play meter margin.", function () {
+	expect($('#player_progress_meter').css("margin-left")).toEqual("0px");
+	coveTagObj.moveProgress();
+	expect($('#player_progress_meter').css("margin-left")).toEqual("2.8px");
+   });
+
+   it("Should make the player_wrapper the same width as the player", function() {
+	expect($('#player_wrapper').css("width")).toNotEqual("400px");
+	coveTagObj.initPlayerContainer();
+	expect($('#player_wrapper').css("width")).toEqual("400px");
+   });
+
 });

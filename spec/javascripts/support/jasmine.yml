@@ -31,12 +31,9 @@ src_files:
 #
 # EXAMPLE:
 #
-# stylesheets:
-#   - css/style.css
-#   - stylesheets/*.css
 #
 stylesheets:
-  - stylesheets/**/*.css
+  - public/stylesheets/**/*.css
 
 # helpers
 #
