@@ -238,7 +238,7 @@ function coveTag() {
 
       var tagWidth = ((width/duration)*tagLen).toFixed(2);
 
-      $("#"+progressBarID).after('<a class="playerBarTag" style="width: '+tagWidth+'px;  margin-left: '
+      $("#"+progressBarID).after('<a id="tagHref" class="playerBarTag" style="width: '+tagWidth+'px;  margin-left: '
          +offset+'px;" title="'+ tagName +' From: '+ startTime +' To: '
          +endTime+'" onclick="amplify.publish(\'coveSeek\', { mode: \'fixed\', time: '+startTime+' })">&nbsp;</a>');
    }
