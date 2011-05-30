@@ -6,6 +6,7 @@ gem 'rails', '~>3.0.3'
 gem 'simple_form'
 gem 'capistrano'
 gem 'fastercsv'
+gem 'rake', '~> 0.8.7'
 
 # Jasmine
 gem 'jasmine'

@@ -6,8 +6,6 @@
     = stylesheet_link_tag "layout.css"
     = javascript_include_tag "jquery.js"
     = javascript_include_tag "rails.js"
-    = javascript_include_tag "coveTag.js"
-    = javascript_include_tag "/jwplayer/jwplayer.js"
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
@@ -29,6 +27,7 @@
             = link_to "Login", new_user_session_path, :class => "login"
             = link_to "Sign up", new_user_registration_path
 
+<<<<<<< HEAD
     #middle
       .container_12.clearfix#content
         = yield
@@ -44,3 +43,12 @@
        
         .grid_12.footer
           %p Copyright &copy; 2011 -- COVE
+=======
+    .container_12
+      .grid_12
+        %p.notice
+          = notice
+        %p.alert
+          = alert
+    
+>>>>>>> b7c95ac2c90c6699674970485eaaba78e21a4479
