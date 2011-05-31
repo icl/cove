@@ -104,6 +104,7 @@ class JobsController < ApplicationController
     @video = @job.next_joblet current_user
 
     @tagDisplayNames = Array.new(@job.tags.size());
+    /* Init a blank JSON string */
     @jsonStr = ""
 
     @job.tags.each_index do |i|
