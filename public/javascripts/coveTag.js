@@ -12,7 +12,7 @@ function coveTag() {
 	var filepath = '';
 	var videoId = '';
 	var jwPlayer = '';
-
+	var jobId = '';
 	var progressID = '';
   	var progressBarID = '';
   	var playerFrameDiv = '';
@@ -31,17 +31,18 @@ function coveTag() {
 			handleTagClick : handleTagClick,
 			jwTimeHandler : jwTimeHandler,
 			getFilepath : getFilepath,
-		        getTagSetJSON : getTagSetJSON,
+        getTagSetJSON : getTagSetJSON,
 			moveProgress : moveProgress,
 			initPlayerContainer : initPlayerContainer,
 			togglePausePlay : togglePausePlay,
-			changeButtonState : changeButtonState,
-     		        handleVolume : handleVolume,
-		        setPausePlayDiv : setPausePlayDiv,
-		        setVolLevelDiv : setVolLevelDiv,
-		        setPauseFilePath : setPauseFilePath,
-		        setPlayFilePath : setPlayFilePath,
-		        setStatusOffset : setStatusOffset,
+   changeButtonState : changeButtonState,
+        handleVolume : handleVolume,
+        setPausePlayDiv : setPausePlayDiv,
+        setVolLevelDiv : setVolLevelDiv,
+        setPauseFilePath : setPauseFilePath,
+        setPlayFilePath : setPlayFilePath,
+        setStatusOffset : setStatusOffset,
+			setJobId : setJobId,
 			setTagSetJSON : setTagSetJSON,
 			setTotTimeDiv : setTotTimeDiv,
 			setCurTimeDiv : setCurTimeDiv,
@@ -70,6 +71,7 @@ function coveTag() {
 	function setSeekBack(in_seekBack) { seekBack = in_seekBack; }
 	function setFilepath(in_filepath) { filepath = in_filepath; }
 	function setVideoId(in_videoId) { videoId = in_videoId; }
+	function setJobId(in_jobId) { jobId = in_jobId; }
 	function setJwPlayer(in_jwPlayer) { jwPlayer = in_jwPlayer; }
 	function setProgressMeterDiv(in_progressID) { progressID = in_progressID; }
    function setProgressBarDiv(in_progressBarID) { progressBarID = in_progressBarID; }
@@ -289,11 +291,12 @@ function coveTag() {
        url: "/videos/" + videoId + "/tag",
        type: 'POST',
        dateType: 'JSON',
-       data: {tag_id: this.tagID, start_time: this.startTime, end_time: this.endTime},
+       data: {job_id: jobId, tag_id: this.tagID, start_time: this.startTime, end_time: this.endTime},
        beforeSend: function(xhr) {
          xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'));
        },
        failure:function(){
+         alert("failure");
          $("body").append('<div class="flash alert"> Your tag could not be submitted at this time </div>');
        },
        success: function(data, status, xhr){
