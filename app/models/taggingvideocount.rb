@@ -6,6 +6,9 @@
     #t.datetime "updated_at"
 #
 class Taggingvideocount < ActiveRecord::Base
+
+  validates_presence_of :tag_id, :video_id
+
   #create the db entry if one does not already exist for this combination 
   #otherwise update the count of by 1
   def self.update_count(tag_id, video_id)
