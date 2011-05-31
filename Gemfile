@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~>3.0.3'
+gem 'rake', '~> 0.8.7'
 
 # gem 'mysql2'
 gem 'simple_form'
@@ -47,7 +48,6 @@ gem 'hoptoad_notifier'
 	gem 'sqlite3-ruby', :require => 'sqlite3'
   # gem 'fakefs', :require => 'fakefs/safe'
 	gem 'rails3-generators'
-	gem "rspec", ">= 2.6.0.rc2"
 	gem "rspec-rails", ">= 2.6.0.rc2"
 	gem 'email_spec'
 	gem "capybara"
