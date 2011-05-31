@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515193725) do
+ActiveRecord::Schema.define(:version => 20110531201919) do
 
   create_table "job_tags", :force => true do |t|
     t.integer  "job_id"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(:version => 20110515193725) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
+
+  create_table "taggingvideocounts", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "video_id"
+    t.integer  "applied_count", :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggingvideocounts", ["applied_count"], :name => "index_taggingvideocounts_on_applied_count"
+  add_index "taggingvideocounts", ["tag_id"], :name => "index_taggingvideocounts_on_tag_id"
+  add_index "taggingvideocounts", ["video_id"], :name => "index_taggingvideocounts_on_video_id"
 
   create_table "tags", :force => true do |t|
     t.string   "name"
