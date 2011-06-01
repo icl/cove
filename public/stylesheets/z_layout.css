@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 .clear {
 	clear: both;
 	display: block;
@@ -24,18 +22,15 @@
 .clearfix:after {
 	clear: both;
 }
->>>>>>> 4b22f1c... updated style, fixed header & footer with irvin
 
 body {
 	font-size: 0.8em;
 	font-family: verdana;
-<<<<<<< HEAD
 }
 
 a {
 	color: #1E90FF;
 	text-decoration: none;
-=======
 	padding: 0px;
 	margin: 0px;
 	background: #334;
@@ -66,17 +61,13 @@ a:link, a:visited, a:active {
 	color: #1E90FF;
 	text-decoration: none;
 	padding: 5px 10px;
->>>>>>> 4b22f1c... updated style, fixed header & footer with irvin
 }
 
 a:hover {
 	color: #00FA9A;
-<<<<<<< HEAD
-=======
 	background: none;
 	background: url('/images/triangle.png') bottom center no-repeat;
 	padding-bottom: 20px
->>>>>>> 4b22f1c... updated style, fixed header & footer with irvin
 }
 
 a.currPage {
@@ -84,7 +75,6 @@ a.currPage {
 }
 
 
-<<<<<<< HEAD
 div.container_12 {
 	margin-top: 20px;
 	/*background: url('images/tartan_grad.png') repeat-x 27px left;*/
@@ -104,8 +94,6 @@ div.container_12 {
 	color: #777;
 }
 
-=======
->>>>>>> 4b22f1c... updated style, fixed header & footer with irvin
 .nav ul {
 	list-style-type: none;
 	margin: 0px;
@@ -113,11 +101,7 @@ div.container_12 {
 
 .nav ul li {
 	display: inline;
-<<<<<<< HEAD
-	margin-right: 20px;
-=======
 	margin-right: 10px;
->>>>>>> 4b22f1c... updated style, fixed header & footer with irvin
 }
 
 .loginBar {
@@ -128,13 +112,11 @@ h2 {
 	color: brown;
 	padding-top: 20px;
 	padding-bottom: 20px;
-<<<<<<< HEAD
 	margin-top: 20px;
 	margin-bottom: 20px;
 	font-size: 1.3em;
 	color: #8B4513;
 	border-top: 1px solid #e2e2e2;
-=======
 	font-size: 1.6em;
 	color: #8B4513;
 
@@ -142,7 +124,6 @@ h2 {
 
 div.logo {
 	color: #000;
->>>>>>> 4b22f1c... updated style, fixed header & footer with irvin
 }
 
 .container_12 ul.tags {
@@ -166,15 +147,12 @@ b {
 	color: #555;
 }
 
-<<<<<<< HEAD
-=======
 div#middle {
 	background: #334;
 	/*background: #334 url('/images/grad_top.png') top left repeat-x;*/
 	min-height: 550px;
 }
 
->>>>>>> 4b22f1c... updated style, fixed header & footer with irvin
 div#graph {
 	height: 300px;
 	width: 480px;
@@ -210,8 +188,4 @@ ul {
 
 li {
 	margin-bottom: 10px;	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 4b22f1c... updated style, fixed header & footer with irvin
