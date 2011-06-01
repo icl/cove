@@ -11,13 +11,18 @@
 #   - dist/**/*.js
 #
 src_files:
+  - public/jwplayer/jwplayer.js
   - public/javascripts/prototype.js
   - public/javascripts/effects.js
   - public/javascripts/controls.js
   - public/javascripts/dragdrop.js
   - public/javascripts/application.js
-  - public/jwplayer/jwplayer.js
-  - public/javascripts/**/*.js
+  - public/javascripts/jquery.js
+  - public/javascripts/coveTag.js
+  - public/jwplayer/tipTip.js
+  - public/jwplayer/jquery.pulse.js
+  - public/jwplayer/jquery.color.js
+  - public/jwplayer/amplify.js
 
 # stylesheets
 #
@@ -26,12 +31,9 @@ src_files:
 #
 # EXAMPLE:
 #
-# stylesheets:
-#   - css/style.css
-#   - stylesheets/*.css
 #
 stylesheets:
-  - stylesheets/**/*.css
+  - public/stylesheets/**/*.css
 
 # helpers
 #
