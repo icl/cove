@@ -42,6 +42,13 @@ module NavigationHelpers
     when /^the work page for job (\d+)$/
       n = page_name[/(\d+)/].to_i
       "/jobs/#{@jobs[n-1].id}/work"
+      
+    # Certifications
+    when /the certification test page/
+      "/certification/#{@certification.id}/take_test"
+      
+    when /the seed certification video page/
+      "/certification_video/#{@certification_video.id}/seed"
 
     else
       begin

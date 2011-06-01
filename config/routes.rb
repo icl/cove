@@ -18,6 +18,13 @@ Cove::Application.routes.draw do
   root :to => "home#index"
 
   resources :videos
+
+  match 'certifications/:id/take_test', :to => 'certifications#take_test', :as => 'take_test'
+
+  match 'certification_tests/:id', :to => 'certification_tests#show', :as => 'show_test'
+  match 'certification_tests/:id/test_results', :to => 'certification_tests#test_results', :as => 'test_results'
+  match 'certification_tests/:id/submit_test', :to => 'certification_tests#submit_test', :as => 'submit_test'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

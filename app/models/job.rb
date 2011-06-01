@@ -27,7 +27,7 @@ class Job < ActiveRecord::Base
 	end
 	def next_joblet(user)
 		# this should return the next video to show to a user
-		v = videos.first
+		v = self.videos.sample
 		self.work_records.create(:video => v, :user => user)
 		v 
 	end
