@@ -28,6 +28,8 @@ gem 'streamio-ffmpeg'
 
 gem "resque", :require => "resque/server"
 
+gem 'rest-client'
+
 #gem "SystemTimer"
 #gem 'delayed_paperclip', :git => #'git://github.com/jstorimer/delayed_paperclip.git', :branch => 'rails3'
 

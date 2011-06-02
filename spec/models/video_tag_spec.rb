@@ -26,4 +26,15 @@ describe VideoTag do
 		@tagging.length = 10.seconds
 		@tagging.end_time.should == 20.seconds
 	end
+
+  describe "index_tag" do
+    it "should call the indexer with the parameters from the model" do
+      Indexer.expects(:update_index).with do |params|
+        params[:type] == "tag"
+        params[:term] == @tagging.tag.name
+        params[:db_id] == @tagging.id
+      end
+      @tagging.index_tag
+    end
+  end
 end
