@@ -28,6 +28,8 @@ gem 'streamio-ffmpeg'
 
 gem "resque", :require => "resque/server"
 
+gem 'rest-client'
+
 #gem "SystemTimer"
 #gem 'delayed_paperclip', :git => #'git://github.com/jstorimer/delayed_paperclip.git', :branch => 'rails3'
 
@@ -42,6 +44,9 @@ gem 'SystemTimer', :platforms => :mri_18
 #group :production do
 gem 'hoptoad_notifier'
 #end
+
+gem 'cove_search', :git => 'git://github.com/rweald/cove_search'
+
 
  group :development, :test do
 	gem "jquery-rails", ">= 0.2.6"
@@ -58,7 +63,7 @@ gem 'hoptoad_notifier'
 	gem "nokogiri"
 	gem "autotest"
 	gem 'autotest-rails'
-  # gem 'ruby-debug19', :platforms => :mri_19
+  gem 'ruby-debug19', :platforms => :mri_19
   gem 'ruby-debug', :platforms => :mri_18
 	
   # additional testing gems
