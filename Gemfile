@@ -45,6 +45,9 @@ gem 'SystemTimer', :platforms => :mri_18
 gem 'hoptoad_notifier'
 #end
 
+gem 'cove_search', :git => 'git://github.com/rweald/cove_search'
+
+
  group :development, :test do
 	gem "jquery-rails", ">= 0.2.6"
 	gem 'sqlite3-ruby', :require => 'sqlite3'

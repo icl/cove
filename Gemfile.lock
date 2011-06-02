@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/rweald/cove_search
+  revision: 5ccaefb1b3b01a5d8236ca05d744836f02ffcbb4
+  specs:
+    cove_search (0.0.1)
+      redis
+      redis-namespace
+      sinatra
+      vegas
+      yajl-ruby
+
+GIT
   remote: git://github.com/sferik/rails_admin.git
   revision: 785df95c47ad40a8d99c6d03478c4cfbfa5f4d3f
   specs:
@@ -246,6 +257,7 @@ GEM
       rack (>= 1.0)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yajl-ruby (0.8.2)
 
 PLATFORMS
   ruby
@@ -260,6 +272,7 @@ DEPENDENCIES
   capybara
   carrierwave
   compass
+  cove_search!
   cucumber
   cucumber-rails
   database_cleaner
