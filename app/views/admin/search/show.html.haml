@@ -1,0 +1,18 @@
+%ul
+  -if !@results.blank?
+    -for video in @results
+      %li
+        .name.grid_2
+          = video.name
+        .duration.grid_1
+          = video.duration
+        .camera.grid_1
+          = video.camera
+        .location.grid_1
+          = video.location
+  -else
+    %li
+      .grid_10
+        No Results Found
+   
+  
