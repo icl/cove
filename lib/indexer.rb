@@ -34,13 +34,15 @@ class Indexer
   end
 
   def self.format_query_string(parameters)
+    index = 0
     query_string = ""
-    parameters.each_with_index do |key, value, index|
+    parameters.each_pair do |key, value|
       if index == 0
         query_string << "?#{key}=#{value}"
       else
         query_string << "&#{key}=#{value}"
       end
+      index += 1
     end
     return query_string
   end

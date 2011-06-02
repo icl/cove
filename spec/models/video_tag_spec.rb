@@ -66,5 +66,19 @@ describe VideoTag do
       end.and_return({"results" => []})
       VideoTag.search "hello"
     end
+
+    it "should return an AR result array" do
+      VideoTag.search(@tagging.tag.name).should == [@tagging]
+    end
+
+    it "should allow for query chaining" do
+      VideoTag.search(@tagging.tag.name).where(:user_id => @tagging.user_id).should == [@tagging]
+    end
+
+    it "should return an empty array if the search servers returns nothing" do
+      Indexer.should_receive(:search).and_return([])
+      VideoTag.search("hello").should == []
+    end
+
   end
 end

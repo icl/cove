@@ -60,7 +60,7 @@ gem 'hoptoad_notifier'
 	gem "nokogiri"
 	gem "autotest"
 	gem 'autotest-rails'
-  # gem 'ruby-debug19', :platforms => :mri_19
+  gem 'ruby-debug19', :platforms => :mri_19
   gem 'ruby-debug', :platforms => :mri_18
 	
   # additional testing gems
