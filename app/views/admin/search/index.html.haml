@@ -1,5 +1,2 @@
-%div.form_container.grid_10
-  =form_tag admin_search_path, :method => :get, :id => "search_form" do
-    = label_tag :query, "Search for a Tag" 
-    = text_field_tag :query, nil, :placeholder => "Search Term"
-    = submit_tag "Search"
+%div.form_container.grid_10#big_search_box
+  = render :partial => 'tag_search_form'
