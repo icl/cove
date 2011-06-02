@@ -5,7 +5,7 @@ class Indexer
     attr_accessor :host
   end
 
-  @host = "cove-search.dev"
+  @host = "127.0.0.1:5678"
 
   def self.update_index(parameters)
     response = post("/update_index", parameters)
