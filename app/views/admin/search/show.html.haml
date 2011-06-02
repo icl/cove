@@ -14,15 +14,8 @@
       %tbody
         -for result in @results
           - video = result.video
-          %tr{"data-video_url" => ""}
-            %td.name
-              = video.name
-            %td.duration
-              = video.duration
-            %td.camera
-              = video.source_cam
-            %td.location
-              = video.location
+          = render :partial => 'individual_result', :locals => {:video => video}
+
 -else
   .grid_10
     No Results Found
