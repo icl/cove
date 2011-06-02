@@ -29,12 +29,24 @@ describe VideoTag do
 
   describe "index_tag" do
     it "should call the indexer with the parameters from the model" do
-      Indexer.expects(:update_index).with do |params|
+      name = @tagging.tag.name
+      id = @tagging.id
+      Indexer.expects(:update_index).twice.with do |params|
         params[:type] == "tag"
-        params[:term] == @tagging.tag.name
-        params[:db_id] == @tagging.id
+        params[:term] == name
+        params[:db_id] == id
       end
       @tagging.index_tag
     end
+
+    it "should post to the cove_search server" do
+      name = @tagging.tag.name
+      id = @tagging.id
+      Indexer.expects(:post).with do |path, parameters|
+        path == "/update_index"
+        parameters == {:type => "tag", :term => @tagging.tag.name, :db_id => @tagging.id}
+      end.returns({"status" => "successful" })
+    end
+    
   end
 end
