@@ -1,18 +1,29 @@
-%ul
-  -if !@results.blank?
-    -for video in @results
-      %li
-        .name.grid_2
-          = video.name
-        .duration.grid_1
-          = video.duration
-        .camera.grid_1
-          = video.camera
-        .location.grid_1
-          = video.location
-  -else
-    %li
-      .grid_10
-        No Results Found
+-if !@results.blank?
+  %table
+    %thead
+      %tr
+        %th.name
+          Name
+        %th.duration
+          Duration
+        %th.source_cam
+          Source Camera
+        %th.location
+          Location
+      %tbody
+        -for result in @results
+          - video = result.video
+          %tr{"data-video_url" => ""}
+            %td.name
+              = video.name
+            %td.duration
+              = video.duration
+            %td.camera
+              = video.source_cam
+            %td.location
+              = video.location
+-else
+  .grid_10
+    No Results Found
    
   

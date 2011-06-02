@@ -7,7 +7,7 @@ class Admin::SearchController < ApplicationController
     if params[:query].blank?
       @results = []
     else
-      @results = VideoTag.search(params[:query])
+      @results = VideoTag.search(params[:query].downcase)
     end
   end
 end
