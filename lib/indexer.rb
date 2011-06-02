@@ -12,6 +12,15 @@ class Indexer
     raise "Index could not be updated" unless response["status"] =~ /success/
   end
 
+  def self.search(parameters)
+    response = get("/search", parameters)
+    begin
+      return response["results"]
+    rescue
+      raise "Search query could not be complete"
+    end
+  end
+
   def self.get(path, parameters)
     uri = "http://" + @host + path + format_query_string(parameters)
     response = RestClient.get uri

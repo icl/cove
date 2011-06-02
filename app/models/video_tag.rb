@@ -19,4 +19,8 @@ class VideoTag < ActiveRecord::Base
     Indexer.update_index :type => "tag", :term => self.tag.name, :db_id => self.id
   end
 
+  def self.search(query)
+    Indexer.search(:type => "tag", :query => query)
+  end
+
 end
