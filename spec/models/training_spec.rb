@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Training do
-   before(:all) do
+   before(:each) do
       @training = Factory(:training)
    end
 

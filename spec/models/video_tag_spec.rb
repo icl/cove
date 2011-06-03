@@ -44,7 +44,7 @@ describe VideoTag do
       id = @tagging.id
       Indexer.should_receive(:post).with do |path, parameters|
         path == "/update_index"
-        parameters == {:type => "tag", :term => @tagging.tag.name, :db_id => @tagging.id}
+        parameters == {:type => "tag", :term => @tagging.tag.name.downcase, :db_id => @tagging.id}
       end.and_return({"status" => "successful" })
       @tagging.index_tag
     end

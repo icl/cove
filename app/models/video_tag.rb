@@ -16,12 +16,12 @@ class VideoTag < ActiveRecord::Base
 	end
 
   def index_tag
-    Indexer.update_index :type => "tag", :term => self.tag.name, :db_id => self.id
+    Indexer.update_index :type => "tag", :term => self.tag.name.downcase, :db_id => self.id
   end
 
   def self.search(query)
     results = Indexer.search(:type => "tag", :query => query)
-    where(:id => results)
+    self.where(:id => results)
   end
 
 end

@@ -1,0 +1,35 @@
+.query_container
+  %span
+    Results for
+  %span
+    = @query
+=form_for Video.new, :url => admin_search_path(:query => @query),:html => {:method => :get,  :id => "filter_form"} do |f|
+  = hidden_field_tag :query, @query
+  = f.label :name
+  = f.select :name, options_for_select(Video.unique_names)
+  = f.label "Camera Angle", :source_cam
+  = f.select :source_cam, options_for_select(Video.unique_source_cams)
+  = submit_tag "Filter"
+
+-if !@results.blank?
+  %table
+    %thead
+      %tr
+        %th.name
+          Name
+        %th.duration
+          Duration
+        %th.source_cam
+          Source Camera
+        %th.location
+          Location
+      %tbody
+        -for video in @results
+          -#- video = result.video
+          = render :partial => 'individual_result', :locals => {:video => video}
+
+-else
+  .grid_10
+    No Results Found
+   
+  
