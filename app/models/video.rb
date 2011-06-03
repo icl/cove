@@ -19,4 +19,10 @@ class Video < ActiveRecord::Base
     end
   end
 
+  def self.search(query)
+    results = Indexer.search(:type => "tag", :query => query)
+    self.joins(:video_tags).where("video_tags.id IN (?)", results)
+  end
+  
+
 end

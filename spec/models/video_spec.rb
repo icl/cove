@@ -25,4 +25,11 @@ describe Video do
     end
   end
 
+  describe ".search" do
+    it "should return the videos that match the video_tags" do
+      @tagging = Factory(:tagging)
+      Video.search(@tagging.tag.name).should == [@video]
+    end
+  end
+
 end
