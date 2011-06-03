@@ -1,4 +1,18 @@
 $(document).ready(function(){
+  // Javascript to handle autosubmitting the form when things change
+  $('#filter_form select').bind("change", function(){
+    console.log($(this).attr("value"));
+    $('#filter_form').submit();
+  });
+  //This javascript will handle ajax updating of the filtered search results
+  $('#filter_form').bind("ajax:success", function(event, response, status) {  
+    $('#result_container').html(response);
+  });
+
+  $('#filter_form').bind("ajax:failure", function(event, response, status) {  
+    $('#result_container').html("An Error Occured");
+  });
+  
   // jwplayer config for job work page
 	jwplayer("jwplayer_container").setup({
 		flashplayer: "/jwplayer/player.swf",
@@ -28,4 +42,6 @@ $(document).ready(function(){
 		$('#tagButton_hold_' + tagValue).mouseout(function() { coveTag.handleTagClick(tagValue, true) });
 		$('#tagButton_toggle_' + tagValue).click( { vars: tagValue}, function() { coveTag.handleTagClick(tagValue) });
 	}
+
+
 });

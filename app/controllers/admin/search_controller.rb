@@ -15,6 +15,17 @@ class Admin::SearchController < ApplicationController
         end
       end
       @results
+      respond_to do |format|
+        format.html do
+          if request.xhr?
+            render :partial => "search_results"
+          else
+            render 'show'
+          end
+
+        end
+
+      end
     end
   end
 end
