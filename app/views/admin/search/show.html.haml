@@ -1,4 +1,16 @@
-= render 'tag_search_form'
+.query_container
+  %span
+    Results for
+  %span
+    = @query
+=form_for Video.new, :url => admin_search_path(:query => @query),:html => {:method => :get,  :id => "filter_form"} do |f|
+  = hidden_field_tag :query, @query
+  = f.label :name
+  = f.select :name, options_for_select(Video.unique_names)
+  = f.label "Camera Angle", :source_cam
+  = f.select :source_cam, options_for_select(Video.unique_source_cams)
+  = submit_tag "Filter"
+
 -if !@results.blank?
   %table
     %thead

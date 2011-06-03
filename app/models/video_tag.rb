@@ -21,7 +21,7 @@ class VideoTag < ActiveRecord::Base
 
   def self.search(query)
     results = Indexer.search(:type => "tag", :query => query)
-    where(:id => results)
+    self.where(:id => results)
   end
 
 end
