@@ -30,6 +30,10 @@ describe Video do
       @tagging = Factory(:tagging)
       Video.search(@tagging.tag.name).should == [@video]
     end
+
+    it "should return an empty array in results from search server is empty array" do
+      Video.search("hello").should == []
+    end
   end
 
 end
