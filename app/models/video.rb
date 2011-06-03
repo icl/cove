@@ -8,4 +8,15 @@ class Video < ActiveRecord::Base
 	has_many :video_tags
 	has_many :tags, :through => :video_tags
 
+  def self.method_missing(method_name, *args)
+    if  (result = method_name.to_s.match(/unique_(\w*)/))
+      attribute = result.captures[0]
+      attribute = attribute.singularize
+      records = self.select("DISTINCT #{attribute}")
+      return records.map {|r| r.send(attribute.to_sym) }
+    else
+      super
+    end
+  end
+
 end
