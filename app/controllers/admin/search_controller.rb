@@ -8,14 +8,8 @@ class Admin::SearchController < ApplicationController
       @results = []
     else
       @query = params[:query]
-      @results = VideoTag.search(params[:query].downcase)
-      ids = []
-      @results.each do | vt|
-        ids << vt.video_id
-      end
+      @results = Video.search(params[:query].downcase)
       unless params[:video].blank?
-        debugger
-        @results = Video.where(:id => ids)
         params[:video].each do |key, value| 
           @results = @results.where(key => value) unless value.blank?
         end

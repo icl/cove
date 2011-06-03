@@ -24,8 +24,8 @@
         %th.location
           Location
       %tbody
-        -for result in @results
-          - video = result.video
+        -for video in @results
+          -#- video = result.video
           = render :partial => 'individual_result', :locals => {:video => video}
 
 -else
