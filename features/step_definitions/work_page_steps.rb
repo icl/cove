@@ -20,7 +20,7 @@ When /^(?:|I )click the play button$/ do
   jwplayer_play
 end
 
-When /^I tag the range \[(\d+),(\d+)\] using the hold\-to\-tag button$/ do |start_time, end_time|
+When /^I tag the range \[(\d+),(\d+)\] using the hold-to-tag button$/ do |start_time, end_time|
   sleep(start_time.to_f - jwplayer_position)
   page.execute_script "$('#tagButton_hold_#{@tag.name}').trigger('mousedown')"
   sleep(end_time.to_f - jwplayer_position)
