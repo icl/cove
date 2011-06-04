@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rweald/cove_search
-  revision: 8bdb8739823b8dbb8a4e3428027408132d954d15
+  revision: 83178326fa00a233b50ddca0841616cec1a77ec6
   specs:
     cove_search (0.0.1)
       redis
