@@ -44,7 +44,7 @@ describe VideoTag do
       id = @tagging.id
       Indexer.should_receive(:post).with do |path, parameters|
         path == "/update_index"
-        parameters == {:type => "tag", :term => @tagging.tag.name.downcase, :db_id => @tagging.id}
+        parameters == {:type => "tag:test", :term => @tagging.tag.name.downcase, :db_id => @tagging.id}
       end.and_return({"status" => "successful" })
       @tagging.index_tag
     end
@@ -53,7 +53,7 @@ describe VideoTag do
   describe ".search" do
     it "should query the cove_search server" do
       Indexer.should_receive(:search).with do |params|
-        params[:type] == "tag"
+        params[:type] == "tag:test"
         params[:query] == "hello"
       end
       VideoTag.search "hello"
@@ -62,7 +62,7 @@ describe VideoTag do
     it "should make a get request to the cove_search server" do
       Indexer.should_receive(:get).with do |path, parameters|
         path == "/update_index"
-        parameters == {:type => "tag", :query => "hello"}
+        parameters == {:type => "tag:test", :query => "hello"}
       end.and_return({"results" => []})
       VideoTag.search "hello"
     end

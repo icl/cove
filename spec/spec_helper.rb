@@ -30,7 +30,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  config.after(:each) { DatabaseCleaner.clean}
+  config.after(:each) do 
+    DatabaseCleaner.clean
+  end
+
 end
 
 def parse_json_response(&block)

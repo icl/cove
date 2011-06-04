@@ -20,7 +20,7 @@ class Video < ActiveRecord::Base
   end
 
   def self.search(query)
-    results = Indexer.search(:type => "tag", :query => query)
+    results = Indexer.search(:type => "tag:#{Rails.env}", :query => query.downcase)
     self.joins(:video_tags).where("video_tags.id IN (?)", results)
   end
   
