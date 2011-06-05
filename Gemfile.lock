@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rweald/cove_search
-  revision: 97814a6e4668baddd7aa2acd8d04f049adea0732
+  revision: e0b065f66534ef558181a44ee9d1d72a4405d77c
   specs:
     cove_search (0.0.1)
       redis
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: e2783ae768a0fade879fe71bb3466909391e6958
+  revision: 91dd5f529a38e6ea518187ff1215d8aedcd23aba
   specs:
     rails_admin (0.0.1)
       builder (~> 2.1.0)
@@ -196,7 +196,7 @@ GEM
       redis-namespace (~> 1.0.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
-    rest-client (1.6.1)
+    rest-client (1.6.3)
       mime-types (>= 1.16)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
