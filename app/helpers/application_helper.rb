@@ -1,17 +1,7 @@
 module ApplicationHelper
-  
-  def  video_service_url file_name
 
-  token = "#{CoveConfig.video_prefix}/video/#{get_video_token(file_name)}/#{file_name}"
-  
-  
-  
-  end
-  
-  def get_video_token file_name
-    puts "#{CoveConfig.token_prefix}?video=#{file_name}"
-    JSON.parse(RestClient.get "#{CoveConfig.token_prefix}?video=#{file_name}" )['token']
-    
+  def  video_service_url file_name
+    url = TAVideoServer::Client.generate_url(file_name)
   end
 
 end
