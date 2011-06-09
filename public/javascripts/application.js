@@ -12,6 +12,6 @@ $(document).ready(function(){
   $('#filter_form').bind("ajax:failure", function(event, response, status) {  
     $('#result_container').html("An Error Occured");
   });
- 
+
 });
 
