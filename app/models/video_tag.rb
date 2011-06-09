@@ -16,7 +16,11 @@ class VideoTag < ActiveRecord::Base
 	end
 
   def index_tag
-    Indexer.update_index :type => "tag:#{Rails.env}", :term => self.tag.name.downcase, :db_id => self.id
+    begin
+      Indexer.update_index :type => "tag:#{Rails.env}", :term => self.tag.name.downcase, :db_id => self.id
+    rescue
+      Rails.logger.warn('Could not access index server')
+    end
   end
 
   def self.search(query)

@@ -14,7 +14,7 @@ Cove::Application.routes.draw do
   resource :logging
 
   namespace :admin do
-    get '/' => "search#index", :as => "admin_root"
+    get '/index' => "search#index", :as => "admin_root"
     get '/search' => "search#show", :as => "search"
   end
 

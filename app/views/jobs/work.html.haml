@@ -15,7 +15,7 @@
 
   coveTag.setSeekBack(0.04);
 
-  coveTag.setFilepath('/#{@video.filepath}');
+  coveTag.setFilepath("#{ video_service_url @video.filepath}");
   coveTag.setVideoId('#{@video.id}');
   coveTag.setJobId('#{@job.id}');
 
