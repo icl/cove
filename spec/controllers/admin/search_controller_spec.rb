@@ -2,17 +2,10 @@ require 'spec_helper'
 
 describe Admin::SearchController do
 
-  describe "GET 'index'" do
-    before(:each) do
-      get 'index'
-    end
-    it { should respond_with :success }
-    it { should render_template "index" }
-  end
-
   describe "GET 'show'" do
-    it "should return blank list if query param is nil" do
+    it "should return all the videos if no query" do
       get 'show'
+      assigns[:results].should == Video.all
     end
   end
 end
