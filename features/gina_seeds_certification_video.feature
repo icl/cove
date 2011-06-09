@@ -10,8 +10,8 @@ Feature: Gina Seeds a Training Test
     And I am an admin user who is logged in
     And I am on the seed certification video page
     
+  @javascript
   Scenario: Gina seeds the video
     When I apply the correct tags to a video
-    And click "Done"
-    Then I should see "seeded"
-    And the certification video should be seeded
+    And I follow "Done"
+    Then the certification video should be seeded with the correct intervals

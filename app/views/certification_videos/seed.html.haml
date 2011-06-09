@@ -1,0 +1,78 @@
+= javascript_include_tag "coveTag.js"
+= javascript_include_tag "coveTagWork.js"
+= javascript_include_tag "/jwplayer/jwplayer.js"
+= javascript_include_tag "jquery.tipTip.js"
+= javascript_include_tag "jquery.pulse.js"
+= javascript_include_tag "jquery.color.js"
+= javascript_include_tag "amplify.js"
+= stylesheet_link_tag "tiptip.css"
+= stylesheet_link_tag "coveTag_game.css"
+
+:javascript
+  var coveTag = new coveTag();
+  coveTag.setCurTimeDiv("curTime");
+  coveTag.setTotTimeDiv("totTime");
+
+  coveTag.setSeekBack(0.04);
+
+  coveTag.setFilepath('/#{@video.filepath}');
+  coveTag.setVideoId('#{@video.id}');
+
+  coveTag.setProgressMeterDiv('player_progress_meter');
+  coveTag.setProgressBarDiv('player_progress_bar_interior');
+  coveTag.setPlayerFrameDiv('player_wrapper');
+  coveTag.setPausePlayDiv('pausePlay');
+  coveTag.setVolLevelDiv('volLevel');
+
+  /* Set this to the amount of pixels taken up by buttons on the status bar vs player width */
+  coveTag.setStatusOffset(50);
+
+  coveTag.setPauseFilePath("/images/icons/pause.png");
+  coveTag.setPlayFilePath("/images/icons/play.png");
+
+  var tagSetJSON = [
+    #{@jsonStr}
+  ];
+
+  coveTag.setTagSetJSON(tagSetJSON);
+
+
+%h2 Video Tagging
+
+#player_wrapper.player_frame
+  #jwplayer_wrapper.jwplayer_wrapper
+    #jwplayer_container
+  #control_wrapper.control_wrapper
+    #player_play_button.player_control.player_control_left
+      %img.buttonTipTip{:id => "pausePlay", :title => "Toggle Play/Pause", :onclick => "amplify.publish('pausePlay')", :src => "/images/icons/play.png"}
+    #progress_bar.player_progress_bar
+      #player_progress_bar_interior.player_progress_bar_interior
+        #player_progress_meter.player_progress_meter
+    #player_time.player_control.player_control_right
+      %img.buttonTipTip{:title => "Rewind 10 seconds", :onclick => "amplify.publish('coveSeek', { mode: 'rewind' })", :src => "/images/icons/rewind.png"}
+  #lower_control_wrapper.lower_control_wrapper
+    #timeContainer
+      %span.time_bar Video Time:&nbsp;
+      %span.time_bar{:id => "curTime"}
+      %span.time_bar /
+      %span.time_bar{:id => "totTime"}
+      %img.time_bar_right{:onclick => "amplify.publish('volume', { mode: 'up' })", :id => "volume", :src => "/images/icons/vol_down.png"}
+      %p.time_bar_right{:id => "volLevel"}
+      %img.time_bar_right{:onclick => "amplify.publish('volume', { mode: 'down' })", :id => "volume", :src => "/images/icons/vol_up.png"}
+
+#buttonContainer.button_container
+  - @tags.each_index do |i|
+    -# Hold to click:
+    - tagButton_hold = "tagButton_hold_" + @tags[i].name
+    - tagButton_toggle = "tagButton_toggle_" + @tags[i].name
+
+    %button.tagButtons.tagbutton_left(id=tagButton_hold)
+      = "Hold to tag " << @tagDisplayNames[i]
+
+    %button.tagButtons.tagbutton_right(id=tagButton_toggle)
+      = "Click to toggle " << @tagDisplayNames[i]
+
+  #tagText.tag_text
+
+= link_to 'Done', post_seed_certification_video_path(@certification_video)
+= link_to 'Cancel', tag_path(@certification.tag)

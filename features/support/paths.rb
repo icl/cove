@@ -48,7 +48,7 @@ module NavigationHelpers
       "/certification/#{@certification.id}/take_test"
       
     when /the seed certification video page/
-      "/certification_video/#{@certification_video.id}/seed"
+      "/certification_videos/#{@certification_video.id}/seed"
 
     else
       begin
