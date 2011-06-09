@@ -1,2 +1,4 @@
 search: bundle exec cove_search_server
+video: bundle exec token_auth_video_server
+redis: redis-server
 main: bundle exec unicorn -c config/unicorn.rb
