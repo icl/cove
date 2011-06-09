@@ -3,8 +3,8 @@
     Results for
   %span
     = @query
-=form_for Video.new, :url => admin_search_path(:query => @query),:html => {:method => :get,  :id => "filter_form"}, :remote => true do |f|
-  = text_field :query , @query 
+=form_for Video.new, :url => search_path(:query => @query),:html => {:method => :get,  :id => "filter_form"}, :remote => true do |f|
+  = text_field_tag :query , @query 
   = f.label :name
   = f.select :name, options_for_select(Video.unique_names), :include_blank => true 
   = f.label "Camera Angle", :source_cam

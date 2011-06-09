@@ -1,9 +1,10 @@
 class SearchController < ApplicationController
   def show
-    if params[:query].blank?
+    #@query = params[:video] ? params[:video][:query] : ""
+    @query = params[:query] ? params[:query][0] : ""
+    if @query.blank?
       @results = Video.all
     else
-      @query = params[:query][0]
       @results = Video.search(@query.downcase)
       unless params[:video].blank?
         params[:video].each do |key, value| 
