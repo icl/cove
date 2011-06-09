@@ -1,4 +1,4 @@
-class Admin::SearchController < ApplicationController
+class SearchController < ApplicationController
   def show
     if params[:query].blank?
       @results = Video.all

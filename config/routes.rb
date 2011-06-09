@@ -13,9 +13,7 @@ Cove::Application.routes.draw do
 
   resource :logging
 
-  namespace :admin do
-    get '/search' => "search#show", :as => "search"
-  end
+  get '/search' => "search#show", :as => "search"
 
   devise_for :users
 
