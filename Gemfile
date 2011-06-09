@@ -7,7 +7,7 @@ gem 'rake', '~> 0.8.7'
 gem 'simple_form'
 gem 'capistrano'
 gem 'fastercsv'
-
+gem 'unicorn'
 # Jasmine
 gem 'jasmine'
 

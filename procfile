@@ -1,0 +1,2 @@
+search: bundle exec cove_search_server
+main: bundle exec unicorn -c config/unicorn.rb
