@@ -46,20 +46,19 @@ $(document).ready(function(){
     event.preventDefault();
     $('#added_video_list').attr("value", "all");
     $('.add_video_container').css("display", "none");
-    $(this).before('<a href="#" id="remove_all_videos"> Remove All Videos </a>');
-    $(this).remove();
   });
 
   $('#remove_all_videos').live("click", function(){
+    event.preventDefault();
     $('#added_video_list').attr("value", "");
-    $(this).before('<a href="#" id="add_all_videos"> Add All Videos </a>');
     $('.add_video_container').css("display", "block");
-    $(this).remove();
   });
 
   $('.job_video_search').delegate(".search_result", "click", function(){
     event.preventDefault();
-    if ($(this).hasClass("selected")) { 
+    id_list = $('#added_video_list').attr("value");
+
+    if (id_list.indexOf($(this).data("video_id")) !== -1) { 
       myApp.removeVideoFromList($(this).data("video_id"));
       $(this).removeClass("selected");
     }  
