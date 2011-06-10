@@ -1,4 +1,3 @@
-@wip
 Feature: Gina Seeds a Training Test
   In order to make sure a turk is trained to identify a tag
   As Gina
