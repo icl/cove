@@ -1,22 +1,39 @@
-%h2.grid_12 Available Jobs
-.grid_12#jobs_container
-  - @jobs.each do |job|
-    .job_container
-      %h3 Job ##{job.id}
-      .job_description= job.description
-      .job_field
-        Requestor:
-        = job.requestor_name
-      .job_field
-        Tags:
-        = job.tags.collect { | tag| tag.name}.join(', ')
-      .job_actions
-        - if current_user.kind == "admin"
-          = link_to 'Edit', edit_job_path(job)
-        - else
-          = link_to 'Work', "/jobs/#{job.id}/work"
+#filler_turk.grid_6
+  %h3 
+    - if is_admin?
+      Admins
+    - else
+      Turks
 
-  - if current_user.kind == "admin"
-    #new_job_link
-      = link_to 'New Job', new_job_path
+.job_block.grid_6
+  %h3 
+    - if is_admin?
+      Jobs available to Turks
+    - else
+      Jobs available  
+  %dl.job_container.none
+    - @jobs.each do |job|
+      %dt
+        %p Job ##{job.id}
+      
+      %dd.job_description
+        = job.description
+      
+      -# .job_field
+        -# Requestor:
+        -# = job.requestor_name
+      -# .job_field
+        -# Tags:
+        -# = job.tags.collect { | tag| tag.name}.join(', ')
+    
+      %dd.job_actions
+        - if is_admin?
+          = link_to 'Edit', edit_job_path(job), :class => "link_button"
+        - else
+          = link_to 'PLAY!', "/jobs/#{job.id}/work", :class => "link_button"
+
+-#  - if current_user.kind == "admin"
+-#    #new_job_link
+-#      = link_to 'New Job', new_job_path
   
+

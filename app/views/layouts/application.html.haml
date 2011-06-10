@@ -13,34 +13,34 @@
   %body
     %header
       .container_12.clearfix
-        .grid_2.logo COVE
+        .grid_2.logo 
+          = link_to "COVE", "/"
    
         .grid_6.nav
           %ul
-            %li= link_to "Home", "/"
+            -# %li= link_to "Home", "/"
+            - if user_signed_in? && is_admin?
+              %li= link_to "Tags", :tags
             %li= link_to "Jobs", :jobs
-            %li= link_to "Tags", :tags
         .grid_4.loginBar
           - if user_signed_in?
-            Logged in as:
+            -# Logged in as:
             = current_user.email
             (#{link_to "Logout", destroy_user_session_path})
           - else
             = link_to "Login", new_user_session_path, :class => "login"
-            = link_to "Sign up", new_user_registration_path
+            = link_to "Sign up!", new_user_registration_path
 
     #middle
       .container_12.clearfix#content
+        %p.notice.grid_12
+          = notice
+        %p.alert.grid_12
+          = alert
         = yield
-        .grid_12
-          %p.notice
-            = notice
-          %p.alert
-            = alert
+
 
     %footer
       .container_12.clearfix
-
-       
         .grid_12.footer
           %p Copyright &copy; 2011 -- COVE

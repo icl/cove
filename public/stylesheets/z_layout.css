@@ -1,6 +1,8 @@
 body {
 	font-size: 0.8em;
 	font-family: verdana;
+	padding: 0px;
+	margin: 0px;
 }
 
 a {
@@ -8,32 +10,34 @@ a {
 	text-decoration: none;
 }
 
-/*a:hover {
-	color: #00FA9A;
-}*/
-
 a.currPage {
 	font-weight: bold;
 }
 
 
-div.container_12 {
-	margin-top: 20px;
-	/*background: url('images/tartan_grad.png') repeat-x 27px left;*/
-}
-
 .footer {
-	border-top: 1px solid #e2e2e2;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	margin-top: 20px;
-	margin-bottom: 20px;
 }
 
 .footer p {
 	text-align: center;
 	font-size: 1.05em;
-	color: #777;
+}
+
+header {
+	background: #334;
+	padding: 15px 0px 15px 0px;
+	margin: 0px;
+	border-bottom: 3px #fb9 solid; 	
+	color: #fff;
+}
+
+footer {
+	background: #334;
+	padding: 0px 0px 15px 0px;
+	margin: 0px;
+	margin-top: 40px;
+	border-top: 3px #fb9 solid; 	
+	color: #fff;
 }
 
 .nav ul {
@@ -52,13 +56,10 @@ div.container_12 {
 
 h2 {
 	color: brown;
-	padding-top: 20px;
-	padding-bottom: 20px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	font-size: 1.3em;
 	color: #8B4513;
-	border-top: 1px solid #e2e2e2;
 }
 
 .container_12 ul.tags {
@@ -103,7 +104,7 @@ dd {
 }
 
 dl form dt {
-	text-align: right;
+	text-align: left;
 }
 
 .sButton {
@@ -119,6 +120,92 @@ li {
 	margin-bottom: 10px;	
 }
 
+div#middle {
+  background: url('/images/grad_top.png') top left repeat-x;
+  padding-top: 20px;
+}
+
+fieldset {
+	border: 0px;
+	padding: 0px;
+}
+
+input {
+	margin: 0px;
+}
+
+ul.signUp {
+	padding: 0px;
+	margin-top: 40px;
+}
+
+ul.signUp li {
+	margin-top: 20px;
+}
+
+ul.signUp li input {
+	width: 460px;
+}
+
+ul.signUp li.button input.button {
+}
+
+ul.signUp li.button input.button {
+	width: 200px;
+	float: right;
+}
+
+a.link_button {
+	padding: 2px 5px;
+	background: #FFD700;
+	display: block;
+	-moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #8B4513;
+    margin: 5px 0px;
+    text-align: center;
+}
+
+a.link_button.small {
+	width: 20%;
+	margin: 10px auto 5px auto;
+}
+
+a.link_button.left {
+	width: 20%;
+}
+
+a.link_button.neg {
+	background: #6cdfea;
+	color: #e4f4f7;
+}
+
+a.link_button:hover {
+	color: #000;
+}
+
+a.link_button.neg:hover {
+	color: #2a8fbd;
+}
+
+h3, h2 {
+	margin: 10px 0px;	
+	letter-spacing: 130%;
+}
+
+ul.none {
+	padding: 0px;
+}
+
+div.job_block {
+	
+}
+
+div#filler_turk {
+	background: url('/images/viking.jpg') left 40px no-repeat;
+	min-height: 400px;
+}
+
 .search_result:hover {
   cursor: pointer;
 }
@@ -132,4 +219,59 @@ li {
 
 .selected{
   background-color: yellow;
+}
+
+dl.none {
+	padding: 0px;
+}
+
+dl.none dt {
+	letter-spacing: 0.1em;
+	border-bottom: 1px solid #e2e2e2;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin: 0px;
+}
+
+dl.none dd {
+	padding: 10px;
+	margin-left: 0px;
+	background: #eee;
+	font-size: 0.9em;
+	line-height: 175%;
+	margin: 0px;
+}
+
+dl.none dd.none {
+	background: none;
+}
+
+dl.none dd input, dl.none dd select {
+	width: 90%;
+}
+
+dl.none dt input.ack {
+	width: 100%;
+	background: #ffd700;
+	-moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 0px;
+    display: block;
+    margin: 5px 0px;
+	padding: 2px 5px;
+	color: #8B4513;
+	font-size: 0.9em;
+	font-family: verdana;
+}
+
+dl.none dt input.ack:hover {
+	color: #000;
+}
+
+.bottomSpace {
+	margin-bottom: 20px;
+}
+
+dl.none dd.bottomSpace {
+	margin-bottom: 20px;
 }

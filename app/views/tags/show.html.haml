@@ -1,0 +1,28 @@
+
+ 
+%dl.none
+  %dt.grid_4
+    = @tag.name
+    %dd.grid_8.bottomSpace 
+      = @tag.description
+      = link_to 'Edit', edit_tag_path(@tag), :class => "link_button small"
+    %dt.grid_4
+      Training Set
+    %dd.grid_8.bottomSpace
+      <em>Coming soon</em>
+    %dt.grid_4
+      Training Video
+    %dd.grid_8.bottomSpace
+      <em>Coming soon</em>
+    %dt.grid_4
+      Attached jobs
+    %dd.grid_8.bottomSpace
+      = link_to 'Make a Job', new_job_path(:tag => @tag.id), :class => "link_button small"
+    
+.grid_3.bottomSpace.suffix_6
+  = link_to 'Back', tags_path, :class => "link_button neg"      
+.grid_3
+  = link_to 'Delete', @tag, :confirm => 'Are you sure?', :method => :delete, :class => "link_button neg"
+      
+
+
