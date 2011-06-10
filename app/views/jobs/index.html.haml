@@ -1,14 +1,22 @@
 #filler_turk.grid_6
-  %h3 Turks
+  %h3 
+    - if is_admin?
+      Admins
+    - else
+      Turks
 
 .job_block.grid_6
-  %h3 Available jobs
-  - @jobs.each do |job|
-    %ul.job_container.none
-      %li 
-        %h4 Job ##{job.id}
+  %h3 
+    - if is_admin?
+      Jobs available to Turks
+    - else
+      Jobs available  
+  %dl.job_container.none
+    - @jobs.each do |job|
+      %dt
+        %p Job ##{job.id}
       
-      %li.job_description
+      %dd.job_description
         = job.description
       
       -# .job_field
@@ -18,14 +26,14 @@
         -# Tags:
         -# = job.tags.collect { | tag| tag.name}.join(', ')
     
-      %li.job_actions
-        - if current_user.kind == "admin"
-          = link_to 'Edit', edit_job_path(job)
+      %dd.job_actions
+        - if is_admin?
+          = link_to 'Edit', edit_job_path(job), :class => "link_button"
         - else
           = link_to 'PLAY!', "/jobs/#{job.id}/work", :class => "link_button"
 
-  - if current_user.kind == "admin"
-    #new_job_link
-      = link_to 'New Job', new_job_path
+-#  - if current_user.kind == "admin"
+-#    #new_job_link
+-#      = link_to 'New Job', new_job_path
   
 

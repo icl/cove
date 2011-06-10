@@ -1,4 +1,7 @@
 class TagsController < ApplicationController
+
+  before_filter :is_admin?
+
   # GET /tags
   def index
     @tags = Tag.all

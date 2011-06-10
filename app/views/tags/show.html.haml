@@ -1,21 +1,28 @@
-%p.notice.grid_12
-  = notice
+
  
-  %dl.none
-    %dt.grid_4
-      = @tag.name
-    %dd.grid_8
+%dl.none
+  %dt.grid_4
+    = @tag.name
+    %dd.grid_8.bottomSpace 
       = @tag.description
       = link_to 'Edit', edit_tag_path(@tag), :class => "link_button small"
     %dt.grid_4
       Training Set
     %dd.grid_8.bottomSpace
-      Add videos
-	
-    %dd.grid_1.none
-      = link_to 'Delete', @tag, :confirm => 'Are you sure?', :method => :delete, :class => "link_button neg"
+      <em>Coming soon</em>
+    %dt.grid_4
+      Training Video
+    %dd.grid_8.bottomSpace
+      <em>Coming soon</em>
+    %dt.grid_4
+      Attached jobs
+    %dd.grid_8.bottomSpace
+      = link_to 'Make a Job', new_job_path(:tag => @tag.id), :class => "link_button small"
+    
+.grid_3.bottomSpace.suffix_6
+  = link_to 'Back', tags_path, :class => "link_button neg"      
+.grid_3
+  = link_to 'Delete', @tag, :confirm => 'Are you sure?', :method => :delete, :class => "link_button neg"
       
-.grid_12
 
-  = link_to 'Back', tags_path
 

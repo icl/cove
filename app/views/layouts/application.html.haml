@@ -13,14 +13,15 @@
   %body
     %header
       .container_12.clearfix
-        .grid_2.logo COVE
+        .grid_2.logo 
+          = link_to "COVE", "/"
    
         .grid_6.nav
           %ul
             -# %li= link_to "Home", "/"
-            %li= link_to "Jobs", :jobs
-            - if user_signed_in?
+            - if user_signed_in? && is_admin?
               %li= link_to "Tags", :tags
+            %li= link_to "Jobs", :jobs
         .grid_4.loginBar
           - if user_signed_in?
             -# Logged in as:

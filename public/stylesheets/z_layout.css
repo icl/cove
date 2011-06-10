@@ -104,7 +104,7 @@ dd {
 }
 
 dl form dt {
-	text-align: right;
+	text-align: left;
 }
 
 .sButton {
@@ -171,6 +171,10 @@ a.link_button.small {
 	margin: 10px auto 5px auto;
 }
 
+a.link_button.left {
+	width: 20%;
+}
+
 a.link_button.neg {
 	background: #6cdfea;
 	color: #e4f4f7;
@@ -194,7 +198,7 @@ ul.none {
 }
 
 div.job_block {
-	border-bottom: 1px solid #ccc;
+	
 }
 
 div#filler_turk {
@@ -225,6 +229,7 @@ dl.none dt {
 	letter-spacing: 0.1em;
 	border-bottom: 1px solid #e2e2e2;
 	padding-bottom: 10px;
+	padding-top: 10px;
 	margin: 0px;
 }
 
@@ -241,7 +246,7 @@ dl.none dd.none {
 	background: none;
 }
 
-dl.none dd input {
+dl.none dd input, dl.none dd select {
 	width: 90%;
 }
 
@@ -261,4 +266,12 @@ dl.none dt input.ack {
 
 dl.none dt input.ack:hover {
 	color: #000;
+}
+
+.bottomSpace {
+	margin-bottom: 20px;
+}
+
+dl.none dd.bottomSpace {
+	margin-bottom: 20px;
 }

@@ -1,8 +1,6 @@
 %h2 Edit Tag
 
-= render 'form'
+.grid_6
 
-= link_to 'Show All Tags', @tag
-
-= link_to 'Tags List', tags_path
-
+  = render 'form'
+  = link_to 'Cancel', tags_path, :class => "link_button neg"
