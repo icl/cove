@@ -13,15 +13,9 @@ class VideosController < ApplicationController
   end
 
   def create
-    #block add
-    unless params[:video]
-      @video = Video.new(params)
-    else
+
       @video = Video.new(params[:video])
-    end
-
-    @video.video_up = File.open(params[:video_up]).read if params[:video_up]
-
+      @video.video_up = params[:video][:video_up]
     if @video.save
       redirect_to(@video, :notice => 'Interval was successfully created.')
     else

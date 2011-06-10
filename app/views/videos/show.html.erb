@@ -7,7 +7,7 @@
 <script type='text/javascript'>
  jwplayer('video_player').setup({
   flashplayer: '/jwplayer/player.swf',
-  file: '<%= video_service_url @video.filepath %>',
+  file: '<%= video_service_url(File.basename(@video.video_up.current_path)) %>',
   height: 270,
   width: 480
  });

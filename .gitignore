@@ -40,3 +40,5 @@ public/stylesheets/compiled
 .autotest
 private
 Termfile
+dump.rdb
+videos
