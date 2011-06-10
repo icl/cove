@@ -1,29 +1,41 @@
-%h2.grid_12 COVE
+- if not user_signed_in?
+  :javascript
+    jQuery(function(){
+      $("header").hide();
+    });
 
-.grid_6
-  = "COVE!!!"
+  %h2.grid_12
+    COVE: collaborative online viewing experience
+
+  .grid_6#filler_home
+    &nbsp;
 	
-.grid_6
-  %form{:name => "signIn", :id => "signIn", :action => "", :method => "post", :enctype => "text/plain"}
-    %fieldset
-      %input{:type => "text", :name => "message[name]", :class => "text" }
-      %input{:type => "text", :name => "message[pass]", :class => "text"}
-      %input{:type => "submit", :value => "sign in", :class => "button"}
-      %br
-      %input{:type => "checkbox", :value => "remember", :class => "button"}  
-      = "Remember?"
-      = link_to "Forgot password?", new_user_session_path, :class => "login"
+  .grid_6
+    %h3 Returning users
+    = form_for(User.new, :as => "user", :url => session_path("user")) do |f|
+      %fieldset
+        = f.email_field :email
+        = f.password_field :password
+        = f.submit "Sign in", :class => "ack small"
+        = f.check_box :remember_me
+        = f.label :remember_me 
+    %br
+    %br
+    %h2
+      = "Join today!"
+    = form_for(User.new, :as => "user", :url => registration_path("user")) do |f|
+      %fieldset
+        %dl.signUp.none
+          %dd
+            = f.email_field :email, :placeholder => "username@email.com"
+          %dd
+            = f.password_field :password, :placeholder => "password"
+          %dd
+            = f.password_field :password_confirmation, :placeholder => "confirm password"
+          %dt
+            = f.submit "Sign up", :class => "ack"
+            
+- else
 
   %p
-    = "Join today!"
-  %form{:name => "signUp", :id => "signUp", :action => "", :method => "post", :enctype => "text/plain"}
-    %fieldset
-      %ul.signUp
-        %li
-          %input{:type => "text", :name => "message[name]", :class => "text", :placeholder => "username"}
-        %li
-          %input{:type => "text", :name => "message[pass]", :class => "text", :placeholder => "password"}
-        %li
-          %input{:type => "text", :name => "message[passC]", :class => "text", :placeholder => "confirm password"}   
-        %li.button
-          %input{:type => "submit", :value => "sign up", :class => "button"}
+    Congrats, you're in!

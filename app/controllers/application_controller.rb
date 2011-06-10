@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_admin?
 
   def is_admin? 
-    current_user.kind == "admin"
+    user_signed_in? && current_user.kind == "admin"
   end
   
   def require_admin

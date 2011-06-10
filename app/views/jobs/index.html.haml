@@ -11,10 +11,13 @@
       Jobs available to Turks
     - else
       Jobs available  
+  - if is_admin?  
+    %p
+      Click on a job to see its <b>details</b>, <b>edit</b> it, and even <b>delete</b> it.
   %dl.job_container.none
     - @jobs.each do |job|
       %dt
-        %p Job ##{job.id}
+        = link_to "Job ##{job.id}", job
       
       %dd.job_description
         = job.description
@@ -28,7 +31,7 @@
     
       %dd.job_actions
         - if is_admin?
-          = link_to 'Edit', edit_job_path(job), :class => "link_button"
+          -# = link_to 'Edit', edit_job_path(job), :class => "link_button"
         - else
           = link_to 'PLAY!', "/jobs/#{job.id}/work", :class => "link_button"
 
