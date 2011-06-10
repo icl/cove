@@ -9,7 +9,7 @@
         - @job.errors.full_messages.each do |msg|
           %li= msg
 
-  %dl.grid_6.none
+  %dl.none
     %dt
       = f.label :description
     %dd
@@ -20,4 +20,4 @@
       = select_tag "tag_ids[]", options_from_collection_for_select(Tag.all, "id", "name", @job.tags.map{|t| t.id} + [params[:tag]]), :multiple => true
       = hidden_field_tag  :videos, "", :id => "added_video_list"
     %dt
-      = f.submit "Create Job", :class => "ack"
+      = f.submit "Save Job", :class => "ack"

@@ -1,5 +1,7 @@
-%h2 Editing job
-= render 'form'
-.grid_12
-  = link_to 'Show', @job
-  = link_to 'Back', jobs_path
+%h2 Edit Job
+
+.grid_6
+
+  = render 'form'
+  = link_to 'Back to job', @job, :class => "link_button neg"
+  = link_to 'Cancel', jobs_path, :class => "link_button neg"

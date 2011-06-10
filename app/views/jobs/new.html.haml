@@ -11,6 +11,12 @@
     %dt
       Add  videos to a job
     %dd
+      %a#add_all_videos{:href => "#"}
+        Add All Videos
+      , 
+      %a#remove_all_videos{"href" => "#"}
+        Remove All Videos
+    %dd
       = text_field_tag :query , @query 
     %dt
       = f.label :name

@@ -123,6 +123,7 @@ li {
 div#middle {
   background: url('/images/grad_top.png') top left repeat-x;
   padding-top: 20px;
+  min-height: 600px;
 }
 
 fieldset {
@@ -206,6 +207,11 @@ div#filler_turk {
 	min-height: 400px;
 }
 
+div#filler_home {
+	background: url('/images/view.jpg') left top no-repeat;
+	min-height: 420px;
+}
+
 .search_result:hover {
   cursor: pointer;
 }
@@ -250,7 +256,7 @@ dl.none dd input, dl.none dd select {
 	width: 90%;
 }
 
-dl.none dt input.ack {
+input.ack {
 	width: 100%;
 	background: #ffd700;
 	-moz-border-radius: 10px;
@@ -262,6 +268,11 @@ dl.none dt input.ack {
 	color: #8B4513;
 	font-size: 0.9em;
 	font-family: verdana;
+}
+
+input.ack.small {
+	width: 20%;
+	display: inline;
 }
 
 dl.none dt input.ack:hover {

@@ -1,17 +1,25 @@
-.grid_12
-  %p
-    %b Description:
-    = @job.description
-  %p
-    %b Requestor:
-    = @job.requestor_name
-  %p
-    %b Videos:
-    = @job.video_names.join(", ") 
-  %p
-    %b Tags:
-    = @job.tag_names.join(", ")
-
-.grid_12
-  = link_to 'Edit', edit_job_path(@job)
-  = link_to 'Back', jobs_path
+%dl.none
+  %dt.grid_4
+    = "Job ##{@job.id}"
+    %dd.grid_8.bottomSpace 
+      = @job.description
+      = link_to 'Edit', edit_job_path(@job), :class => "link_button small"
+    %dt.grid_4
+      Requestor
+    %dd.grid_8.bottomSpace
+      <em>Coming soon</em>.
+    %dt.grid_4
+      Videos
+    %dd.grid_8.bottomSpace
+      = @job.video_names.join(", ") 
+    %dt.grid_4
+      Tags
+    %dd.grid_8.bottomSpace
+      -# = @job.tag_names.join(", ")
+      <em>Coming soon</em>.
+    
+.grid_3.bottomSpace.suffix_6
+  = link_to 'Back', jobs_path, :class => "link_button neg"      
+.grid_3
+  = link_to 'Delete', @job, :confirm => 'Are you sure?', :method => :delete, :class => "link_button neg"
+      
