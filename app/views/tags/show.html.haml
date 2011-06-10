@@ -1,18 +1,21 @@
-.grid_12
-  %p.notice
-    = notice
+%p.notice.grid_12
+  = notice
  
-  %h1 Tags
-
-  %p
-    %b Name:
-    = @tag.name
-
-  %p
-    %b Description:
-    = @tag.description
-
+  %dl.none
+    %dt.grid_4
+      = @tag.name
+    %dd.grid_8
+      = @tag.description
+      = link_to 'Edit', edit_tag_path(@tag), :class => "link_button small"
+    %dt.grid_4
+      Training Set
+    %dd.grid_8.bottomSpace
+      Add videos
+	
+    %dd.grid_1.none
+      = link_to 'Delete', @tag, :confirm => 'Are you sure?', :method => :delete, :class => "link_button neg"
+      
 .grid_12
-  = link_to 'Edit', edit_tag_path(@tag)
+
   = link_to 'Back', tags_path
 

@@ -2,11 +2,23 @@
 
   %h2 Tags
 
-  - @tags.each do |tag| 
-    %ul.none
-      %li
-        = link_to tag.name, tag 
 
-#filler_tags.grid_6
-  %h3 Can't find your tag?
-  = link_to 'Create New Tag', new_tag_path, :class => "link_button" 
+  - if @tags.length == 0
+    = "There are no tags yet! Will you make the first one?"
+    = link_to 'Create New Tag', new_tag_path, :class => "link_button" 
+  - else
+    %p
+      Click on the tags to <b>edit</b> or <b>delete</b> tags. You can also <b>create jobs</b> by going to the tag page.
+    - @tags.each do |tag| 
+      %dl.none
+        %dt
+          = link_to tag.name, tag 
+        %dd
+          = tag.description    
+
+- if @tags.length != 0
+  #filler_tags.grid_6
+    %h3 Can't find your tag?
+    %p
+      = "Make a new tag! But make sure your tag doesn't exist already!"
+    = link_to 'Create New Tag', new_tag_path, :class => "link_button" 

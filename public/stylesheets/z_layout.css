@@ -35,6 +35,7 @@ footer {
 	background: #334;
 	padding: 0px 0px 15px 0px;
 	margin: 0px;
+	margin-top: 40px;
 	border-top: 3px #fb9 solid; 	
 	color: #fff;
 }
@@ -155,16 +156,37 @@ ul.signUp li.button input.button {
 }
 
 a.link_button {
-	padding: 5px 10px;
+	padding: 2px 5px;
 	background: #FFD700;
-	display: inline block;
-	-moz-border-radius: 15px;
-    border-radius: 15px;
+	display: block;
+	-moz-border-radius: 10px;
+    border-radius: 10px;
     color: #8B4513;
+    margin: 5px 0px;
+    text-align: center;
+}
+
+a.link_button.small {
+	width: 20%;
+	margin: 10px auto 5px auto;
+}
+
+a.link_button.neg {
+	background: #6cdfea;
+	color: #e4f4f7;
+}
+
+a.link_button:hover {
+	color: #000;
+}
+
+a.link_button.neg:hover {
+	color: #2a8fbd;
 }
 
 h3, h2 {
 	margin: 10px 0px;	
+	letter-spacing: 130%;
 }
 
 ul.none {
@@ -195,3 +217,48 @@ div#filler_turk {
   background-color: yellow;
 }
 
+dl.none {
+	padding: 0px;
+}
+
+dl.none dt {
+	letter-spacing: 0.1em;
+	border-bottom: 1px solid #e2e2e2;
+	padding-bottom: 10px;
+	margin: 0px;
+}
+
+dl.none dd {
+	padding: 10px;
+	margin-left: 0px;
+	background: #eee;
+	font-size: 0.9em;
+	line-height: 175%;
+	margin: 0px;
+}
+
+dl.none dd.none {
+	background: none;
+}
+
+dl.none dd input {
+	width: 90%;
+}
+
+dl.none dt input.ack {
+	width: 100%;
+	background: #ffd700;
+	-moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 0px;
+    display: block;
+    margin: 5px 0px;
+	padding: 2px 5px;
+	color: #8B4513;
+	font-size: 0.9em;
+	font-family: verdana;
+}
+
+dl.none dt input.ack:hover {
+	color: #000;
+}
