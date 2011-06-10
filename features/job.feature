@@ -12,18 +12,18 @@ Feature: Create jobs
     Given I am on new jobs
     And I should select a "Test Tag" tag for this new job
     Given I should select a "Test Tag" tag for this new job
-    And I press the "Create Job" button
+    And I press the "Save Job" button
     Then I should see "Videos must have at least one selected"
 
   Scenario: Try to create a job without tags
     Given I am on new jobs
-    And I should select a "Test Video" video for this new job
-    And I press the "Create Job" button
+    When I follow "Add All Videos"
+    And I press the "Save Job" button
     Then I should see "Tags must have at least one selected"
 
   Scenario: Try to create a job with videos and tags
     Given I am on new jobs
     And I should select a "Test Tag" tag for this new job
-    And I should select a "Test Video" video for this new job
-    And I press the "Create Job" button
+    And I follow "Add All Videos"
+    And I press the "Save Job" button
     Then I should see "Job was successfully created."

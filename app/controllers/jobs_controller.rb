@@ -51,7 +51,7 @@ class JobsController < ApplicationController
     case params[:videos]
       when /all/
         @job.videos = Video.select(:id).all
-      when /,/
+      else
         @job.video_ids = params[:videos].split(',')
     end
 

@@ -42,7 +42,7 @@ $(document).ready(function(){
     $('#result_container').html("An Error Occured");
   });
 
-  $("#add_all_videos").live("click",function(){
+  $("#add_all_videos").live("click",function(event){
     event.preventDefault();
     $('#added_video_list').attr("value", "all");
     $('.add_video_container').css("display", "none");
