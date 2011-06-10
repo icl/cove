@@ -3,42 +3,44 @@
   %head
     %title Cove
     = stylesheet_link_tag "960.css"
-    = stylesheet_link_tag "layout.css"
-    = stylesheet_link_tag "tiptip.css"
+    = stylesheet_link_tag "z_layout.css"
     = javascript_include_tag "jquery.js"
     = javascript_include_tag "rails.js"
-    = javascript_include_tag "coveTag.js"
-    = javascript_include_tag "/jwplayer/jwplayer.js"
-    = javascript_include_tag "jquery.tipTip.js"
-    = javascript_include_tag "jquery.pulse.js"
-    = javascript_include_tag "jquery.color.js"
     = javascript_include_tag :defaults
+    = javascript_include_tag "/jwplayer/jwplayer.js"
+
     = csrf_meta_tag
   %body
-    .container_12
-      .grid_3 COVE
-    
-      .grid_5.nav
-        %ul
-          %li= link_to "Home", "/"
-          %li= link_to "Jobs", :jobs
-          %li= link_to "Tags", :tags
-      .grid_4.loginBar
-        - if user_signed_in?
-          Logged in as:
-          = current_user.email
-          (#{link_to "Logout", destroy_user_session_path})
-        - else
-          = link_to "Login", new_user_session_path, :class => "login"
-          = link_to "Sign up", new_user_registration_path
-  
-    .container_12.content
-      = yield
+    %header
+      .container_12.clearfix
+        .grid_2.logo 
+          = link_to "COVE", "/"
+   
+        .grid_6.nav
+          %ul
+            -# %li= link_to "Home", "/"
+            - if user_signed_in? && is_admin?
+              %li= link_to "Tags", :tags
+            %li= link_to "Jobs", :jobs
+        .grid_4.loginBar
+          - if user_signed_in?
+            -# Logged in as:
+            = current_user.email
+            (#{link_to "Logout", destroy_user_session_path})
+          - else
+            = link_to "Login", new_user_session_path, :class => "login"
+            = link_to "Sign up!", new_user_registration_path
 
-    .container_12
-      .grid_12
-        %p.notice
+    #middle
+      .container_12.clearfix#content
+        %p.notice.grid_12
           = notice
-        %p.alert
+        %p.alert.grid_12
           = alert
-    
+        = yield
+
+
+    %footer
+      .container_12.clearfix
+        .grid_12.footer
+          %p Copyright &copy; 2011 -- COVE

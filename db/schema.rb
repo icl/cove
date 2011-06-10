@@ -10,7 +10,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515193725) do
+ActiveRecord::Schema.define(:version => 20110609235208) do
+
+  create_table "certification_tests", :force => true do |t|
+    t.integer  "certification_video_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "certification_videos", :force => true do |t|
+    t.integer  "certification_id"
+    t.integer  "video_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "seeder_id"
+  end
+
+  create_table "certifications", :force => true do |t|
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "job_tags", :force => true do |t|
     t.integer  "job_id"
@@ -49,10 +70,23 @@ ActiveRecord::Schema.define(:version => 20110515193725) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
+  create_table "taggingvideocounts", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "video_id"
+    t.integer  "applied_count", :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggingvideocounts", ["applied_count"], :name => "index_taggingvideocounts_on_applied_count"
+  add_index "taggingvideocounts", ["tag_id"], :name => "index_taggingvideocounts_on_tag_id"
+  add_index "taggingvideocounts", ["video_id"], :name => "index_taggingvideocounts_on_video_id"
+
   create_table "tags", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "training_tags", :force => true do |t|
@@ -72,6 +106,13 @@ ActiveRecord::Schema.define(:version => 20110515193725) do
   create_table "trainings", :force => true do |t|
     t.string   "title"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_certifications", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "certification_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

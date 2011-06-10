@@ -1,3 +1,7 @@
+Given /^a tag$/ do
+  @tag = Factory(:tag)
+end
+
 Given /^(?:|I )want to create a "([^"]*)" tag$/ do |arg1|
  unless Tag.find(:first, :conditions => { :name => arg1 })
     Tag.new(:name => arg1).save!

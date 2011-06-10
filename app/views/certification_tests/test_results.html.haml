@@ -1,0 +1,7 @@
+.grid_12
+  %h2 Test Results
+  - if current_user.has_certification?(@test.certification)
+    Congratulations! You passed the test and are now certified to tag videos with term #{@test.certification.tag.name}
+  - else
+    Sorry, you failed the test.
+  =link_to "Back to jobs page", jobs_path 

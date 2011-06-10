@@ -1,9 +1,34 @@
 GIT
+  remote: git://github.com/rweald/cove_search
+  revision: bc7fc6d6249a6d4df754cfdd0f07eaabe90a6e09
+  specs:
+    cove_search (0.0.1)
+      redis
+      redis-namespace
+      rest-client
+      sinatra
+      vegas
+      yajl-ruby
+
+GIT
+  remote: git://github.com/rweald/token-auth-video-server.git
+  revision: 9e09343fc36d27b458fdcfca96d0653fb8502149
+  specs:
+    token-auth-video-server (0.0.1)
+      redis
+      redis-namespace
+      rest-client
+      sinatra
+      thin
+      yajl-ruby
+
+GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: ceb7384b01ed7a40bf0dca46e8a1dca19c9eda07
+  revision: e8cf863ee1ab75902bd444cc271972f86380c63b
   specs:
     rails_admin (0.0.1)
       builder (~> 2.1.0)
+      fastercsv
       rails (~> 3.0.7)
 
 GEM
@@ -12,12 +37,12 @@ GEM
     SystemTimer (1.2.3)
     ZenTest (4.5.0)
     abstract (1.0.0)
-    actionmailer (3.0.7)
-      actionpack (= 3.0.7)
-      mail (~> 2.2.15)
-    actionpack (3.0.7)
-      activemodel (= 3.0.7)
-      activesupport (= 3.0.7)
+    actionmailer (3.0.8)
+      actionpack (= 3.0.8)
+      mail (~> 2.2.19)
+    actionpack (3.0.8)
+      activemodel (= 3.0.8)
+      activesupport (= 3.0.8)
       builder (~> 2.1.2)
       erubis (~> 2.6.6)
       i18n (~> 0.5.0)
@@ -25,19 +50,20 @@ GEM
       rack-mount (~> 0.6.14)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    activemodel (3.0.7)
-      activesupport (= 3.0.7)
+    activemodel (3.0.8)
+      activesupport (= 3.0.8)
       builder (~> 2.1.2)
       i18n (~> 0.5.0)
-    activerecord (3.0.7)
-      activemodel (= 3.0.7)
-      activesupport (= 3.0.7)
-      arel (~> 2.0.2)
+    activerecord (3.0.8)
+      activemodel (= 3.0.8)
+      activesupport (= 3.0.8)
+      arel (~> 2.0.10)
       tzinfo (~> 0.3.23)
-    activeresource (3.0.7)
-      activemodel (= 3.0.7)
-      activesupport (= 3.0.7)
-    activesupport (3.0.7)
+    activeresource (3.0.8)
+      activemodel (= 3.0.8)
+      activesupport (= 3.0.8)
+    activesupport (3.0.8)
+    archive-tar-minitar (0.5.2)
     arel (2.0.10)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
@@ -54,12 +80,12 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
-    capybara (1.0.0.beta1)
+    capybara (1.0.0.rc1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
-      selenium-webdriver (>= 0.0.27)
+      selenium-webdriver (~> 0.2.0)
       xpath (~> 0.1.4)
     carrierwave (0.5.4)
       activesupport (~> 3.0)
@@ -72,15 +98,15 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     configuration (1.2.0)
-    cucumber (0.10.2)
+    cucumber (0.10.6)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
-      gherkin (>= 2.3.5)
+      gherkin (~> 2.4.0)
       json (>= 1.4.6)
       term-ansicolor (>= 1.0.5)
-    cucumber-rails (0.5.0)
-      capybara (>= 1.0.0.beta1)
-      cucumber (>= 0.10.2)
+    cucumber-rails (0.5.2)
+      capybara (>= 1.0.0.rc1)
+      cucumber (>= 0.10.5)
       nokogiri (>= 1.4.4)
       rack-test (>= 0.5.7)
     daemons (1.1.3)
@@ -102,11 +128,11 @@ GEM
     fastercsv (1.5.4)
     ffi (1.0.9)
     fssm (0.2.7)
-    gherkin (2.3.8)
+    gherkin (2.4.0)
       json (>= 1.4.6)
-    haml (3.1.1)
+    haml (3.1.2)
     highline (1.6.2)
-    hoptoad_notifier (2.4.9)
+    hoptoad_notifier (2.4.11)
       activesupport
       builder
     i18n (0.5.0)
@@ -115,17 +141,20 @@ GEM
       rack (>= 1.1)
       rspec (>= 1.3.1)
       selenium-webdriver (>= 0.1.3)
-    jquery-rails (1.0.7)
+    jquery-rails (1.0.9)
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.5.1)
     json_pure (1.5.1)
     kaminari (0.12.4)
       rails (>= 3.0.0)
+    kgio (2.4.1)
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
     linecache (0.43)
+    linecache19 (0.5.12)
+      ruby_core_source (>= 0.1.4)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -151,44 +180,46 @@ GEM
     nokogiri (1.4.4)
     orm_adapter (0.0.5)
     polyglot (0.3.1)
-    rack (1.2.2)
+    rack (1.2.3)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
       rack (>= 1.0)
-    rails (3.0.7)
-      actionmailer (= 3.0.7)
-      actionpack (= 3.0.7)
-      activerecord (= 3.0.7)
-      activeresource (= 3.0.7)
-      activesupport (= 3.0.7)
+    rails (3.0.8)
+      actionmailer (= 3.0.8)
+      actionpack (= 3.0.8)
+      activerecord (= 3.0.8)
+      activeresource (= 3.0.8)
+      activesupport (= 3.0.8)
       bundler (~> 1.0)
-      railties (= 3.0.7)
+      railties (= 3.0.8)
     rails3-generators (0.17.4)
       railties (>= 3.0.0)
-    railties (3.0.7)
-      actionpack (= 3.0.7)
-      activesupport (= 3.0.7)
+    railties (3.0.8)
+      actionpack (= 3.0.8)
+      activesupport (= 3.0.8)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
-    redis (2.2.0)
+    redis (2.2.1)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
-    resque (1.16.1)
-      json (< 1.6, >= 1.4.6)
+    resque (1.17.1)
+      json (>= 1.4.6, < 1.6)
       redis-namespace (~> 1.0.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    rest-client (1.6.3)
+      mime-types (>= 1.16)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
       rspec-mocks (~> 2.6.0)
-    rspec-core (2.6.2)
+    rspec-core (2.6.4)
     rspec-expectations (2.6.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.6.0)
-    rspec-rails (2.6.1.beta1)
+    rspec-rails (2.6.1)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
@@ -198,9 +229,19 @@ GEM
       ruby-debug-base (~> 0.10.4.0)
     ruby-debug-base (0.10.4)
       linecache (>= 0.3)
+    ruby-debug-base19 (0.11.25)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.5)
+      archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.4)
-    sass (3.1.1)
-    selenium-webdriver (0.2.0)
+    sass (3.1.2)
+    selenium-webdriver (0.2.1)
       childprocess (>= 0.1.7)
       ffi (>= 1.0.7)
       json_pure
@@ -209,28 +250,32 @@ GEM
     simple_form (1.4.0)
     sinatra (1.2.6)
       rack (~> 1.1)
-      tilt (< 2.0, >= 1.2.2)
+      tilt (>= 1.2.2, < 2.0)
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
-    streamio-ffmpeg (0.7.8)
+    streamio-ffmpeg (0.8.0)
     term-ansicolor (1.0.5)
     thin (1.2.11)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     thor (0.14.6)
-    tilt (1.3.1)
+    tilt (1.3.2)
     timecop (0.3.5)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    unicorn (3.7.0)
+      kgio (~> 2.3)
+      rack
     vegas (0.1.8)
       rack (>= 1.0.0)
     warden (1.0.4)
       rack (>= 1.0)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yajl-ruby (0.8.2)
 
 PLATFORMS
   ruby
@@ -245,6 +290,7 @@ DEPENDENCIES
   capybara
   carrierwave
   compass
+  cove_search!
   cucumber
   cucumber-rails
   database_cleaner
@@ -268,12 +314,15 @@ DEPENDENCIES
   rails_admin!
   rake (~> 0.8.7)
   resque
-  rspec (>= 2.6.0.rc2)
+  rest-client
   rspec-rails (>= 2.6.0.rc2)
   ruby-debug
+  ruby-debug19
   shoulda
   simple_form
   sqlite3-ruby
   streamio-ffmpeg
   thin
   timecop
+  token-auth-video-server!
+  unicorn

@@ -59,7 +59,7 @@ task :sync_vid_db => [:environment, "public/videos"] do
   end
   #5. Check video folder for videos without a listing in the database
   puts "files->DB"
-  files = Dir.glob("*.*") #only files with extensions (aka no folders, script files) PROBABLY NEED TO CHECK IF MOVIE FILE!
+  files = Dir.glob("*.mp4") #only files with extensions (aka no folders, script files) PROBABLY NEED TO CHECK IF MOVIE FILE!
   files.each do | file |
     #6. Create a new listing in DB
     newfile = Video.new

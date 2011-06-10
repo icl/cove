@@ -1,5 +1,6 @@
 Factory.define :tag, :class => Tag do |f|
 	f.name "Riffing"
+	f.description "Description goes here"
 end
 
 Factory.define :tagging, :class => VideoTag do |f|

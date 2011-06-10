@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~>3.0.3'
+gem 'rake', '~> 0.8.7'
 
 # gem 'mysql2'
 gem 'simple_form'
 gem 'capistrano'
 gem 'fastercsv'
-gem 'rake', '~> 0.8.7'
-
+gem 'unicorn'
 # Jasmine
 gem 'jasmine'
 
@@ -28,6 +28,8 @@ gem 'streamio-ffmpeg'
 
 gem "resque", :require => "resque/server"
 
+gem 'rest-client'
+
 #gem "SystemTimer"
 #gem 'delayed_paperclip', :git => #'git://github.com/jstorimer/delayed_paperclip.git', :branch => 'rails3'
 
@@ -43,12 +45,14 @@ gem 'SystemTimer', :platforms => :mri_18
 gem 'hoptoad_notifier'
 #end
 
+gem 'cove_search', :git => 'git://github.com/rweald/cove_search'
+gem 'token-auth-video-server', :git => "git://github.com/rweald/token-auth-video-server.git"
+
  group :development, :test do
 	gem "jquery-rails", ">= 0.2.6"
 	gem 'sqlite3-ruby', :require => 'sqlite3'
   # gem 'fakefs', :require => 'fakefs/safe'
 	gem 'rails3-generators'
-	gem "rspec", ">= 2.6.0.rc2"
 	gem "rspec-rails", ">= 2.6.0.rc2"
 	gem 'email_spec'
 	gem "capybara"
@@ -59,7 +63,7 @@ gem 'hoptoad_notifier'
 	gem "nokogiri"
 	gem "autotest"
 	gem 'autotest-rails'
-  # gem 'ruby-debug19', :platforms => :mri_19
+  gem 'ruby-debug19', :platforms => :mri_19
   gem 'ruby-debug', :platforms => :mri_18
 	
   # additional testing gems

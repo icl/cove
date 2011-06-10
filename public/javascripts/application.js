@@ -1,68 +1,72 @@
-$(document).ready(function(){
-  // jwplayer config for job work page
-	jwplayer("jwplayer_container").setup({
-		flashplayer: "/jwplayer/player.swf",
-		file: coveTag.getFilepath(),
-		height: 450,
-		width: 800,
-		controlbar: "none",
-		events: {
-			onPlay: function (event) {
-				coveTag.setTotTime(jwplayer().getDuration());
-            $("#pausePlay").attr("src", "/images/icons/pause.png");
-			},
-			onTime: function (event) {
-				coveTag.jwTimeHandler(event);
-            coveTag.moveProgress(event);
-			},
-			onComplete: function () { document.getElementById("progbar").innerHTML = "[COMPLETE]"; },
-         onReady: function() { 	coveTag.setJwPlayer(jwplayer);
-                                 coveTag.initPlayerContainer(); }
-		}
-	});
+var myApp = {};
 
-
-   $(".buttonTipTip").tipTip({maxWidth: "auto", edgeOffset: 10});
-
-	// javascript events for job work page
-	for (i=0; i<activeTag.length; i++) {
-		var tagValue = activeTag[i][0];
-
-
-		$('#tagButton_hold_' + tagValue).bind("mousedown mouseup", { vars: tagValue }, function() { coveTag.handleTagClick(tagValue) });
-      $('#tagButton_hold_' + tagValue).mousedown(function() {
-         $(this).pulse({
-            opacity: [0.25, 1],
-            backgroundColor: ['red', 'yellow', 'green', 'blue'],
-         }, 1000, 9999, 'linear', function() {
-            //woot
-         });
-      });
-      $('#tagButton_hold_' + tagValue).mouseout(function() {
-         $(this).css({'opacity': '1', 'background-color': '#dbdbdb'}).stop();
-      });
-      $('#tagButton_hold_' + tagValue).mouseup(function() {
-         $(this).css({'opacity': '1', 'background-color': '#dbdbdb'}).stop();
-      });
-		$('#tagButton_hold_' + tagValue).mouseout(function() { coveTag.handleTagClick(tagValue, true) });
-
-		$('#tagButton_toggle_' + tagValue).click( { vars: tagValue}, function() { coveTag.handleTagClick(tagValue) });
-
-      $('#tagButton_toggle_' + tagValue).click(function() {
-         if ($(this).val() != "") {
-            $(this).val("");
-            $(this).css({'opacity': '1', 'background-color': '#dbdbdb'}).stop();
-         } else {
-            $(this).val("pulsing");
-         $(this).pulse({
-            opacity: [0.25, 1],
-            backgroundColor: ['red', 'yellow', 'green', 'blue'],
-         }, 1000, 5, 'linear', function() {
-            //woot
-         });
-         }
-      });
+myApp.addVideoToList = function(video_id){
+  var list = $('#added_video_list');
+  var old_value = list.attr("value");
+  if (old_value === "") {
+    list.attr("value", old_value + video_id);
+  }
+  else{
+    list.attr("value", old_value + "," + video_id);
+  }
   
+};
+myApp.removeVideoFromList = function(video_id) {
+  var list = $('#added_video_list');
+  var old_value = list.attr("value");
+  var new_value;
+  if (old_value.length < 2) {
+    new_value = "";
+  }
+  else if (old_value[0] === video_id.toString()){
+    new_value = old_value.replace(("" + video_id + "," ), "");
+  }
+  else{
+    new_value = old_value.replace(("," + video_id ), ""); 
+  }
+  list.attr("value", new_value);
+};
 
-	}
+$(document).ready(function(){
+  // Javascript to handle autosubmitting the form when things change
+  $('#filter_form select').bind("change", function(){
+    console.log($(this).attr("value"));
+    $('#filter_form').submit();
+  });
+  //This javascript will handle ajax updating of the filtered search results
+  $('#filter_form').bind("ajax:success", function(event, response, status) {  
+    $('#result_container').html(response);
+  });
+
+  $('#filter_form').bind("ajax:failure", function(event, response, status) {  
+    $('#result_container').html("An Error Occured");
+  });
+
+  $("#add_all_videos").live("click",function(){
+    event.preventDefault();
+    $('#added_video_list').attr("value", "all");
+    $('.add_video_container').css("display", "none");
+  });
+
+  $('#remove_all_videos').live("click", function(){
+    event.preventDefault();
+    $('#added_video_list').attr("value", "");
+    $('.add_video_container').css("display", "block");
+  });
+
+  $('.job_video_search').delegate(".search_result", "click", function(){
+    event.preventDefault();
+    id_list = $('#added_video_list').attr("value");
+
+    if (id_list.indexOf($(this).data("video_id")) !== -1) { 
+      myApp.removeVideoFromList($(this).data("video_id"));
+      $(this).removeClass("selected");
+    }  
+    else {
+      myApp.addVideoToList($(this).data("video_id"));
+      $(this).addClass("selected");
+    }
+  });
+
 });
+

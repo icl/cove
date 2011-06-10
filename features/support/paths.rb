@@ -23,6 +23,9 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    when /new jobs/
+      '/jobs/new'
+
     # Training module paths
     when /new training modules/
       '/trainings/new'
@@ -34,8 +37,18 @@ module NavigationHelpers
       '/trainings/1/edit'
       
     # Job work page
-    when /the work page/
+    when /^the work page$/
       "/jobs/#{@job.id}/work"
+    when /^the work page for job (\d+)$/
+      n = page_name[/(\d+)/].to_i
+      "/jobs/#{@jobs[n-1].id}/work"
+      
+    # Certifications
+    when /the certification test page/
+      "/certification/#{@certification.id}/take_test"
+      
+    when /the seed certification video page/
+      "/certification_videos/#{@certification_video.id}/seed"
 
     else
       begin
