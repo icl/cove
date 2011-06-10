@@ -1,4 +1,4 @@
-TAG_ACCURACY_THRESHOLD = 0.9
+TAG_ACCURACY_THRESHOLD = 0.6
 
 Given /^a turk job$/ do  
   @video = Factory(:video)
@@ -21,9 +21,11 @@ When /^(?:|I )click the play button$/ do
 end
 
 When /^I tag the range \[(\d+),(\d+)\] using the hold-to-tag button$/ do |start_time, end_time|
-  sleep [0, start_time.to_f - jwplayer_position].max
+  st = start_time.to_f
+  et = end_time.to_f
+  sleep [0, st - jwplayer_position].max until jwplayer_position >= st
   page.execute_script "$('#tagButton_hold_#{@tag.name}').trigger('mousedown')"
-  sleep [0, end_time.to_f - jwplayer_position].max
+  sleep [0, et - jwplayer_position].max until jwplayer_position >= et
   page.execute_script "$('#tagButton_hold_#{@tag.name}').trigger('mouseup')"  
 end
 
