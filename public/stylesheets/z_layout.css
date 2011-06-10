@@ -180,6 +180,18 @@ div#filler_turk {
 	min-height: 400px;
 }
 
+.search_result:hover {
+  cursor: pointer;
+}
+.search_result{
+  display: block;
+}
 
+.query_container{
+  margin-top: 50px;
+}
 
+.selected{
+  background-color: yellow;
+}
 

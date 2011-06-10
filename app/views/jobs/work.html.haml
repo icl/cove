@@ -38,7 +38,7 @@
   coveTag.setTagSetJSON(tagSetJSON);
 
 
-%h2 Video Tagging
+%h2 PLAY
 
 #player_wrapper.player_frame
   #jwplayer_wrapper.jwplayer_wrapper
@@ -49,8 +49,8 @@
     #progress_bar.player_progress_bar
       #player_progress_bar_interior.player_progress_bar_interior
         #player_progress_meter.player_progress_meter
-    #player_time.player_control.player_control_right
-      %img.buttonTipTip{:title => "Rewind 10 seconds", :onclick => "amplify.publish('coveSeek', { mode: 'rewind' })", :src => "/images/icons/rewind.png"}
+    -##player_time.player_control.player_control_right
+      -#%img.buttonTipTip{:title => "Rewind 10 seconds", :onclick => "amplify.publish('coveSeek', { mode: 'rewind' })", :src => "/images/icons/rewind.png"}
   #lower_control_wrapper.lower_control_wrapper
     #timeContainer
       %span.time_bar Video Time:&nbsp;
@@ -66,12 +66,16 @@
     -# Hold to click:
     - tagButton_hold = "tagButton_hold_" + @job.tags[i].name
     - tagButton_toggle = "tagButton_toggle_" + @job.tags[i].name
+    
+    #player_time.player_control.player_control_right
+      %img.buttonTipTip{:title => "Rewind 10 seconds", :onclick => "amplify.publish('coveSeek', { mode: 'rewind' })", :src => "/images/icons/rewind.png"}
 
     %button.tagButtons.tagbutton_left(id=tagButton_hold)
       = "Hold to tag " << @tagDisplayNames[i]
-
-    %button.tagButtons.tagbutton_right(id=tagButton_toggle)
-      = "Click to toggle " << @tagDisplayNames[i]
+    
+    -# TOGGLE BUTTON REMOVED
+    -# %button.tagButtons.tagbutton_right(id=tagButton_toggle)
+      -# = "Click to toggle " << @tagDisplayNames[i]
 
   #tagText.tag_text
 

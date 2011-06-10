@@ -18,11 +18,8 @@
     = f.label :tags
     %br
     = select_tag "tag_ids[]", options_from_collection_for_select(Tag.all, "id", "name", @job.tags.map{|t| t.id}), :multiple => true
-  
-  .field
-    = f.label :videos
-    %br
-    = select_tag "video_ids[]", options_from_collection_for_select(Video.all, "id", "name", @job.videos.map{|v| v.id}), :multiple => true
+
+  = hidden_field_tag  :videos, "", :id => "added_video_list"
 
   .actions
     = f.submit
