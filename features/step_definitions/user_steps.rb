@@ -1,5 +1,5 @@
 Given /^(?:|I )am an admin user who is logged in$/ do
-   Factory(:gina)
+   Factory(:gina) if User.find_by_name("Gina").nil?
 
    visit("/users/sign_in")
    fill_in("user_email", :with => "gina@cove.ucsd.edu")

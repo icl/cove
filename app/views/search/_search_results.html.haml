@@ -1,0 +1,26 @@
+-if !@results.blank?
+  %table
+    %thead
+      %tr
+        %th.name
+          Name
+        %th.duration
+          Duration
+        %th.source_cam
+          Source Camera
+        %th.location
+          Location
+      %tbody
+        -for video in @results
+          %tr{"data-video_url" => ""}
+            %td.name
+              = video.name
+            %td.duration
+              = video.duration
+            %td.camera
+              = video.source_cam
+            %td.location
+              = video.location
+-else
+  .grid_10
+    No Results Found

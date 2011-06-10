@@ -53,18 +53,18 @@ footer {
 }
 
 
-a:link, a:visited, a:active {
+/* a:link, a:visited, a:active {
 	color: #1E90FF;
 	text-decoration: none;
 	padding: 5px 10px;
-}
+}*/
 
-a:hover {
+/*a:hover {
 	color: #00FA9A;
 	background: none;
 	background: url('/images/triangle.png') bottom center no-repeat;
 	padding-bottom: 20px
-}
+}*/
 
 a.currPage {
 	font-weight: bold;

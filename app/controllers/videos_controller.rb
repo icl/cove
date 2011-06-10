@@ -13,8 +13,7 @@ class VideosController < ApplicationController
   end
 
   def create
-    #@video = Video.add_file params #offloaded to model
-    
+    #block add
     unless params[:video]
       @video = Video.new(params)
     else
@@ -38,7 +37,7 @@ class VideosController < ApplicationController
   end
 
   def tag
-    @tagging = VideoTag.new(:video_id => params[:video_id], :tag_id => params[:tag_id], :start_time => params[:start_time], :end_time => params[:end_time], :user => current_user)
+    @tagging = VideoTag.new(:video_id => params[:video_id], :job_id => params[:job_id], :tag_id => params[:tag_id], :start_time => params[:start_time], :end_time => params[:end_time], :user => current_user)
     
     respond_to do |format|
       if @tagging.save
