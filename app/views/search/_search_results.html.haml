@@ -10,7 +10,7 @@
       %span.grid_1
         Video Location
     -for video in @results
-      %li.search_result.grid_12
+      %li.search_result.grid_12{"data-video_id" => video.id}
         %a{:href => video_path(video)}
           %span.grid_1
             = video.name

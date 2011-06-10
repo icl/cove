@@ -126,3 +126,10 @@ li {
   display: block;
 }
 
+.query_container{
+  margin-top: 50px;
+}
+
+.selected{
+  background-color: yellow;
+}
