@@ -1,0 +1,18 @@
+.grid_12
+  %p.notice
+    = notice
+ 
+  %h1 Tags
+
+  %p
+    %b Name:
+    = @tag.name
+
+  %p
+    %b Description:
+    = @tag.description
+
+.grid_12
+  = link_to 'Edit', edit_tag_path(@tag)
+  = link_to 'Back', tags_path
+
