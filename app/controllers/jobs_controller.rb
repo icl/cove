@@ -48,7 +48,7 @@ class JobsController < ApplicationController
     @job = Job.new(params[:job])
 
 
-    case param[:videos]
+    case params[:videos]
       when /all/
         @job.videos = Video.select(:id).all
       when /,/
