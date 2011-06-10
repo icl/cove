@@ -15,5 +15,5 @@ Then /^A "([^"]*)" tag should exist$/ do |arg1|
 end
 
 Then /^"([^"]*)" should be selected from the tags$/ do |tag_name|
-	assert page.has_select?('Tags', :selected => tag_name)
+	 page.should have_select('Tags', :selected => tag_name)
 end
