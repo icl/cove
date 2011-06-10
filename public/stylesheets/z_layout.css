@@ -119,3 +119,17 @@ li {
 	margin-bottom: 10px;	
 }
 
+.search_result:hover {
+  cursor: pointer;
+}
+.search_result{
+  display: block;
+}
+
+.query_container{
+  margin-top: 50px;
+}
+
+.selected{
+  background-color: yellow;
+}
