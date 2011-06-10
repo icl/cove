@@ -45,7 +45,7 @@ module NavigationHelpers
       
     # Certifications
     when /the certification test page/
-      "/certification/#{@certification.id}/take_test"
+      "/certifications/#{@certification.id}/take_test"
       
     when /the seed certification video page/
       "/certification_videos/#{@certification_video.id}/seed"

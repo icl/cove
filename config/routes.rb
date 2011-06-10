@@ -26,6 +26,7 @@ Cove::Application.routes.draw do
   match 'certification_tests/:id', :to => 'certification_tests#show', :as => 'show_test'
   match 'certification_tests/:id/test_results', :to => 'certification_tests#test_results', :as => 'test_results'
   match 'certification_tests/:id/submit_test', :to => 'certification_tests#submit_test', :as => 'submit_test'
+  match 'certification_tests/:id/tag', :to => 'certification_tests#tag', :as => 'post_certification_test_tag'
 
   match 'certification_videos/:id/seed', :to => 'certification_videos#seed', :as => 'seed_certification_video'
   match 'certification_videos/:id/post_seed', :to => 'certification_videos#post_seed', :as => 'post_seed_certification_video'

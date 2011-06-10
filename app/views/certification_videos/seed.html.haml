@@ -17,7 +17,7 @@
 
   coveTag.setFilepath("#{ video_service_url @video.filepath}");
   coveTag.setVideoId('#{@video.id}');
-  coveTag.setJobId('1');
+  coveTag.setPostURL('/videos/#{@video.id}/tag');
 
   coveTag.setProgressMeterDiv('player_progress_meter');
   coveTag.setProgressBarDiv('player_progress_bar_interior');
@@ -38,7 +38,7 @@
   coveTag.setTagSetJSON(tagSetJSON);
 
 
-%h2 Video Tagging
+%h2 Seed Certification Video
 
 #player_wrapper.player_frame
   #jwplayer_wrapper.jwplayer_wrapper

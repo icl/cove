@@ -12,6 +12,15 @@
 
 ActiveRecord::Schema.define(:version => 20110610192433) do
 
+  create_table "certification_test_tags", :force => true do |t|
+    t.integer  "certification_test_id"
+    t.integer  "tag_id"
+    t.decimal  "start_time"
+    t.decimal  "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "certification_tests", :force => true do |t|
     t.integer  "certification_video_id"
     t.integer  "user_id"
@@ -29,13 +38,6 @@ ActiveRecord::Schema.define(:version => 20110610192433) do
 
   create_table "certifications", :force => true do |t|
     t.integer  "tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cheeses", :force => true do |t|
-    t.string   "name"
-    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -179,7 +181,6 @@ ActiveRecord::Schema.define(:version => 20110610192433) do
     t.string   "location"
     t.string   "orig_res"
     t.string   "cam_type"
-    t.string   "video_up"
   end
 
   create_table "work_records", :force => true do |t|

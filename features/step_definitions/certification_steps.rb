@@ -4,14 +4,14 @@ Given /^a seeded certification video for the tag$/ do
   Given "an unseeded certification video for the tag"
   @tag.should_not be_nil
   @video.should_not be_nil
+  # Find Gina
+  gina = User.find_by_name("Gina") || Factory(:gina)
   # Add tags to certification video
-  CERTIFICATION_TEST_TAGS.each do |times|
-    vt = VideoTag.create(:tag => @tag, :user => gina, :video => @video, :start_time => times[0], :end_time => times[1])
+  CERTIFICATION_TEST_TAGS.each do |st, et|
+    vt = VideoTag.create(:tag => @tag, :user => gina, :video => @video, :start_time => st, :end_time => et)
     vt.save.should == true
   end
   # Set seeder to Gina
-  gina = User.find_by_name("Gina")
-  gina = Factory(:gina) if gina.nil?
   @certification_video.seeder = gina;
   @certification_video.save.should == true
 end
@@ -25,9 +25,10 @@ Given /^an unseeded certification video for the tag$/ do
 end
 
 When /^I apply the correct tags to a video$/ do
+  sleep 10
   When "I click the play button"
-  CERTIFICATION_TEST_TAGS.each do |times|
-    When "I tag the range [#{times[0]},#{times[1]}] using the hold-to-tag button"
+  CERTIFICATION_TEST_TAGS.each do |st, et|
+    When "I tag the range [#{st},#{et}] using the hold-to-tag button"
   end
 end
 
@@ -50,4 +51,8 @@ Then /^the certification video should be seeded with the correct intervals$/ do
       diff.abs.to_f.should < TAG_ACCURACY_THRESHOLD
     end
   end
+end
+
+Then /^I should be certified for the tag$/ do
+  User.find_by_name("Emir").certified_for_tag?(@tag).should be_true
 end

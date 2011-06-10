@@ -18,6 +18,7 @@
   coveTag.setFilepath("#{ video_service_url @video.filepath}");
   coveTag.setVideoId('#{@video.id}');
   coveTag.setJobId('#{@job.id}');
+  coveTag.setPostURL('/videos/#{@video.id}/tag');
 
   coveTag.setProgressMeterDiv('player_progress_meter');
   coveTag.setProgressBarDiv('player_progress_bar_interior');
