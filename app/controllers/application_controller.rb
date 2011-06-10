@@ -7,5 +7,12 @@ class ApplicationController < ActionController::Base
     current_user.kind == "admin"
   end
   
+  def require_admin
+  	unless is_admin?
+  	  flash[:notice] = "You must be an admin to access this page"
+  	  redirect_to :controller => "home", :action => "index"
+  	end
+  end
+  
 end
 

@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
 
-  before_filter :is_admin?
+  before_filter :require_admin
+  
 
   # GET /tags
   def index
