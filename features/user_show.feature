@@ -8,4 +8,4 @@ Feature: Show Users
       Given I am a user named "foo" with an email "user@test.com" and password "please"
       When I sign in as "user@test.com/please"
       When I go to the homepage
-      Then I should see "Logged in as: user@test.com"
+      Then I should see "user@test.com"

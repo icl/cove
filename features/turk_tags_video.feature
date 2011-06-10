@@ -13,8 +13,8 @@ Feature: Turk Tags a Video
     When I click the play button
     And I tag the range [1,3] using the hold-to-tag button
     Then the tag should be applied the job/video with approximate range [1,3]
-  
-  @javascript
+
+  @wip
   Scenario: Code a range using the toggle button
     When I click the play button
     And I tag the range [1,3] using the click-to-tag button
