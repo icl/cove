@@ -1,0 +1,12 @@
+#tags_block.grid_6
+
+  %h2 Tags
+
+  - @tags.each do |tag| 
+    %ul.none
+      %li
+        = link_to tag.name, tag 
+
+#filler_tags.grid_6
+  %h3 Can't find your tag?
+  = link_to 'Create New Tag', new_tag_path, :class => "link_button" 

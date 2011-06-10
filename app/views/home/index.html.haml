@@ -1,1 +1,29 @@
 %h2.grid_12 COVE
+
+.grid_6
+  = "COVE!!!"
+	
+.grid_6
+  %form{:name => "signIn", :id => "signIn", :action => "", :method => "post", :enctype => "text/plain"}
+    %fieldset
+      %input{:type => "text", :name => "message[name]", :class => "text" }
+      %input{:type => "text", :name => "message[pass]", :class => "text"}
+      %input{:type => "submit", :value => "sign in", :class => "button"}
+      %br
+      %input{:type => "checkbox", :value => "remember", :class => "button"}  
+      = "Remember?"
+      = link_to "Forgot password?", new_user_session_path, :class => "login"
+
+  %p
+    = "Join today!"
+  %form{:name => "signUp", :id => "signUp", :action => "", :method => "post", :enctype => "text/plain"}
+    %fieldset
+      %ul.signUp
+        %li
+          %input{:type => "text", :name => "message[name]", :class => "text", :placeholder => "username"}
+        %li
+          %input{:type => "text", :name => "message[pass]", :class => "text", :placeholder => "password"}
+        %li
+          %input{:type => "text", :name => "message[passC]", :class => "text", :placeholder => "confirm password"}   
+        %li.button
+          %input{:type => "submit", :value => "sign up", :class => "button"}

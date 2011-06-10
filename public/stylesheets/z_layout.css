@@ -1,6 +1,8 @@
 body {
 	font-size: 0.8em;
 	font-family: verdana;
+	padding: 0px;
+	margin: 0px;
 }
 
 a {
@@ -8,32 +10,33 @@ a {
 	text-decoration: none;
 }
 
-/*a:hover {
-	color: #00FA9A;
-}*/
-
 a.currPage {
 	font-weight: bold;
 }
 
 
-div.container_12 {
-	margin-top: 20px;
-	/*background: url('images/tartan_grad.png') repeat-x 27px left;*/
-}
-
 .footer {
-	border-top: 1px solid #e2e2e2;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	margin-top: 20px;
-	margin-bottom: 20px;
 }
 
 .footer p {
 	text-align: center;
 	font-size: 1.05em;
-	color: #777;
+}
+
+header {
+	background: #334;
+	padding: 15px 0px 15px 0px;
+	margin: 0px;
+	border-bottom: 3px #fb9 solid; 	
+	color: #fff;
+}
+
+footer {
+	background: #334;
+	padding: 0px 0px 15px 0px;
+	margin: 0px;
+	border-top: 3px #fb9 solid; 	
+	color: #fff;
 }
 
 .nav ul {
@@ -52,13 +55,10 @@ div.container_12 {
 
 h2 {
 	color: brown;
-	padding-top: 20px;
-	padding-bottom: 20px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	font-size: 1.3em;
 	color: #8B4513;
-	border-top: 1px solid #e2e2e2;
 }
 
 .container_12 ul.tags {
@@ -119,3 +119,63 @@ li {
 	margin-bottom: 10px;	
 }
 
+div#middle {
+  background: url('/images/grad_top.png') top left repeat-x;
+  padding-top: 20px;
+}
+
+fieldset {
+	border: 0px;
+	padding: 0px;
+}
+
+input {
+	margin: 0px;
+}
+
+ul.signUp {
+	padding: 0px;
+	margin-top: 40px;
+}
+
+ul.signUp li {
+	margin-top: 20px;
+}
+
+ul.signUp li input {
+	width: 460px;
+}
+
+ul.signUp li.button input.button {
+}
+
+ul.signUp li.button input.button {
+	width: 200px;
+	float: right;
+}
+
+a.link_button {
+	padding: 5px 10px;
+	background: #FFD700;
+	display: inline block;
+	-moz-border-radius: 15px;
+    border-radius: 15px;
+    color: #8B4513;
+}
+
+h3, h2 {
+	margin: 10px 0px;	
+}
+
+ul.none {
+	padding: 0px;
+}
+
+div.job_block {
+	border-bottom: 1px solid #ccc;
+}
+
+div#filler_turk {
+	background: url('/images/viking.jpg') left 40px no-repeat;
+	min-height: 400px;
+}

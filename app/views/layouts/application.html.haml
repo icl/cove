@@ -15,17 +15,18 @@
    
         .grid_6.nav
           %ul
-            %li= link_to "Home", "/"
+            -# %li= link_to "Home", "/"
             %li= link_to "Jobs", :jobs
-            %li= link_to "Tags", :tags
+            - if user_signed_in?
+              %li= link_to "Tags", :tags
         .grid_4.loginBar
           - if user_signed_in?
-            Logged in as:
+            -# Logged in as:
             = current_user.email
             (#{link_to "Logout", destroy_user_session_path})
           - else
             = link_to "Login", new_user_session_path, :class => "login"
-            = link_to "Sign up", new_user_registration_path
+            = link_to "Sign up!", new_user_registration_path
 
     #middle
       .container_12.clearfix#content
@@ -38,7 +39,5 @@
 
     %footer
       .container_12.clearfix
-
-       
         .grid_12.footer
           %p Copyright &copy; 2011 -- COVE
