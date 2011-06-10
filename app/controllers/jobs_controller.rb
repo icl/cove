@@ -48,7 +48,13 @@ class JobsController < ApplicationController
     @job = Job.new(params[:job])
 
 
-    @job.video_ids = params[:videos].split(',')
+    case params[:videos]
+      when /all/
+        @job.videos = Video.select(:id).all
+      when /,/
+        @job.video_ids = params[:videos].split(',')
+    end
+
     @job.tag_ids = params[:tag_ids]
 
     respond_to do |format|

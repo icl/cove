@@ -8,7 +8,7 @@ class CertificationVideo < ActiveRecord::Base
     if self.seeder.nil? then
       nil
     else
-      VideoTag.find_by_video_id_and_user_id(self.video, self.seeder)
+      VideoTag.find_all_by_video_id_and_user_id(self.video, self.seeder)
     end
   end
   
