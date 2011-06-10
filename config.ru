@@ -3,6 +3,4 @@
 require ::File.expand_path('../config/environment',  __FILE__)
 require 'cove_search/server'
 
-run Rack::URLMap.new \
-  "/"       => Cove::Application,
-  "/covesearch" => SearchServer.new
+run Cove::Application

@@ -44,10 +44,18 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.xml
   def create
+
     @job = Job.new(params[:job])
 
-    @job.tag_ids = params[:tag_ids];
-    @job.video_ids= params[:video_ids];
+
+    case params[:videos]
+      when /all/
+        @job.videos = Video.select(:id).all
+      else
+        @job.video_ids = params[:videos].split(',')
+    end
+
+    @job.tag_ids = params[:tag_ids]
 
     respond_to do |format|
       if @job.save

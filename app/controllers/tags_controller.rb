@@ -1,4 +1,8 @@
 class TagsController < ApplicationController
+
+  before_filter :require_admin
+  
+
   # GET /tags
   def index
     @tags = Tag.all
@@ -40,11 +44,16 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to(@tag, :notice => 'Tag was successfully created.') }
-        format.xml  { render :xml => @tag, :status => :created, :location => @tag }
+        format.html { 
+        case params[:commit]
+           when /Save tag and Create Job/
+             redirect_to(new_job_path(:tag => @tag.id), :notice => 'Tag was successfully created.') 
+          when /Save tag/
+             redirect_to(@tag, :notice => 'Tag was successfully created.')
+        end
+      }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @tag.errors, :status => :unprocessable_entity }
       end
     end
   end

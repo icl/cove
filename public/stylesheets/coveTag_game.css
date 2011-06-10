@@ -68,16 +68,18 @@
  margin-right: 5px;
  margin-top: 3px;
 }
+
 .button_container {
- height: 30px;
+ height: 50px;
  margin-left: auto;
  margin-right: auto;
  border-style: solid;
- border-color #000;
+ border-color: white;
  border-width: 1px;
 }
 .tagButtons {
- margin-top: 5px;
+ height: 50px;
+ margin-top: 10px;
  margin-left: auto;
  margin-right: auto;
  -moz-border-radius: 10px;

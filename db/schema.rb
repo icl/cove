@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601163440) do
+ActiveRecord::Schema.define(:version => 20110610192433) do
 
   create_table "certification_tests", :force => true do |t|
     t.integer  "certification_video_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110601163440) do
     t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "seeder_id"
   end
 
   create_table "certifications", :force => true do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20110601163440) do
     t.datetime "updated_at"
     t.string   "description"
     t.integer  "requestor_id"
+    t.integer  "user_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20110601163440) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "training_tags", :force => true do |t|
@@ -169,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20110601163440) do
     t.string   "location"
     t.string   "orig_res"
     t.string   "cam_type"
+    t.string   "video_up"
   end
 
   create_table "work_records", :force => true do |t|

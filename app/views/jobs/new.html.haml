@@ -1,4 +1,37 @@
-%h2 New job
+.grid_6.prefix_3.suffix_3
+  = link_to 'Cancel', jobs_path, :class => "link_button neg"
+
+%h2 Create a new job
+
 = render 'form'
-.grid_12
-  = link_to 'Back', jobs_path
+
+%dl.add_video_container.grid_6.none
+  =form_for Video.new, :url => search_path(:query => @query),:html => {:method => :get,  :id => "filter_form"}, :remote => true do |f|
+    -# = label :query, :query
+    %dt
+      Add  videos to a job
+    %dd
+      %a#add_all_videos{:href => "#"}
+        Add All Videos
+      , 
+      %a#remove_all_videos{"href" => "#"}
+        Remove All Videos
+    %dd
+      = text_field_tag :query , @query 
+    %dt
+      = f.label :name
+    %dd  
+      = f.select :name, options_for_select(Video.unique_names), :include_blank => true 
+    %dt
+      = f.label "Camera Angle", :source_cam
+    %dd
+      = f.select :source_cam, options_for_select(Video.unique_source_cams ), :include_blank => true
+    %dt
+      = submit_tag "Filter", :hidden => true
+
+  #result_container.job_video_search
+    = render "search/search_results"
+
+<div style="clear:both;"></div>
+
+

@@ -1,0 +1,24 @@
+= form_for(@tag) do |f|
+  - if @tag.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@tag.errors.count, "error")
+        prohibited this tag from being saved:
+
+      %ul
+        - @tag.errors.full_messages.each do |msg|
+          %li= msg
+
+  %dl.none
+    %dt
+      = f.label :name
+    %dd
+      = f.text_field :name
+    %dt
+      = f.label :description
+    %dd
+      = f.text_area :description, :rows => 5, :cols => 54
+    %dt
+      = f.submit "Save tag", :class => "ack"
+    %dt
+      = f.submit "Save tag and Create Job", :class => "ack"

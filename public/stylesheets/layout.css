@@ -28,7 +28,8 @@ body {
 	font-family: verdana;
 	padding: 0px;
 	margin: 0px;
-	background: #334;
+	background: white;
+	color: white;
 }
 
 header {
@@ -160,3 +161,4 @@ ul {
 li {
 	margin-bottom: 10px;	
 }
+

@@ -7,7 +7,7 @@ gem 'rake', '~> 0.8.7'
 gem 'simple_form'
 gem 'capistrano'
 gem 'fastercsv'
-
+gem 'unicorn'
 # Jasmine
 gem 'jasmine'
 
@@ -46,7 +46,7 @@ gem 'hoptoad_notifier'
 #end
 
 gem 'cove_search', :git => 'git://github.com/rweald/cove_search'
-
+gem 'token-auth-video-server', :git => "git://github.com/rweald/token-auth-video-server.git"
 
  group :development, :test do
 	gem "jquery-rails", ">= 0.2.6"
