@@ -1,3 +1,4 @@
+@javascript
 Feature: Create jobs
   In order to create a job
   Gina should have to select both videos and tags for the job
