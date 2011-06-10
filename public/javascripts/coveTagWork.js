@@ -37,7 +37,7 @@ $(document).ready(function(){
 
             /* Disable our buttons by default */
             coveTag.changeButtonState();
-			}
+	},
 		}
 	});
 

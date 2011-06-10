@@ -27,7 +27,7 @@ function coveTag() {
 
 	function createApi() {
 		return {
-
+			loadExistingTagsToPlayerBar : loadExistingTagsToPlayerBar,
 			handleTagClick : handleTagClick,
 			jwTimeHandler : jwTimeHandler,
 			getFilepath : getFilepath,
@@ -228,9 +228,14 @@ function coveTag() {
       $(".button_container").css('width', (jwPlayer().getWidth()) + "px");
    }
 
-   function updateProgressBar(startTime, endTime, tagName) {
+   function updateProgressBar(startTime, endTime, tagName, cssClass) {
       var width = jwPlayer().getWidth() * 1;
       width = (width-statusOffset);
+
+      /* See if we override the default cssClass */
+      if (cssClass == null) {
+	cssClass = "playerBarTag";
+      }
 
       var duration = jwPlayer().getDuration() * 1;
 
@@ -240,9 +245,15 @@ function coveTag() {
 
       var tagWidth = ((width/duration)*tagLen).toFixed(2);
 
-      $("#"+progressBarID).after('<a id="tagHref" class="playerBarTag" style="width: '+tagWidth+'px;  margin-left: '
+      $("#"+progressBarID).after('<a id="tagHref" class="'+cssClass+'" style="width: '+tagWidth+'px;  margin-left: '
          +offset+'px;" title="'+ tagName +' From: '+ startTime +' To: '
          +endTime+'" onclick="amplify.publish(\'coveSeek\', { mode: \'fixed\', time: '+startTime+' })">&nbsp;</a>');
+   }
+
+   function loadExistingTagsToPlayerBar(tagJSON) {
+	$.each(tagJSON, function() {
+		updateProgressBar(this.start, this.end, this.name, this.cssClass);
+	});
    }
 
    function moveProgress(jwEvent) {

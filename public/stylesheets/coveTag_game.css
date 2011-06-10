@@ -114,4 +114,13 @@
    height: 20px;
    background-color: yellow;
    margin-top: -20px;
+   opacity: 0.5;
+}
+.playerBarTagCorrect {
+   float: left;
+   display: block;
+   height: 20px;
+   background-color: green;
+   margin-top: -20px;
+   opacity: 0.5;
 }
