@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(:version => 20110602013042) do
     t.datetime "updated_at"
   end
 
+  create_table "cheeses", :force => true do |t|
+    t.string   "name"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "job_tags", :force => true do |t|
     t.integer  "job_id"
     t.integer  "tag_id"
