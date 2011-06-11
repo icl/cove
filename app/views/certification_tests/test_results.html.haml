@@ -1,7 +1,7 @@
 .grid_12
   %h2 Test Results
   - if current_user.has_certification?(@test.certification)
-    Congratulations! You passed the test and are now certified to tag videos with term #{@test.certification.tag.name}
+    Congratulations! You passed the test and are now certified to tag videos with term #{@test.certification.tag.name}. Score: #{"%.1f" % @test.score}%
   - else
-    Sorry, you failed the test.
+    Sorry, you failed the test. Score: #{"%.1f" % @test.score}%
   =link_to "Back to jobs page", jobs_path 

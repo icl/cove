@@ -8,7 +8,10 @@
 
 video = Factory(:video)
 tag = Factory(:tag)
-certification = Factory(:certification, :tag => tag, :videos => [video])
 turk = Factory(:turk)
 gina = Factory(:gina)
 job = Factory(:job, :videos => [video], :tags => [tag])
+tag.certification.certification_videos.create(:video => video, :seeder => gina)
+[[1,2],[3,4],[5,6],[7,8]].each do |st, et|
+  VideoTag.create(:video => video, :tag => tag, :user => gina, :start_time => st, :end_time => et)
+end

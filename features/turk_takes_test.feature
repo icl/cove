@@ -1,4 +1,3 @@
-@wip
 Feature: Turk Takes Certification Test
   In order to become certified to work on a job
   As a Turk
@@ -12,12 +11,13 @@ Feature: Turk Takes Certification Test
   
   @javascript
   Scenario: Pass test
-    When I apply the correct tags within acceptability threshold
-    Then I should see "Passed"
+    When I apply the correct tags to a video
+    And I follow "Submit Test"
+    Then I should see "passed"
     And I should be certified for the tag
   
-  @javascript
+  @javascript @wip
   Scenario: Fail test
     When I apply the wrong tags
-    Then I should see "Failed"
+    Then I should see "failed"
     And I should not be certified for the tag

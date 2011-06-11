@@ -11,6 +11,7 @@ function coveTag() {
 	var seekBack = '';
 	var filepath = '';
 	var videoId = '';
+	var postURL = '';
 	var jwPlayer = '';
 	var jobId = '';
 	var progressID = '';
@@ -49,6 +50,7 @@ function coveTag() {
 			setSeekBack : setSeekBack,
 			setFilepath : setFilepath,
 			setVideoId : setVideoId,
+			setPostURL : setPostURL,
 			setJwPlayer : setJwPlayer,
 			setProgressMeterDiv : setProgressMeterDiv,
 			setProgressBarDiv : setProgressBarDiv,
@@ -71,6 +73,7 @@ function coveTag() {
 	function setSeekBack(in_seekBack) { seekBack = in_seekBack; }
 	function setFilepath(in_filepath) { filepath = in_filepath; }
 	function setVideoId(in_videoId) { videoId = in_videoId; }
+	function setPostURL(in_postURL) { postURL = in_postURL; }
 	function setJobId(in_jobId) { jobId = in_jobId; }
 	function setJwPlayer(in_jwPlayer) { jwPlayer = in_jwPlayer; }
 	function setProgressMeterDiv(in_progressID) { progressID = in_progressID; }
@@ -299,7 +302,7 @@ function coveTag() {
    function postTag() {
      // Ryan's code from last quarter
      $.ajax({
-       url: "/videos/" + videoId + "/tag",
+       url: postURL,
        type: 'POST',
        dateType: 'JSON',
        data: {job_id: jobId, tag_id: this.tagID, start_time: this.startTime, end_time: this.endTime},
