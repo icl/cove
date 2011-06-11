@@ -172,6 +172,7 @@ def analyze_video(filename,stage)
     puts "  Offline mode enabled.  Will not check for dupes with server." if $verbose
   else
     if @pre_chksum.to_s != @post_chksum.to_s # If the file hasn't changed, there's no point in checking with the server again.
+      #TODO use real serivce to check
       chksum_uri = 'http://rest-test.heroku.com/' + chksum.to_s
       puts "  Submitting checksum check to: " + chksum_uri if $verbose
       dupe_check = RestClient.get(chksum_uri)
@@ -319,51 +320,60 @@ optparse.parse!
 
 def uploadfile(filename)
 
-  RestClient.put 'http://u.cove.ucsd.edu/video/',
-    File.read(filename),
-    :content_type => 'video/mp4',
-    :project => '@project',
-    :embed_creation => '@embed_creation',
-    :creation => '@creation',
-    :uploaddate => '@uploaddate',
-    :camera => '@camera',
-    :title => '@title',
-    :embed_title => '@embed_title',
-    :copyright => '@copyright',
-    :author => '@author',
-    :embed_author => '@embed_author',
-    :album => '@album',
-    :embed_album => '@embed_album',
-    :timeoffset => '@timeoffset',
-    :locationname => '@locationname',
-    :filepath => filename,
-    :uploadername => '@uploadername',
-    :auto_uploadername => '@auto_uploadername',
-    :mtime => '@mtime',
-    :pre_chksum => '@pre_chksum',
-    :post_chksum => '@post_chksum', 
-    :pre_vformat => '@pre_vformat',
-    :post_vformat => '@post_vformat',
-    :pre_aformat => '@pre_aformat',
-    :post_aformat => '@post_aformat',
-    :pre_bitrate => '@pre_bitrate',
-    :post_bitrate => '@post_bitrate',
-    :pre_height => '@pre_height',
-    :post_height => '@post_height',
-    :pre_width => '@pre_width',
-    :post_width => '@post_width',
-    :pre_filetype => '@pre_filetype',
-    :post_filetype => '@post_filetype',
-    :pre_fps => '@pre_fps',
-    :post_fps => '@post_fps',
-    :pre_filesize => '@pre_filesize',
-    :post_filesize => '@post_filesize',
-    :pre_achannels => '@pre_achannels',
-    :post_achannels => '@post_achannels',
-    :pre_samplerate => '@pre_samplerate',
-    :post_samplerate => '@post_samplerate',
-    :duration => '@duration',
-    :comments => '@comments'
+
+
+RestClient.post('http://chai.ucsd.edu:8000/videos', :video => { 
+  
+  :video_up => File.new(filename)
+
+
+})
+
+# RestClient.post 'http://localhost:3000/videos',
+#   File.read(filename),
+#   :content_type => 'video/mp4',
+#   :project => '@project',
+#   :embed_creation => '@embed_creation',
+#   :creation => '@creation',
+#   :uploaddate => '@uploaddate',
+#   :camera => '@camera',
+#   :title => '@title',
+#   :embed_title => '@embed_title',
+#   :copyright => '@copyright',
+#   :author => '@author',
+#   :embed_author => '@embed_author',
+#   :album => '@album',
+#   :embed_album => '@embed_album',
+#   :timeoffset => '@timeoffset',
+#   :locationname => '@locationname',
+#   :filepath => filename,
+#   :uploadername => '@uploadername',
+#   :auto_uploadername => '@auto_uploadername',
+#   :mtime => '@mtime',
+#   :pre_chksum => '@pre_chksum',
+#   :post_chksum => '@post_chksum', 
+#   :pre_vformat => '@pre_vformat',
+#   :post_vformat => '@post_vformat',
+#   :pre_aformat => '@pre_aformat',
+#   :post_aformat => '@post_aformat',
+#   :pre_bitrate => '@pre_bitrate',
+#   :post_bitrate => '@post_bitrate',
+#   :pre_height => '@pre_height',
+#   :post_height => '@post_height',
+#   :pre_width => '@pre_width',
+#   :post_width => '@post_width',
+#   :pre_filetype => '@pre_filetype',
+#   :post_filetype => '@post_filetype',
+#   :pre_fps => '@pre_fps',
+#   :post_fps => '@post_fps',
+#   :pre_filesize => '@pre_filesize',
+#   :post_filesize => '@post_filesize',
+#   :pre_achannels => '@pre_achannels',
+#   :post_achannels => '@post_achannels',
+#   :pre_samplerate => '@pre_samplerate',
+#   :post_samplerate => '@post_samplerate',
+#   :duration => '@duration',
+#   :comments => '@comments'
 
 end
 
@@ -383,7 +393,7 @@ ARGV.each do|filename|
   analyze_video(filename,"pre")
 
   if @needs_conversion == true
-
+    puts 'CONVERTING'
     # Now that the file has been converted, make it  the new target
 
     movie = FFMPEG::Movie.new(filename)
@@ -409,8 +419,14 @@ ARGV.each do|filename|
   ## Upload video to server.
   @uploaddate = Time.now.to_i
 
-  if @suspected_dupe == false and @offline == false
+  puts "Duplicate #{@suspected_dupe}"
+  puts "Offline #{@offline}"
+  puts "Conditional #{@suspected_dupe == false and @offline == false}"
+
+  #TODO Trace the logic
+ # if @suspected_dupe == false and @offline == false
+    puts 'WE ARE UPLOADING KTHX'
     uploadfile(filename)
-  end
+ # end
 
 end
