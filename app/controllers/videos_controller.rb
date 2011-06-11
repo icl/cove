@@ -29,7 +29,6 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     
     render "show"
-    endcoveTag.setPostURL('/videos/#{@video.id}/tag');
   end
 
   def tag
