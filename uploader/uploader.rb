@@ -322,7 +322,7 @@ def uploadfile(filename)
 
 
 
-RestClient.post('http://chai.ucsd.edu:8000/videos', :video => { 
+RestClient.post('http://localhost:3000/videos', :video => { 
   
   :video_up => File.new(filename)
 
