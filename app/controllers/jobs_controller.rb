@@ -110,6 +110,7 @@ class JobsController < ApplicationController
   def work
     @job = Job.find(params[:id])
     @video = @job.next_joblet current_user
+    @post_url = video_path(@video) + "/tag"
 
     @tagDisplayNames = Array.new(@job.tags.size());
     #Init a blank JSON string
