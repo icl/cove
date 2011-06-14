@@ -35,8 +35,8 @@
         - else
           = link_to 'PLAY!', "/jobs/#{job.id}/work", :class => "link_button"
 
--#  - if current_user.kind == "admin"
--#    #new_job_link
--#      = link_to 'New Job', new_job_path
+  - if current_user.kind == "admin"
+    #new_job_link
+      = link_to 'New Job', new_job_path, :class => "link_button neg" 
   
 
