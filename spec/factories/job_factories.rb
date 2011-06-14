@@ -5,7 +5,7 @@ Factory.define :job do |f|
 	f.description "Find all instances of riffing in days 1-5"
 	f.videos { [Factory(:video)] }
 	f.tags { [ Factory(:tag)] }
-	f.requestor { User.first }
+	f.requestor { User.find_by_name("Gina") || Factory(:gina) }
 end
 
 Factory.define :job_video do |f|

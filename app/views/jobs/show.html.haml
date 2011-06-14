@@ -15,8 +15,12 @@
     %dt.grid_4
       Tags
     %dd.grid_8.bottomSpace
-      -# = @job.tag_names.join(", ")
-      <em>Coming soon</em>.
+      - @job.tags.each do |t|
+        %p
+          = t.name
+          - if not t.certification.seeded?
+            =link_to 'Tag unseeded. Click here to seed.', tag_path(t)
+          
     
 .grid_3.bottomSpace.suffix_6
   = link_to 'Back', jobs_path, :class => "link_button neg"      

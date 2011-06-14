@@ -47,6 +47,7 @@ class JobsController < ApplicationController
 
     @job = Job.new(params[:job])
 
+    @job.requestor = current_user
 
     case params[:videos]
       when /all/
