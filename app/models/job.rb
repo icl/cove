@@ -8,6 +8,7 @@ class Job < ActiveRecord::Base
 
 	delegate :name, :to => :requestor, :prefix => true, :allow_nil => true
 
+  validates_presence_of :requestor
 	validate :must_have_videos, :must_have_tags
 
 	def must_have_videos
