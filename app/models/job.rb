@@ -31,4 +31,8 @@ class Job < ActiveRecord::Base
 		self.work_records.create(:video => v, :user => user)
 		v 
 	end
+	
+	def all_tags_seeded?
+    self.tags.all? { |t| t.certification.seeded? }
+  end
 end

@@ -21,6 +21,8 @@
       
       %dd.job_description
         = job.description
+        - if not job.all_tags_seeded?
+          %p ** This job contains unseeded tags **
       
       -# .job_field
         -# Requestor:
