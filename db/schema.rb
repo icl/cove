@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110610192433) do
+ActiveRecord::Schema.define(:version => 20110611023326) do
 
   create_table "certification_test_tags", :force => true do |t|
     t.integer  "certification_test_id"
@@ -38,13 +38,6 @@ ActiveRecord::Schema.define(:version => 20110610192433) do
 
   create_table "certifications", :force => true do |t|
     t.integer  "tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cheeses", :force => true do |t|
-    t.string   "name"
-    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

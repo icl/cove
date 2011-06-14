@@ -16,8 +16,9 @@ Feature: Turk Takes Certification Test
     Then I should see "passed"
     And I should be certified for the tag
   
-  @javascript @wip
+  @javascript
   Scenario: Fail test
-    When I apply the wrong tags
+    When I apply the wrong tags to a video
+    And I follow "Submit Test"
     Then I should see "failed"
     And I should not be certified for the tag

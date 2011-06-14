@@ -1,4 +1,5 @@
 CERTIFICATION_TEST_TAGS = [[1, 2], [3, 4], [5, 6]]
+CERTIFICATION_TEST_WRONG_TAGS = [[1, 2]]
 
 Given /^a seeded certification video for the tag$/ do
   Given "an unseeded certification video for the tag"
@@ -25,11 +26,17 @@ Given /^an unseeded certification video for the tag$/ do
 end
 
 When /^I apply the correct tags to a video$/ do
-  sleep 10
   When "I click the play button"
   CERTIFICATION_TEST_TAGS.each do |st, et|
     When "I tag the range [#{st},#{et}] using the hold-to-tag button"
   end
+end
+
+When /^I apply the wrong tags to a video$/ do
+  When "I click the play button"
+  CERTIFICATION_TEST_WRONG_TAGS.each do |st, et|
+    When "I tag the range [#{st},#{et}] using the hold-to-tag button"
+  end  
 end
 
 Then /^the certification video should be seeded$/ do
@@ -55,4 +62,8 @@ end
 
 Then /^I should be certified for the tag$/ do
   User.find_by_name("Emir").certified_for_tag?(@tag).should be_true
+end
+
+Then /^I should not be certified for the tag$/ do
+  User.find_by_name("Emir").certified_for_tag?(@tag).should be_false
 end
