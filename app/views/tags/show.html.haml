@@ -7,13 +7,14 @@
       = @tag.description
       = link_to 'Edit', edit_tag_path(@tag), :class => "link_button small"
     %dt.grid_4
-      Training Set
+      Certification Videos
     %dd.grid_8.bottomSpace
-      <em>Coming soon</em>
-    %dt.grid_4
-      Training Video
-    %dd.grid_8.bottomSpace
-      <em>Coming soon</em>
+      - @tag.certification.certification_videos.each do |cv|
+        %p
+          = cv.video.name
+          - if not cv.seeded?
+            = link_to 'Unseeded. Click to seed.', seed_certification_video_path(@cv)
+        
     %dt.grid_4
       Attached jobs
     %dd.grid_8.bottomSpace
