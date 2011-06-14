@@ -61,10 +61,10 @@
       %img.time_bar_right{:onclick => "amplify.publish('volume', { mode: 'down' })", :id => "volume", :src => "/images/icons/vol_up.png"}
 
 #buttonContainer.button_container
-  - @job.tags.each_index do |i|
+  - @tags.each_index do |i|
     -# Hold to click:
-    - tagButton_hold = "tagButton_hold_" + @job.tags[i].name
-    - tagButton_toggle = "tagButton_toggle_" + @job.tags[i].name
+    - tagButton_hold = "tagButton_hold_" + @tags[i].name
+    - tagButton_toggle = "tagButton_toggle_" + @tags[i].name
 
     %button.tagButtons.tagbutton_left(id=tagButton_hold)
       = "Hold to tag " << @tagDisplayNames[i]

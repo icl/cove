@@ -7,6 +7,7 @@ class CertificationVideosController < ApplicationController
     @certification = @certification_video.certification
     @video = @certification_video.video
     # required for Aaron's jwplayer
+    @post_url = video_path(@video) + "/tag"
     tag = @certification.tag
     @tags = [tag]
     @tagDisplayNames = [tag.name]
