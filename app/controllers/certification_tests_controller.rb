@@ -7,11 +7,11 @@ class CertificationTestsController < ApplicationController
     @certification = @test.certification
     @video = @test.video
     # required for Aaron's jwplayer
+    @post_url = "/certification_tests/#{@test.id}/tag"
     tag = @certification.tag
     @tags = [tag]
     @tagDisplayNames = [tag.name]
     @jsonStr = '{"id":' + tag.id.to_s() + ',' + ' "name":' + '\'' + tag.name + '\''+'},'
-    puts 'got here'
   end
 
   def submit_test
